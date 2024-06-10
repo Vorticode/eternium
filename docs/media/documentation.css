@@ -1,0 +1,85 @@
+
+/*
+@font-face {
+    font-family: "Architects Daughter";
+    font-weight: 400;
+    src: url("ArchitectsDaughter400.woff2") format("woff")
+}
+@font-face {
+    font-family: "Molengo";
+    font-weight: 400;
+    src: url("Molengo.woff") format("woff")
+}
+*/
+@font-face {
+    font-family: "Cabin";
+    font-weight: 700;
+    src: url("cabin-latin-700.woff2") format("woff")
+}
+@font-face {
+    font-family: "Fira Code";
+    font-weight: 400;
+    src: url("FiraCode400.woff2") format("woff")
+}
+
+body::before { content: ''; position: fixed; inset: 0;
+	opacity: .03; filter: grayscale(75%);
+	background: url('eternium-machine2.webp') no-repeat -200px -200px / 140% auto ;  }
+
+.typora-export-show-outline .typora-export-content { margin: 0 !important }
+.typora-export-sidebar { position: relative; width: 200px !important; background: black; color: #a0a4a8; margin: 0 !important; font-size: 16px !important ; }
+
+[dark] .typora-export-sidebar { background: var(--shade2) }
+.typora-export-sidebar .outline-content { display: flex; flex-direction: column;
+	width: 200px !important; padding: 10px 10px 0 0 !important; overflow: visible !important }
+.typora-export-sidebar .outline-content > li { overflow-x: hidden; overflow-y: auto }
+
+
+.typora-export-sidebar .outline-content:before { content: ''; display: block; width: 220px; min-height: 200px;
+	background: url('eternium-machine.webp'); background-size: cover; margin-bottom: 10px; }
+.typora-export-sidebar .outline-expander { width: 0 }
+
+#write { max-width: 860px; margin: 0 !important; padding-left: 20px }
+#write h1 { font: 700 350% Cabin; line-height: 1; margin: 0; padding: 0; color: var(--invert);
+    border-bottom: 0 solid transparent; width: 140%; max-width: calc(100vw - 75px); }
+
+#write h2 { font-family: Cabin, sans-serif; font-size: 220%; line-height: 1; margin: 2em 0 .25em 0 }
+
+#write h3 { margin-top: 1.5em; margin-bottom: .3em; font-size: 140%; line-height: 1.1; font-family: Cabin, sans-serif }
+html:not([dark]) #write h3 { color: #678; }
+
+#write h4 { font-size: 105%; font-weight: bold; margin-top: .75em; margin-bottom: 0 }
+#write h5 { font-size: 100%; font-weight: bold; margin-top: .75em; margin-bottom: 0 }
+#write h6 { font-size: 100%; font-weight: normal; margin-top: .75em; margin-bottom: 0; text-decoration: underline }
+
+
+#write :is(p, h2, h3, h4, h5, h6, ol, ul) { max-width: 600px }
+#write p { text-align: justify }
+#write a, #write a:visited { color: #08c; text-decoration: none}
+#write a:hover { color: #08c; text-decoration: underline }
+#write ul { padding-left: 20px }
+#write code { display: inline-block; background: #e0e8ef; font: 11px 'Fira Code'; border-radius: 4px; padding: 2px 4px }
+[dark] #write code { background: #303336 }
+
+#write play-ground { width: calc(100vw - 260px); max-width: 1200px }
+
+#write code-editor[data-style="1"] .cm-scroller { font: 11px 'Fira Code' !important}
+
+body.typora-export { padding: 0 !important }
+@media screen and (max-width: 1085px) {
+	.typora-export-sidebar, .typora-export-sidebar .outline-content {
+		display: none
+	}
+	#write play-ground { width: calc(100vw - 60px) }
+}
+
+
+
+:is(td, th):not(:first-of-type) { padding: 6px 8px 6px 0 }
+:is(td, th):not(:first-of-type) { padding-left: 5px }
+code { white-space: nowrap }
+
+.outline-h1 > .outline-item { color: white; font-size: 22px }
+.outline-h2 > .outline-item { color: white }
+
+

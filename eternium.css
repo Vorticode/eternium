@@ -1,0 +1,1117 @@
+/**
+ * Eternium CSS framework.
+ * License:  MIT
+ *
+ * Provide custom layout and form element styles ONLY for elements inside the .eternium class.
+ * And colorizes elements with a light and dark style.
+ * Add 'light' or 'dark' attributes to the <html> tag.
+ * It's recommended to use javascript to set this attribute from prefers-color-scheme on page load.
+ *
+ * TODO: Make input sizes and gap/pad sizes match?
+ * TODO: Phase out pad-tiny-small in projects.
+ * TODO: Support more elements from https://preview.tabler.io/form-elements.html
+ *
+ * Possible names, haven't checked npm:
+ * FlexFlow, RowCols, Energy.css, FlexFusion.cs, FlexBoss, FlexCraft, FlexMatrix.  FlexWarp.  Glide.css
+ *
+ * Possible names that aren't in npm:
+ * divcrafter - div-crafter is also available
+ * rex-css - taking a bite out of bad layouts.  But rex-css-framework exists.  Last publish 6 years ago.
+ * rectangle-css - rectangle is taken
+ * quadrite
+ * tungstenite - tungsten is taken
+ * carbon12
+ * void-?
+ * starsteel
+ * eternium
+ * solarite
+ * lumenite
+ */
+
+
+/* ┌─────────────────╮
+ * |Variables        |
+ * └─────────────────╯*/
+
+/* Light Colors */
+:root:not([dark]):is(.eternium, .eternium-style, .eternium-forms),
+:root:not([dark]) :is(.eternium, .eternium-style, .eternium-forms) {
+	/* Palette */
+	--text: #333;
+	--background: white;
+	--invert: black;
+
+	--shade1: #e4e8ed;
+	--shade2: #cbcfd7;
+	--shade3: #b6bac1; /* Unused? */
+	--shade4: #aeb3be;
+	--invalid: #900;
+	--shadow: 0 0 5px #0006;
+
+	/* Primary Colors */
+	--primary: #07c;
+	--primary2: #08e;
+	--primary-text: white;
+	--primary-border-focus: black;
+
+	/* Elements */
+	--secondary: var(--shade2);
+	--secondary-background-hover: var(--shade4);
+	--secondary-border-hover: var(--shade4);
+	--input-background: white;
+	--input-border: var(--shade2);
+
+	--card-background: white;
+	--card-border: var(--border-width) solid transparent; /* same width as visible border on dark mode. */
+
+	--border: var(--border-width) solid var(--shade2);
+	--border-focus: var(--border-width) solid var(--primary2);
+
+	/* Table */
+	--table-header-background: var(--shade1);
+	--table-border: 1px solid var(--shade1);
+	--table-background: white;
+}
+
+/* Dark Colors */
+:root[dark]:is(.eternium, .eternium-style, .eternium-forms),
+:root[dark] :is(.eternium, .eternium-style, .eternium-forms) {
+
+	/* Palette */
+	--text: #bcc3c8;
+	--background: black;
+	--invert: white;
+
+	--shade1: #06090c;
+	--shade2: #0f1318;
+	--shade3: #2a3239;
+	--shade4: #3d474f;
+
+	--invalid: #900;
+	--shadow: 0 0 12px #000f;
+
+	/* Primary Buttons */
+	--primary: #048;
+	--primary2: #05a;
+	--primary-text: white;
+	--primary-border-focus: white;
+
+	/** Elements */
+	--secondary: var(--shade3);
+	--secondary-background-hover: var(--shade4);
+	--secondary-border-hover: var(--shade4);
+	--input-background: var(--shade1);
+	--input-border: var(--shade3);
+
+	--card-background: var(--shade2);
+	--card-border: var(--border);
+
+	--border: var(--border-width) solid var(--shade3);
+	--border-focus: var(--border-width) solid var(--primary2);
+
+	/* Table */
+	--table-header-background:var(--shade3);
+	--table-border: 1px solid var(--shade3);
+	--table-background: var(--shade2);
+}
+
+
+.eternium, .eternium-style, .eternium-forms {
+	--input-small: 18px;
+	--input-normal: 24px;
+	--input-big: 32px;
+	--input-huge: 44px;
+
+	--border-width: 1px;
+	--border-radius: 3px;
+	--icon-size: 20px;
+
+	--table-padding: 4px 8px;
+
+	/* Buttons */
+	--primary-background: var(--primary);
+	--primary-border: var(--border-width) solid var(--primary);
+
+	--primary-background-hover: var(--primary2);
+	--primary-border-hover: var(--border-width) solid var(--primary2);
+
+	--secondary-background: var(--secondary);
+	--secondary-border: var(--border-width) solid var(--secondary);
+}
+
+
+/* ┌─────────────────╮
+ * |Scrollbars       |
+ * └─────────────────╯*/
+:root[dark]:is(.eternium, .eternium-style, .eternium-forms),
+:root[dark] :is(.eternium, .eternium-style, .eternium-forms) {
+	/*noinspection CssInvalidPropertyValue*/scrollbar-color: dark;
+
+	::-webkit-scrollbar { background: transparent }
+	::-webkit-scrollbar-track,
+	::-webkit-scrollbar-corner { background: transparent }
+	::-webkit-scrollbar-thumb { background: var(--shade4); border-radius: var(--border-radius) }
+}
+
+/* Form validation. Hide fields used by validate.js */
+.eternium, .eternium-forms {
+
+	/* ┌─────────────────╮
+	 * |Normalize        |
+	 * └─────────────────╯*/
+	body { background: var(--background); color: var(--text) }
+	button, input, optgroup, select, textarea { font-family: inherit; font-size: 100% }
+
+	/**
+	 * Prevent `sub` and `sup` elements from affecting the line height in all browsers. */
+	sub, sup {line-height: 0 }
+
+	dialog { z-index: 1000;
+		&::backdrop { background: #0008 }
+	}
+
+	:focus-visible { outline: none } /* Remove browser's default outline */
+	hr { border: none; border-bottom: var(--border) }
+
+
+	/* ┌─────────────────╮
+	 * |Misc             |
+	 * └─────────────────╯*/
+
+	/* Labels */
+	.label { font-size :85%; font-weight: bold; user-select: none }
+
+	/* Misc */
+	.little { font-size: 80%;  line-height: 1.1 }
+	:is(.muted,.faint) { opacity: .66; } /* faint is deprecated */
+
+
+
+	a:focus-visible:not(.no-outline) { outline: var(--border-focus) }
+	.no-select { user-select: none }
+
+	/* Icon */
+	.icon { font-size: var(--icon-size);
+		min-width: var(--icon-size); max-width: var(--icon-size); min-height: var(--icon-size); max-height: var(--icon-size);
+		&:not([disabled]) { cursor: pointer;
+			&.selected { color: var(--primary2)	}
+		}
+	}
+
+	/* Placeholder + Contenteditable placeholder */
+	::placeholder { color: inherit; opacity: .6 }
+	[placeholder]:empty {
+		&:before { content: attr(placeholder); opacity: .6; white-space: nowrap; cursor: text }
+		&:is(:focus,.focus):before { content: '' }
+	}
+
+	/* menu-item */
+	/* A combination of:  class="row pad-h-small pad-v-micro gap-small button center-v" */
+	.menu-item {
+		display: flex; align-items: center; padding: 4px 8px; gap: 8px; color: var(--text);
+		user-select: none; cursor: pointer;
+		&:hover { background: var(--primary-background); color: var(--primary-text) }
+	}
+
+	/* Card
+	 * Must appear before row/col so those can override the display to be flex. */
+	.card { box-sizing: border-box; background: var(--card-background); box-shadow: var(--shadow);
+		&:not(.square) { border-radius: var(--border-radius) }
+		&:not(.flat) { border: var(--card-border) }
+	}
+
+	/* ┌─────────────────╮
+	 * |Alerts           |
+	 * └─────────────────╯*/
+	.info-alert { background: #cdf; color: #347; padding: 8px 16px } /* TODO Have user add padding manually? Or match input box size? */
+	.success-alert { background: #cfd; color: #374; padding: 8px 16px }
+	.warning-alert { background: #fec; color: #863; padding: 8px 16px }
+	.error-alert { background: #fcc; color: #833; padding: 8px 16px }
+
+
+	/* ┌─────────────────╮
+	 * |Form Validation  |
+	 * └─────────────────╯*/
+
+	/* Form Validation */
+	.invalid { border-color: var(--invalid) !important; outline-color: var(--invalid) !important }
+
+	/* Hide validation messages by default. */
+	[data-pattern], [data-min], [data-max], [data-minlength], [data-maxlength], [data-required], [data-step], [data-type],
+	[data-validate]:not(input, .input, select, textarea), [data-validate2], [data-validate3], [data-validate4] {
+		color: var(--invalid); display: none
+	}
+
+
+	/* ┌─────────────────╮
+	 * |Input+Btn Height |
+	 * └─────────────────╯*/
+	/* Height */
+	input:not([type=checkbox],[type=file],[type=hidden],[type=image],[type=radio],[type=range]),
+	.input:not([contenteditable]), select, button, .button {
+		box-sizing: border-box; padding-top: 0; padding-bottom: 0;
+		min-height: var(--input-normal)
+	}
+
+	textarea, [contenteditable].input {
+		box-sizing: border-box;
+		min-height: var(--input-normal);
+		padding-top: calc((var(--input-normal) - 1lh) / 2 - var(--border-width)) /* Make text line up vertically with inputs.  Top half of the diff between input height and text height*/
+	}
+
+	/* ┌─────────────────╮
+	 * |Input            |
+	 * └─────────────────╯*/
+	.input, select, textarea,
+	input:not([type=checkbox],[type=file],[type=hidden],[type=image],[type=radio],[type=range],[type=button],[type=reset],[type=submit]) {
+		min-width: 0; color: var(--text);
+		&:not(.square, .flat) { border-radius: var(--border-radius); }
+		&:not(.flat) {
+			background: var(--input-background);
+			border: var(--border-width) solid var(--input-border); vertical-align: top; padding-left: var(--tiny); padding-right: var(--tiny);
+		}
+	}
+
+	/* Input focus */
+	:is(
+		input:not([type=checkbox],[type=file],[type=hidden],[type=image],[type=radio],[type=range],[type=button],[type=reset],[type=submit]),
+		.input, select, textarea):not(.flat,.no-outline):is(:focus-within,.focus) {
+		outline: var(--border-focus); outline-offset: -1px; z-index: 2 /* z-index lets it the border be on top when inside .group */
+	}
+	input[type=file]:not(.no-outline):is(:focus-within, .focus) { outline: var(--border-focus) } /* Can't style file, but at least make the focus look similar. */
+
+	/* Input focus:invalid */
+	:is(
+		input:not([type=checkbox],[type=hidden],[type=image],[type=radio],[type=range],[type=button],[type=reset],[type=submit]),
+		.input, select, textarea):not(.flat):is(:focus-within,.focus):invalid {
+		outline-color: red
+	}
+
+
+	/* ┌─────────────────╮
+	 * |Buttons          |
+	 * └─────────────────╯*/
+	:is(.button, button, input:is([type=button],[type=submit],[type=reset])) {
+		& {
+			box-sizing: border-box; display: inline-flex; user-select: none; text-align: center; color: var(--text); align-items: center }
+		&:not([disabled]) {
+			cursor: pointer }
+		&:not(.square, .flat) {
+			border-radius: var(--border-radius) }
+		&:not(.flat) {
+			line-height: normal;
+			border: var(--secondary-border); background: var(--secondary-background);
+			padding-left: var(--normal);
+			padding-right: var(--normal);
+		}
+
+		/* Button Hover/Focus */
+		&:not([disabled],.flat):is(:hover,.hover,.selected) {
+			background: var(--secondary-background-hover); border: var(--border-width) solid var(--secondary-border-hover);
+			color: var(--invert)}
+		&:not(.no-outline):is(:focus-visible,.focus) { outline: var(--border-focus); outline-offset: -1px; z-index: 2 }
+		&:is([disabled]) { cursor: default; opacity: .5 }
+
+		/* Button Primary */
+		&.primary {
+			&:not(.flat) { background: var(--primary-background); border: var(--primary-border) }
+			&:not(.flat) { color: var(--primary-text) }
+			&:is(:active,:hover,.active,.hover,.selected):not([disabled]) {
+				background: var(--primary-background-hover); border: var(--primary-border-hover); color: var(--primary-text) }
+			&:not(.no-outline):is(:focus-visible,.focus){
+				outline: var(--border-width) solid var(--primary-border-focus); outline-offset: -1px; z-index: 2 }
+			}
+		a:is(.button, .button:hover) { text-decoration: none }
+
+		/* ┌─────────────────╮
+		 * |Button Status    |
+		 * └─────────────────╯*/
+		/* TODO: Let inputs have status also. */
+		&:is(.loading,.error,.complete) { position: relative;
+			&:after { position: relative;	margin-right: -16px; top: 1px; left: 1px; }
+			&.primary:after { filter: invert(100%) }
+		}
+
+		&.loading:after {
+			content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path style="transform-origin: center" fill="currentColor" d="M13 2v2c4.39.54 7.5 4.53 6.96 8.92A8.014 8.014 0 0 1 13 19.88v2c5.5-.6 9.45-5.54 8.85-11.03C21.33 6.19 17.66 2.5 13 2m-2 0c-1.96.18-3.81.95-5.33 2.2L7.1 5.74c1.12-.9 2.47-1.48 3.9-1.68V2M4.26 5.67A9.81 9.81 0 0 0 2.05 11h2c.19-1.42.75-2.77 1.64-3.9L4.26 5.67M2.06 13c.2 1.96.97 3.81 2.21 5.33l1.42-1.43A8.002 8.002 0 0 1 4.06 13h-2m5 5.37l-1.39 1.37A9.994 9.994 0 0 0 11 22v-2a8.002 8.002 0 0 1-3.9-1.63h-.04Z"><animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="2s" repeatCount="indefinite" /></path></svg>');
+		}
+		&.complete:after {
+			content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M13 2.03v2.02c4.39.54 7.5 4.53 6.96 8.92c-.46 3.64-3.32 6.53-6.96 6.96v2c5.5-.55 9.5-5.43 8.95-10.93c-.45-4.75-4.22-8.5-8.95-8.97m-2 .03c-1.95.19-3.81.94-5.33 2.2L7.1 5.74c1.12-.9 2.47-1.48 3.9-1.68v-2M4.26 5.67A9.885 9.885 0 0 0 2.05 11h2c.19-1.42.75-2.77 1.64-3.9L4.26 5.67M15.5 8.5l-4.88 4.88l-2.12-2.12l-1.06 1.06l3.18 3.18l5.94-5.94L15.5 8.5M2.06 13c.2 1.96.97 3.81 2.21 5.33l1.42-1.43A8.002 8.002 0 0 1 4.06 13h-2m5.04 5.37l-1.43 1.37A9.994 9.994 0 0 0 11 22v-2a8.002 8.002 0 0 1-3.9-1.63Z"/></svg>');
+		}
+		&.error:after {
+			content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M13 2v2c4.39.54 7.5 4.53 6.96 8.92A8.014 8.014 0 0 1 13 19.88v2c5.5-.6 9.45-5.54 8.85-11.03C21.33 6.19 17.66 2.5 13 2m-2 0c-1.96.18-3.81.95-5.33 2.2L7.1 5.74c1.12-.9 2.47-1.48 3.9-1.68v-2M4.26 5.67A9.81 9.81 0 0 0 2.05 11h2c.19-1.42.75-2.77 1.64-3.9L4.26 5.67M2.06 13c.2 1.96.97 3.81 2.21 5.33l1.42-1.43A8.002 8.002 0 0 1 4.06 13h-2m5 5.37l-1.39 1.37A9.994 9.994 0 0 0 11 22v-2a8.002 8.002 0 0 1-3.9-1.63h-.04M13 13V7h-2v6h2m0 4v-2h-2v2h2Z"/></svg>');
+		}
+
+		/* ┌─────────────────╮
+		 * |Button Sizes     |
+		 * └─────────────────╯*/
+
+		/* Small buttons. */
+		/* We calculate how much vertical padding space is left after using line height and border: */
+		&.small {
+			min-height: var(--input-small); padding: calc((var(--input-small) - 1lh) / 2 - var(--border-width)) calc(var(--input-small) / 2)
+		}
+
+		/* Big buttons . */
+		&.big:not(.wt) {
+			height: var(--input-big); padding: calc((var(--input-big) - 1lh) / 2 - var(--border-width)) calc(var(--input-big))
+		}
+
+		/* Huge buttons */
+		&.huge:not(.wt) {
+			height: var(--input-huge); padding: calc((var(--input-huge) - 1lh) / 2 - var(--border-width)) calc(var(--input-huge))
+		}
+	}
+
+	/* ┌─────────────────╮
+	 * |Input Sizes      |
+	 * └─────────────────╯*/
+	:is(button, .button, input, select).small {
+		height: var(--input-small); /* Needed for <select> to get it to shrink its height. */
+	}
+
+	input:not([type=checkbox],[type=file],[type=hidden],[type=image],[type=radio],[type=range],[type=button],[type=reset],[type=submit]),
+	.input, select, textarea {
+
+		&.small {  min-height: var(--input-small); padding: calc((var(--input-small) - 1lh) / 2 - var(--border-width)) calc(var(--input-small) / 4) }
+		&.big { min-height: var(--input-big); padding: calc((var(--input-big) - 1lh) / 2 - var(--border-width)) calc(var(--input-big) / 3) }
+		&.huge { min-height: var(--input-huge); padding: calc((var(--input-huge) - 1lh) / 2 - var(--border-width)) calc(var(--input-huge) / 3) }
+	}
+
+
+	/* ┌─────────────────╮
+	 * |Flat             |
+	 * └─────────────────╯*/
+	/* Flat Buttons + Inputs have no bg, border, or padding.  Good for toolbars. */
+	:is(input:not([type=checkbox],[type=file],[type=hidden],[type=image],[type=radio],[type=range]),
+		.input, select, textarea, button, .button).flat {
+		border: var(--border-width) solid transparent; background: transparent;
+	}
+	:is(input:not([type=checkbox],[type=file],[type=hidden],[type=image],[type=radio],[type=range],[type=button],[type=reset],[type=submit]),
+		.input, select, textarea, button, .button).flat:is(:focus-visible,.focus) {
+		outline: var(--border-focus)
+	}
+
+	:is(button, .button, [type=button],[type=reset],[type=submit]):not([disabled]).flat:is(.selected, :hover) {
+		border: var(--border-width) solid var(--secondary-background-hover); background: var(--secondary-background-hover);
+		color: var(--invert)
+	}
+	.input:focus-within :focus-within { outline: none !important }
+
+	/* ┌─────────────────╮
+	 * |Grouped          |
+	 * └─────────────────╯*/
+	/* Grouped inputs + buttons share borders */
+	.group { display: flex }
+	.group > :is(:not(:first-child), .group-left),
+	.group > :is(:not(:first-child), .group-left) :is(input, .input, select, textarea, button),
+	.group > input[type=checkbox]:is(.normal,.big,.huge):is(:not(:first-child), .group-left):before,
+	.group > :is(:not(:first-child), .group-left) input[type=checkbox]:is(.normal,.big,.huge):before {
+		margin-left: -1px; border-top-left-radius: 0 !important; border-bottom-left-radius: 0 !important;
+	}
+	.group > :is(:not(:last-child), .group-right),
+	.group > :is(:not(:last-child), .group-right) :is(input, .input, select, textarea, button),
+	.group > input[type=checkbox]:is(.normal,.big,.huge):is(:not(:last-child), .group-right):before,
+	.group > :is(:not(:last-child), .group-right) input[type=checkbox]:is(.normal,.big,.huge):before {
+		border-top-right-radius: 0 !important; border-bottom-right-radius: 0 !important;
+	}
+
+	/* ┌─────────────────╮
+	 * |Checkboxes       |
+	 * └─────────────────╯*/
+	/* Allow us to customize the border on checkboxes when they're invalid. */
+	[type=checkbox] { 
+		appearance:none; outline: none; content: none; margin: 0; vertical-align: text-top;
+		&:before { content: "✓"; box-sizing: border-box;
+			align-items: center; justify-content: center; color: transparent; background: var(--input-background);
+			display: inline-flex; width: .9rem; height: .9rem; font: bold .75rem Arial; line-height: 0;}
+		&:not(.flat,.square):before { border-radius: var(--border-radius) }
+		&:not(.flat):before { border: var(--border-width) solid var(--input-border) }
+		&:not(.no-outline):is(:focus-visible,.focus):before { outline: var(--border-focus); outline-offset: -1px; z-index: 2; position: relative } /* relative needed for z-index to work */
+	
+		/* Checkbox gets primary style when checked. */
+		&:checked:before { color: white; background: var(--primary-background) }
+		&:checked:is(:focus-visible,.focus):before { outline: var(--border-width) solid var(--primary-border-focus) }
+	
+		/* Various sizes of checkboxes */
+		&.small:before {
+			width: var(--input-small);
+			height: var(--input-small);
+			font-size: calc(var(--input-small) * .75) }
+		&.normal:before {
+			width: var(--input-normal);
+			height: var(--input-normal);
+			font-size: calc(var(--input-normal) * .75) }
+		&.big:before {
+			width: var(--input-big);
+			height: var(--input-big);
+			font-size: calc(var(--input-big) * .75) }
+		&.huge:before {
+			width: var(--input-huge);
+			height: var(--input-huge);
+			font-size: calc(var(--input-huge) * .75) }
+	}	
+
+	/* ┌─────────────────╮
+	 * |Data table       |
+	 * └─────────────────╯*/
+	/* One border around the whole table, and then right and bottom borders on each cell that's not the last in the row/column.
+	 * To quickly give a table a different padding size, you can set style="--table-padding: 2px 10px" */
+	.data-table { 
+		border-collapse: collapse; background: var(--table-background); border: var(--table-border); font-size: inherit;
+		
+		:is(thead,.thead,tfoot,.tfoot) { background: var(--table-header-background) }
+		:is(th,.th) { padding: var(--table-padding); border-bottom: var(--table-border);
+			text-align: left; user-select: none; font-weight: 500; white-space: nowrap }
+		:is(thead,.thead) :is(th,.th) { vertical-align: bottom } /* column headers */
+		:is(tbody,.tbody,tfoot,.tfoot) :is(th,.th) { vertical-align: top } /* row headers, footer */
+
+		:is(td,.td) { padding: var(--table-padding) }
+		:is(th,.th,td,.td):not(:last-child) { border-right: var(--table-border) }
+		:is(tr,.tr):not(:last-child) :is(td,.td) { border-bottom: var(--table-border) }
+	}
+
+	/* ┌─────────────────╮
+	 * |Experimental     |
+	 * └─────────────────╯*/
+	/* These may change in the future. */
+
+	/* drop-menu */
+	/* A menu with expandable sub-items. */
+	.drop-menu ul {
+		list-style: none; margin: 0; padding: 0;
+		&:not(:hover) ul { transition: visibility 0s; transition-delay: .6s }
+		&:hover > ul:not(:hover) { transition: visibility 0s; transition-delay: 0s; display: none }
+		a { display: block }
+		li { position: relative }
+		ul { visibility: hidden; position: absolute; top: 100%; left: 0; z-index: 1 }
+		ul ul { top: 0; left: 100% }
+		li:hover > ul { visibility: visible; transition-delay: 0s }
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ┌─────────────────╮
+ * |Grid             |
+ * └─────────────────╯*/
+.eternium, .eternium-layout {
+
+	/* Dimensions */
+	--micro: 2px;
+	--tiny: 4px;
+	--small: 8px;
+	--normal: 16px;
+	--big: 24px;
+	--huge: 48px;
+	
+	/* Rows and column layout.  These can occor on the same element with :is(.eternium, .eternium-style)
+	 * Unlike bootstrap, a col class will stack each of its children into a column,
+	 * and having a col class for each item in a row isn't necessary.*/
+	.row { display: flex; align-items: start;
+
+	}  /* align-items: start prevents stretching to available height */
+	.col { display: flex; flex-direction: column; align-items: start;
+		> * { max-width: 100% } /* Don't let children be wider than the column */
+	}
+
+	/* Gaps */
+	.gap-micro { gap: var(--micro) }
+	.gap-tiny { gap: var(--tiny) }
+	.gap-small { gap: var(--small) }
+	.gap { gap: var(--normal) }
+	.gap-big { gap: var(--big) }
+	.gap-huge { gap: var(--huge) }
+
+
+	/* Pad */
+	/* We need :not(#wt) to override the css weight of input pad-left and pad-right above.*/
+	:not(#wt).pad-micro { padding: var(--micro) }
+	:not(#wt).pad-tiny { padding: var(--tiny) }
+	:not(#wt).pad-small { padding: var(--small) }
+	:not(#wt).pad { padding: var(--normal) }
+	:not(#wt).pad-big { padding: var(--big) }
+	:not(#wt).pad-huge { padding: var(--huge) }
+
+	:not(#wt).pad-h-micro { padding-left: var(--micro); padding-right: var(--micro) }
+	:not(#wt).pad-h-tiny { padding-left: var(--tiny); padding-right: var(--tiny) }
+	:not(#wt).pad-h-small { padding-left: var(--small); padding-right: var(--small) }
+	:not(#wt).pad-h { padding-left: var(--normal); padding-right: var(--normal) }
+	:not(#wt).pad-h-big { padding-left: var(--big); padding-right: var(--big) }
+	:not(#wt).pad-h-huge { padding-left: var(--huge); padding-right: var(--huge) }
+
+	:not(#wt).pad-v-micro { padding-top: var(--micro); padding-bottom: var(--micro) }
+	:not(#wt).pad-v-tiny { padding-top: var(--tiny); padding-bottom: var(--tiny) }
+	:not(#wt).pad-v-small { padding-top: var(--small); padding-bottom: var(--small) }
+	:not(#wt).pad-v { padding-top: var(--normal); padding-bottom: var(--normal) }
+	:not(#wt).pad-v-big { padding-top: var(--big); padding-bottom: var(--big) }
+	:not(#wt).pad-v-huge { padding-top: var(--huge); padding-bottom: var(--huge) }
+
+
+	/* Alignment */
+	.row.left { justify-content: start }
+	.col.left { align-items: start }
+
+	.row.right { justify-content: end }
+	.col.right { align-items: end }
+
+	.row.top { align-items: start }
+	.col.top { justify-content: start }
+
+	.row.bottom { align-items: end }
+	.col.bottom { justify-content: end }
+
+	:is(.row,.col).stretch { align-items: stretch }
+	:is(.row,.col).stretch > * { flex: 1 }
+
+	.row.stretch-h > * { flex: 1 }
+	.row.stretch-v { align-items: stretch }
+
+	.col.stretch-h { align-items: stretch }
+	.col.stretch-v  > * { flex: 1 }
+
+	.row:is(.center, .center-h) { justify-content: center }
+	.col:is(.center, .center-h) { align-items: center }
+
+	.row:is(.center, .center-v) { align-items: center }
+	.col:is(.center, .center-v) { justify-content: center }
+
+	/* Spacing */
+	.space-between { justify-content: space-between }
+	.space-around { justify-content: space-around }
+	.space-evenly { justify-content: space-evenly }
+
+	/* Wrap */
+	.wrap { flex-wrap: wrap }
+	:is(.no-wrap, .nowrap) { flex-wrap: nowrap; white-space: nowrap }
+
+
+	/* ┌─────────────────╮
+	 * |Dimensions       |
+	 * └─────────────────╯*/
+
+	/* Fixed
+	 * using width: clamp(1rem, 1rem 1rem); doesn't do the same thing as setting-min-width and max-width.
+	 * A flex: 1 will still override the former.
+	*/
+	.rem1 { min-width: 1rem; max-width: 1rem }
+	.rem2 { min-width: 2rem; max-width: 2rem }
+	.rem3 { min-width: 3rem; max-width: 3rem }
+	.rem4 { min-width: 4rem; max-width: 4rem }
+	.rem5 { min-width: 5rem; max-width: 5rem }
+	.rem6 { min-width: 6rem; max-width: 6rem }
+	.rem7 { min-width: 7rem; max-width: 7rem }
+	.rem8 { min-width: 8rem; max-width: 8rem }
+	.rem9 { min-width: 9rem; max-width: 9rem }
+	.rem10 { min-width: 10rem; max-width: 10rem }
+	.rem11 { min-width: 11rem; max-width: 11rem }
+	.rem12 { min-width: 12rem; max-width: 12rem }
+	.rem13 { min-width: 13rem; max-width: 13rem }
+	.rem14 { min-width: 14rem; max-width: 14rem }
+	.rem15 { min-width: 15rem; max-width: 15rem }
+	.rem16 { min-width: 16rem; max-width: 16rem }
+
+	/* Experimental - replace .rem's? */
+	.px10 { min-width: 10px; max-width: 10px }
+	.px20 { min-width: 20px; max-width: 20px }
+	.px30 { min-width: 30px; max-width: 30px }
+	.px40 { min-width: 40px; max-width: 40px }
+	.px50 { min-width: 50px; max-width: 50px }
+	.px60 { min-width: 60px; max-width: 60px }
+	.px70 { min-width: 70px; max-width: 70px }
+	.px80 { min-width: 80px; max-width: 80px }
+	.px90 { min-width: 90px; max-width: 90px }
+	.px100 { min-width: 100px; max-width: 100px }
+	.px120 { min-width: 120px; max-width: 120px }
+	.px150 { min-width: 150px; max-width: 150px }
+	.px200 { min-width: 200px; max-width: 200px }
+	.px250 { min-width: 250px; max-width: 250px }
+	.px300 { min-width: 300px; max-width: 300px }
+	.px350 { min-width: 350px; max-width: 350px }
+	.px400 { min-width: 400px; max-width: 400px }
+	.px450 { min-width: 450px; max-width: 450px }
+	.px500 { min-width: 500px; max-width: 500px }
+	.px550 { min-width: 550px; max-width: 550px }
+	.px600 { min-width: 800px; max-width: 800px }
+	.px650 { min-width: 850px; max-width: 850px }
+	.px700 { min-width: 700px; max-width: 700px }
+	.px750 { min-width: 750px; max-width: 750px }
+	.px800 { min-width: 800px; max-width: 800px }
+	.px850 { min-width: 850px; max-width: 850px }
+	.px900 { min-width: 900px; max-width: 900px }
+	.px950 { min-width: 950px; max-width: 950px }
+	.px1000 { min-width: 1000px; max-width: 1000px }
+
+	/* Percents in thirds, fourths, and tenths. */
+	.pc10 { width: 10% }
+	.pc20 { width: 20% }
+	.pc25 { width: 25% }
+	.pc30 { width: 30% }
+	.pc33 { width: 33.333% }
+	.pc40 { width: 40% }
+	.pc50 { width: 50% }
+	.pc60 { width: 60% }
+	.pc66 { width: 66.666% }
+	.pc70 { width: 70% }
+	.pc75 { width: 70% }
+	.pc80 { width: 80% }
+	.pc90 { width: 90% }
+	.pc100 { width: 100% }
+
+	/* Flex */
+	.flex1, .expand { flex: 1 }
+	.flex2 { flex: 2 }
+	.flex3 { flex: 3 }
+	.flex4 { flex: 4 }
+	.flex5 { flex: 5 }
+	.flex6 { flex: 6 }
+	.flex7 { flex: 7 }
+	.flex8 { flex: 8 }
+	.flex9 { flex: 9 }
+	.flex10 { flex: 10 }
+	.flex11 { flex: 11 }
+	.flex12 { flex: 12 }
+}
+
+
+/* ┌─────────────────╮
+ * |Grid Mobile      |
+ * └─────────────────╯*/
+@media (width < 768px) {
+
+	.eternium, .eternium-layout {
+
+
+		/* Row/Col */
+		.row-mobile { display: flex; flex-direction: row; align-items: start; justify-content: start }
+		.col-mobile { display: flex; flex-direction: column; align-items: start; justify-content: start }
+
+		/* Gaps */
+		.gap-micro-mobile { gap: var(--micro) }
+		.gap-tiny-mobile { gap: var(--tiny) }
+		.gap-small-mobile { gap: var(--small) }
+		.gap-mobile { gap: var(--normal) }
+		.gap-big-mobile { gap: var(--big) }
+		.gap-huge-mobile { gap: var(--huge) }
+
+		/* Pad */
+		:not(#wt).pad-micro-mobile { padding: var(--micro) }
+		:not(#wt).pad-tiny-mobile { padding: var(--tiny) }
+		:not(#wt).pad-small-mobile { padding: var(--small) }
+		:not(#wt).pad-mobile { padding: var(--normal) }
+		:not(#wt).pad-big-mobile { padding: var(--big) }
+		:not(#wt).pad-huge-mobile { padding: var(--huge) }
+
+		:not(#wt).pad-h-micro-mobile { padding-left: var(--micro); padding-right: var(--micro) }
+		:not(#wt).pad-h-tiny-mobile { padding-left: var(--tiny); padding-right: var(--tiny) }
+		:not(#wt).pad-h-small-mobile { padding-left: var(--small); padding-right: var(--small) }
+		:not(#wt).pad-h-mobile { padding-left: var(--normal); padding-right: var(--normal) }
+		:not(#wt).pad-h-big-mobile { padding-left: var(--big); padding-right: var(--big) }
+		:not(#wt).pad-h-huge-mobile { padding-left: var(--huge); padding-right: var(--huge) }
+
+		:not(#wt).pad-v-micro-mobile { padding-top: var(--micro); padding-bottom: var(--micro) }
+		:not(#wt).pad-v-tiny-mobile { padding-top: var(--tiny); padding-bottom: var(--tiny) }
+		:not(#wt).pad-v-small-mobile { padding-top: var(--small); padding-bottom: var(--small) }
+		:not(#wt).pad-v-mobile { padding-top: var(--normal); padding-bottom: var(--normal) }
+		:not(#wt).pad-v-big-mobile { padding-top: var(--big); padding-bottom: var(--big) }
+		:not(#wt).pad-v-huge-mobile { padding-top: var(--huge); padding-bottom: var(--huge) }
+
+		/* Alignment */
+		.row-mobile.left-mobile { justify-content: start }
+		.col-mobile.left-mobile { align-items: start }
+
+		.row-mobile.right-mobile { justify-content: end }
+		.col-mobile.right-mobile { align-items: end }
+
+		.row-mobile.top-mobile { align-items: start }
+		.col-mobile.top-mobile { justify-content: start }
+
+		.row-mobile.bottom-mobile { align-items: end }
+		.col-mobile.bottom-mobile { justify-content: end }
+
+		:is(.row-mobile,.col-mobile).stretch-mobile { align-items: stretch }
+		:is(.row-mobile,.col-mobile).stretch-mobile > * { flex: 1 }
+
+		.row-mobile.stretch-h-mobile > * { flex: 1 }
+		.row-mobile.stretch-v-mobile { align-items: stretch }
+
+		.col-mobile.stretch-h-mobile { align-items: stretch }
+		.col-mobile.stretch-v-mobile > * { flex: 1 }
+
+		.row-mobile:is(.center-mobile, .center-h-mobile) { justify-content: center }
+		.col-mobile:is(.center-mobile, .center-h-mobile) { align-items: center }
+
+		.row-mobile:is(.center-mobile, .center-v-mobile) { align-items: center }
+		.col-mobile:is(.center-mobile, .center-v-mobile) { justify-content: center }
+
+		/* Spacing */
+		/* We use :not(.wt) so this can override .col.center w/ a selector weight of 3 above. */
+		.space-between-mobile:not(.wt) { justify-content: space-between }
+		.space-around-mobile:not(.wt) { justify-content: space-around }
+		.space-evenly-mobile:not(.wt) { justify-content: space-evenly }
+
+		/* Wrap */
+		.wrap-mobile { flex-wrap: wrap }
+		:is(.no-wrap-mobile, .nowrap-mobile) { flex-wrap: nowrap; white-space: nowrap }
+
+
+
+
+		/* ┌─────────────────╮
+		 * |Dimensions       |
+		 * └─────────────────╯*/
+
+		/* Fixed */
+		.rem1-mobile { min-width: 1rem; max-width: 1rem }
+		.rem2-mobile { min-width: 2rem; max-width: 2rem }
+		.rem3-mobile { min-width: 3rem; max-width: 3rem }
+		.rem4-mobile { min-width: 4rem; max-width: 4rem }
+		.rem5-mobile { min-width: 5rem; max-width: 5rem }
+		.rem6-mobile { min-width: 6rem; max-width: 6rem }
+		.rem7-mobile { min-width: 7rem; max-width: 7rem }
+		.rem8-mobile { min-width: 8rem; max-width: 8rem }
+		.rem9-mobile { min-width: 9rem; max-width: 9rem }
+		.rem10-mobile { min-width: 10rem; max-width: 10rem }
+		.rem11-mobile { min-width: 11rem; max-width: 11rem }
+		.rem12-mobile { min-width: 12rem; max-width: 12rem }
+		.rem13-mobile { min-width: 13rem; max-width: 13rem }
+		.rem14-mobile { min-width: 14rem; max-width: 14rem }
+		.rem15-mobile { min-width: 15rem; max-width: 15rem }
+		.rem16-mobile { min-width: 16rem; max-width: 16rem }
+
+
+		/* Percents in thirds, fourths, and tenths. */
+		.pc10-mobile { width: 10% }
+		.pc20-mobile { width: 20% }
+		.pc25-mobile { width: 25% }
+		.pc30-mobile { width: 30% }
+		.pc33-mobile { width: 33.333% }
+		.pc40-mobile { width: 40% }
+		.pc50-mobile { width: 50% }
+		.pc60-mobile { width: 60% }
+		.pc66-mobile { width: 66.666% }
+		.pc70-mobile { width: 70% }
+		.pc75-mobile { width: 70% }
+		.pc80-mobile { width: 80% }
+		.pc90-mobile { width: 90% }
+		.pc100-mobile { width: 100% }
+
+		/* Flex */
+		.flex1-mobile { flex: 1 }
+		.flex2-mobile { flex: 2 }
+		.flex3-mobile { flex: 3 }
+		.flex4-mobile { flex: 4 }
+		.flex5-mobile { flex: 5 }
+		.flex6-mobile { flex: 6 }
+		.flex7-mobile { flex: 7 }
+		.flex8-mobile { flex: 8 }
+		.flex9-mobile { flex: 9 }
+		.flex10-mobile { flex: 10 }
+		.flex11-mobile { flex: 11 }
+		.flex12-mobile { flex: 12 }
+	}
+}
+
+/* ┌─────────────────╮
+ * |Grid Tablet      |
+ * └─────────────────╯*/
+@media (768px <= width < 992px) {
+
+	.eternium, .eternium-layout {
+
+		/* Row/Col */
+		.row-tablet { display: flex; flex-direction: row; align-items: start; justify-content: start }
+		.col-tablet { display: flex; flex-direction: column; align-items: start; justify-content: start }
+
+		/* Gaps */
+		.gap-micro-tablet { gap: var(--micro) }
+		.gap-tiny-tablet { gap: var(--tiny) }
+		.gap-small-tablet { gap: var(--small) }
+		.gap-tablet { gap: var(--normal) }
+		.gap-big-tablet { gap: var(--big) }
+		.gap-huge-tablet { gap: var(--huge) }
+
+		/* Pad */
+		:not(#wt).pad-micro-tablet { padding: var(--micro) }
+		:not(#wt).pad-tiny-tablet { padding: var(--tiny) }
+		:not(#wt).pad-small-tablet { padding: var(--small) }
+		:not(#wt).pad-tablet { padding: var(--normal) }
+		:not(#wt).pad-big-tablet { padding: var(--big) }
+		:not(#wt).pad-huge-tablet { padding: var(--huge) }
+
+		:not(#wt).pad-h-micro-tablet { padding-left: var(--micro); padding-right: var(--micro) }
+		:not(#wt).pad-h-tiny-tablet { padding-left: var(--tiny); padding-right: var(--tiny) }
+		:not(#wt).pad-h-small-tablet { padding-left: var(--small); padding-right: var(--small) }
+		:not(#wt).pad-h-tablet { padding-left: var(--normal); padding-right: var(--normal) }
+		:not(#wt).pad-h-big-tablet { padding-left: var(--big); padding-right: var(--big) }
+		:not(#wt).pad-h-huge-tablet { padding-left: var(--huge); padding-right: var(--huge) }
+
+		:not(#wt).pad-v-micro-tablet { padding-top: var(--micro); padding-bottom: var(--micro) }
+		:not(#wt).pad-v-tiny-tablet { padding-top: var(--tiny); padding-bottom: var(--tiny) }
+		:not(#wt).pad-v-small-tablet { padding-top: var(--small); padding-bottom: var(--small) }
+		:not(#wt).pad-v-tablet { padding-top: var(--normal); padding-bottom: var(--normal) }
+		:not(#wt).pad-v-big-tablet { padding-top: var(--big); padding-bottom: var(--big) }
+		:not(#wt).pad-v-huge-tablet { padding-top: var(--huge); padding-bottom: var(--huge) }
+
+		/* Alignment */
+		.row-tablet.left-tablet { justify-content: start }
+		.col-tablet.left-tablet { align-items: start }
+
+		.row-tablet.right-tablet { justify-content: end }
+		.col-tablet.right-tablet { align-items: end }
+
+		.row-tablet.top-tablet { align-items: start }
+		.col-tablet.top-tablet { justify-content: start }
+
+		.row-tablet.bottom-tablet { align-items: end }
+		.col-tablet.bottom-tablet { justify-content: end }
+
+		:is(.row-tablet,.col-tablet).stretch-tablet { align-items: stretch }
+		:is(.row-tablet,.col-tablet).stretch-tablet > * { flex: 1 }
+
+		.row-tablet.stretch-h-tablet > * { flex: 1 }
+		.row-tablet.stretch-v-tablet { align-items: stretch }
+
+		.col-tablet.stretch-h-tablet { align-items: stretch }
+		.col-tablet.stretch-v-tablet > * { flex: 1 }
+
+		.row-tablet:is(.center-tablet, .center-h-tablet) { justify-content: center }
+		.col-tablet:is(.center-tablet, .center-h-tablet) { align-items: center }
+
+		.row-tablet:is(.center-tablet, .center-v-tablet) { align-items: center }
+		.col-tablet:is(.center-tablet, .center-v-tablet) { justify-content: center }
+
+		/* Spacing */
+		/* We use :not(.wt) so this can override .col.center w/ a selector weight of 3 above. */
+		.space-between-tablet:not(.wt) { justify-content: space-between }
+		.space-around-tablet:not(.wt) { justify-content: space-around }
+		.space-evenly-tablet:not(.wt) { justify-content: space-evenly }
+
+		/* Wrap */
+		.wrap-tablet { flex-wrap: wrap }
+		:is(.no-wrap-tablet, .nowrap-tablet) { flex-wrap: nowrap; white-space: nowrap }
+
+
+		/* ┌─────────────────╮
+		 * |Dimensions       |
+		 * └─────────────────╯*/
+
+		/* Fixed */
+		.rem1-tablet { min-width: 1rem; max-width: 1rem }
+		.rem2-tablet { min-width: 2rem; max-width: 2rem }
+		.rem3-tablet { min-width: 3rem; max-width: 3rem }
+		.rem4-tablet { min-width: 4rem; max-width: 4rem }
+		.rem5-tablet { min-width: 5rem; max-width: 5rem }
+		.rem6-tablet { min-width: 6rem; max-width: 6rem }
+		.rem7-tablet { min-width: 7rem; max-width: 7rem }
+		.rem8-tablet { min-width: 8rem; max-width: 8rem }
+		.rem9-tablet { min-width: 9rem; max-width: 9rem }
+		.rem10-tablet { min-width: 10rem; max-width: 10rem }
+		.rem11-tablet { min-width: 11rem; max-width: 11rem }
+		.rem12-tablet { min-width: 12rem; max-width: 12rem }
+		.rem13-tablet { min-width: 13rem; max-width: 13rem }
+		.rem14-tablet { min-width: 14rem; max-width: 14rem }
+		.rem15-tablet { min-width: 15rem; max-width: 15rem }
+		.rem16-tablet { min-width: 16rem; max-width: 16rem }
+
+		/* Percents in thirds, fourths, and tenths. */
+		.pc10-tablet { width: 10% }
+		.pc20-tablet { width: 20% }
+		.pc25-tablet { width: 25% }
+		.pc30-tablet { width: 30% }
+		.pc33-tablet { width: 33.333% }
+		.pc40-tablet { width: 40% }
+		.pc50-tablet { width: 50% }
+		.pc60-tablet { width: 60% }
+		.pc66-tablet { width: 66.666% }
+		.pc70-tablet { width: 70% }
+		.pc75-tablet { width: 70% }
+		.pc80-tablet { width: 80% }
+		.pc90-tablet { width: 90% }
+		.pc100-tablet { width: 100% }
+
+		/* Flex */
+		.flex1-tablet { flex: 1 }
+		.flex2-tablet { flex: 2 }
+		.flex3-tablet { flex: 3 }
+		.flex4-tablet { flex: 4 }
+		.flex5-tablet { flex: 5 }
+		.flex6-tablet { flex: 6 }
+		.flex7-tablet { flex: 7 }
+		.flex8-tablet { flex: 8 }
+		.flex9-tablet { flex: 9 }
+		.flex10-tablet { flex: 10 }
+		.flex11-tablet { flex: 11 }
+		.flex12-tablet { flex: 12 }
+	}	
+}
+
+/* ┌─────────────────╮
+ * |Grid Desktop+    |
+ * └─────────────────╯*/
+@media (992px <= width) {
+
+	.eternium, .eternium-layout {
+
+		/* Row/Col */
+		.row-desktop { display: flex; flex-direction: row; align-items: start; justify-content: start }
+		.col-desktop { display: flex; flex-direction: column; align-items: start; justify-content: start }
+	
+		/* Gaps */
+		.gap-micro-desktop { gap: var(--micro) }
+		.gap-tiny-desktop { gap: var(--tiny) }
+		.gap-small-desktop { gap: var(--small) }
+		.gap-desktop { gap: var(--normal) }
+		.gap-big-desktop { gap: var(--big) }
+		.gap-huge-desktop { gap: var(--huge) }
+	
+		/* Pad */
+		:not(#wt).pad-micro-desktop { padding: var(--micro) }
+		:not(#wt).pad-tiny-desktop { padding: var(--tiny) }
+		:not(#wt).pad-small-desktop { padding: var(--small) }
+		:not(#wt).pad-desktop { padding: var(--normal) }
+		:not(#wt).pad-big-desktop { padding: var(--big) }
+		:not(#wt).pad-huge-desktop { padding: var(--huge) }
+
+		:not(#wt).pad-h-micro-desktop { padding-left: var(--micro); padding-right: var(--micro) }
+		:not(#wt).pad-h-tiny-desktop { padding-left: var(--tiny); padding-right: var(--tiny) }
+		:not(#wt).pad-h-small-desktop { padding-left: var(--small); padding-right: var(--small) }
+		:not(#wt).pad-h-desktop { padding-left: var(--normal); padding-right: var(--normal) }
+		:not(#wt).pad-h-big-desktop { padding-left: var(--big); padding-right: var(--big) }
+		:not(#wt).pad-h-huge-desktop { padding-left: var(--huge); padding-right: var(--huge) }
+
+		:not(#wt).pad-v-micro-desktop { padding-top: var(--micro); padding-bottom: var(--micro) }
+		:not(#wt).pad-v-tiny-desktop { padding-top: var(--tiny); padding-bottom: var(--tiny) }
+		:not(#wt).pad-v-small-desktop { padding-top: var(--small); padding-bottom: var(--small) }
+		:not(#wt).pad-v-desktop { padding-top: var(--normal); padding-bottom: var(--normal) }
+		:not(#wt).pad-v-big-desktop { padding-top: var(--big); padding-bottom: var(--big) }
+		:not(#wt).pad-v-huge-desktop { padding-top: var(--huge); padding-bottom: var(--huge) }
+
+		/* Alignment */
+		.row-desktop.left-desktop { justify-content: start }
+		.col-desktop.left-desktop { align-items: start }
+	
+		.row-desktop.right-desktop { justify-content: end }
+		.col-desktop.right-desktop { align-items: end }
+	
+		.row-desktop.top-desktop { align-items: start }
+		.col-desktop.top-desktop { justify-content: start }
+	
+		.row-desktop.bottom-desktop { align-items: end }
+		.col-desktop.bottom-desktop { justify-content: end }
+	
+		:is(.row-desktop,.col-desktop).stretch-desktop { align-items: stretch }
+		:is(.row-desktop,.col-desktop).stretch-desktop > * { flex: 1 }
+	
+		.row-desktop.stretch-h-desktop > * { flex: 1 }
+		.row-desktop.stretch-v-desktop { align-items: stretch }
+	
+		.col-desktop.stretch-h-desktop { align-items: stretch }
+		.col-desktop.stretch-v-desktop > * { flex: 1 }
+
+		.row-desktop:is(.center-desktop, .center-h-desktop) { justify-content: center }
+		.col-desktop:is(.center-desktop, .center-h-desktop) { align-items: center }
+
+		.row-desktop:is(.center-desktop, .center-v-desktop) { align-items: center }
+		.col-desktop:is(.center-desktop, .center-v-desktop) { justify-content: center }
+	
+		/* Spacing */
+		/* We use .sel-weight so this can override .col.center w/ a selector weight of 3 above. */
+		.space-between-desktop:not(.wt) { justify-content: space-between }
+		.space-around-desktop:not(.wt) { justify-content: space-around }
+		.space-evenly-desktop:not(.wt) { justify-content: space-evenly }
+	
+		/* Wrap */
+		.wrap-desktop { flex-wrap: wrap }
+		:is(.no-wrap-desktop, .nowrap-desktop) { flex-wrap: nowrap; white-space: nowrap }
+
+
+		/* ┌─────────────────╮
+		 * |Dimensions       |
+		 * └─────────────────╯*/
+
+		/* Fixed */
+		.rem1-desktop { min-width: 1rem; max-width: 1rem }
+		.rem2-desktop { min-width: 2rem; max-width: 2rem }
+		.rem3-desktop { min-width: 3rem; max-width: 3rem }
+		.rem4-desktop { min-width: 4rem; max-width: 4rem }
+		.rem5-desktop { min-width: 5rem; max-width: 5rem }
+		.rem6-desktop { min-width: 6rem; max-width: 6rem }
+		.rem7-desktop { min-width: 7rem; max-width: 7rem }
+		.rem8-desktop { min-width: 8rem; max-width: 8rem }
+		.rem9-desktop { min-width: 9rem; max-width: 9rem }
+		.rem10-desktop { min-width: 10rem; max-width: 10rem }
+		.rem11-desktop { min-width: 11rem; max-width: 11rem }
+		.rem12-desktop { min-width: 12rem; max-width: 12rem }
+		.rem13-desktop { min-width: 13rem; max-width: 13rem }
+		.rem14-desktop { min-width: 14rem; max-width: 14rem }
+		.rem15-desktop { min-width: 15rem; max-width: 15rem }
+		.rem16-desktop { min-width: 16rem; max-width: 16rem }
+
+		/* Percents in thirds, fourths, and tenths. */
+		.pc10-desktop { width: 10% }
+		.pc20-desktop { width: 20% }
+		.pc25-desktop { width: 25% }
+		.pc30-desktop { width: 30% }
+		.pc33-desktop { width: 33.333% }
+		.pc40-desktop { width: 40% }
+		.pc50-desktop { width: 50% }
+		.pc60-desktop { width: 60% }
+		.pc66-desktop { width: 66.666% }
+		.pc70-desktop { width: 70% }
+		.pc75-desktop { width: 70% }
+		.pc80-desktop { width: 80% }
+		.pc90-desktop { width: 90% }
+		.pc100-desktop { width: 100% }
+
+		/* Flex */
+		.flex1-desktop { flex: 1 }
+		.flex2-desktop { flex: 2 }
+		.flex3-desktop { flex: 3 }
+		.flex4-desktop { flex: 4 }
+		.flex5-desktop { flex: 5 }
+		.flex6-desktop { flex: 6 }
+		.flex7-desktop { flex: 7 }
+		.flex8-desktop { flex: 8 }
+		.flex9-desktop { flex: 9 }
+		.flex10-desktop { flex: 10 }
+		.flex11-desktop { flex: 11 }
+		.flex12-desktop { flex: 12 }
+	}
+}
+
+/* ┌─────────────────╮
+ * |Grid Visibility  |
+ * └─────────────────╯*/
+
+
+/* Show only for specific sizes. */
+/* TODO: Use this method for other -desktop and -mobile styles above?  Having that will override the default style only for that size. */
+@media (width < 768px) {
+	:is(.eternium, .eternium-layout) :is(.tablet, .desktop):not(.mobile) { display: none !important }
+}
+@media (768px <= width < 992px) {
+	:is(.eternium, .eternium-layout) :is(.mobile, .desktop):not(.tablet) { display: none !important }
+}
+@media (992px <= width) {
+	:is(.eternium, .eternium-layout) :is(.mobile, .tablet):not(.desktop) { display: none !important }
+}
+
+
+/* ┌─────────────────╮
+ * |Deprecated       |
+ * └─────────────────╯*/
+/* These are deprecated, use pad-h and pad-v */
+:is(.eternium, .eternium-forms) .pad-tiny-small, :is(.eternium, .eternium-forms).pad-tiny-small { padding: var(--tiny) var(--small) }
+:is(.eternium, .eternium-forms) .pad-small-normal, :is(.eternium, .eternium-forms).pad-small-normal { padding: var(--small) var(--normal) }
+
+:is(.eternium, .eternium-forms) :is(small, :is(a,b,i,s,p,u,span,div,ul,ol,li,.label):not([contenteditable]).small) {
+	font-size: 80%; opacity: .65; line-height: 1.1 } /* .small is deprecated for .little and .muted */

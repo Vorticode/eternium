@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en" class="rex">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title></title>
+	<link rel="stylesheet" href="eternium.css">
+	<style>
+		body { font: 16px Arial; margin: 0; padding: 20px }
+	</style>
+</head>
+<body>
+
+<div>
+	<div class="col gap-big">
+
+		<div  class="col gap-big">
+			<div class="card pad-big">
+				<div class="col gap-small">
+					<div class="row">
+						<div class="side-label">Input height</div>
+						<input type="range" min="1" max="100" value="24"
+						       oninput="document.documentElement.style.setProperty('--input-normal', this.value+'px')">
+					</div>
+					<div class="row">
+						<div class="side-label">Border Radius</div>
+						<input type="range" min="0" max="20" value="3"
+						       oninput="document.documentElement.style.setProperty('--border-radius', this.value+'px')">
+					</div>
+
+					<div class="row">
+						<div class="side-label">Sizes</div>
+						<div class="row wrap">
+							<div>
+								<div>Tiny</div>
+								<input type="range" min="0" max="10" step=".05" value=".25"
+								       oninput="document.documentElement.style.setProperty('--tiny', this.value+'rem')">
+							</div>
+							<div>
+								<div>Small</div>
+								<input type="range" min="0" max="10" step=".05" value=".5"
+								       oninput="document.documentElement.style.setProperty('--small', this.value+'rem')">
+							</div>
+							<div>
+								<div>Normal</div>
+								<input type="range" min="0" max="10" step=".05" value="1"
+								       oninput="document.documentElement.style.setProperty('--normal', this.value+'rem')">
+							</div>
+							<div>
+								<div>Big</div>
+								<input type="range" min="0" max="10" step=".05" value="1.75"
+								       oninput="document.documentElement.style.setProperty('--big', this.value+'rem')">
+							</div>
+							<div>
+								<div>Huge</div>
+								<input type="range" min="0" max="10" step=".05" value="3"
+								       oninput="document.documentElement.style.setProperty('--huge', this.value+'rem')">
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+
+			<div class="card pad">
+			<h3>Form Elements</h3>
+
+			<h4>Normal</h4>
+			<div class="row gap-small wrap">
+				<input placeholder="Input">
+				<input type="checkbox" class="normal" checked>
+				<select>
+					<option>Select</option>
+					<option>One</option>
+					<option>Two</option>
+				</select>
+				<textarea cols="20" rows="1">Textarea</textarea>
+				<div contenteditable class="input">Contenteditable</div>
+				<button>Button</button>
+				<button class="primary">Primary</button>
+			</div>
+
+			<h4>Group</h4>
+			<div class="row group wrap">
+				<input placeholder="Input">
+				<input type="checkbox" class="normal" checked>
+				<select>
+					<option>Select</option>
+					<option>One</option>
+					<option>Two</option>
+				</select>
+				<textarea cols="20" rows="1">Textarea</textarea>
+				<div contenteditable class="input">Contenteditable</div>
+				<button>Button</button>
+				<button class="primary">Primary</button>
+			</div>
+
+			<h4>Flat</h4>
+			<div class="row gap-small wrap">
+				<input placeholder="Input" class="flat">
+				<input type="checkbox" class="normal flat" checked>
+				<select class="flat">
+					<option>Select</option>
+					<option>One</option>
+					<option>Two</option>
+				</select>
+				<textarea cols="20" rows="1" class="flat">Textarea</textarea>
+				<div contenteditable class="input flat">Contenteditable</div>
+				<button class="flat">Button</button>
+				<button class="primary flat">Primary</button>
+				<button class="flat selected">Selected</button>
+				<button class="primary flat selected">Primary Selected</button>
+			</div>
+
+			<h4>Within</h4>
+			<div class="row gap-small wrap input">
+				<input placeholder="Input" class="flat">
+				<input type="checkbox" class="normal flat" checked>
+				<select class="flat">
+					<option>Select</option>
+					<option>One</option>
+					<option>Two</option>
+				</select>
+				<textarea cols="20" rows="1" class="flat">Textarea</textarea>
+				<div contenteditable class="input flat">Contenteditable</div>
+				<button class="flat">Button</button>
+				<button class="primary flat">Primary</button>
+				<button class="flat selected">Selected</button>
+				<button class="primary flat selected">Primary Selected</button>
+			</div>
+
+			<h4>Small</h4>
+			<div class="row gap-small wrap">
+				<input placeholder="Input" class="small">
+				<input type="checkbox" class="small" checked>
+				<select class="small">
+					<option>Select</option>
+					<option>One</option>
+					<option>Two</option>
+				</select>
+				<textarea cols="20" rows="1" class="small">Textarea</textarea>
+				<div contenteditable class="input small">Contenteditable</div>
+				<button class="small">Button</button>
+				<button class="primary small">Primary</button>
+			</div>
+
+			<h4>Big</h4>
+			<div class="row gap-small wrap">
+				<input placeholder="Input" class="big">
+				<input type="checkbox" class="big" checked>
+				<select class="big">
+					<option>Select</option>
+					<option>One</option>
+					<option>Two</option>
+				</select>
+				<textarea cols="20" rows="1" class="big">Textarea</textarea>
+				<div contenteditable class="input big">Contenteditable</div>
+				<button class="big">Button</button>
+				<button class="primary big">Primary</button>
+			</div>
+
+			<h4>Huge</h4>
+			<div class="row gap-small wrap">
+				<input placeholder="Input" class="huge">
+				<input type="checkbox" class="huge" checked>
+				<select class="huge">
+					<option>Select</option>
+					<option>One</option>
+					<option>Two</option>
+				</select>
+				<textarea cols="20" rows="1" class="huge">Textarea</textarea>
+				<div contenteditable class="input huge">Contenteditable</div>
+				<button class="huge">Button</button>
+				<button class="primary huge">Primary</button>
+			</div>
+
+			<h4>Button Status</h4>
+			<div class="row gap-small wrap">
+				<button class="loading">Loading</button>
+				<button class="primary loading">Loading</button>
+				<button class="primary big loading">Loading</button>
+				<button class="primary huge loading">Loading</button>
+
+				<button class="complete">Complete</button>
+				<button class="primary complete">Complete</button>
+
+				<button class="error">Error</button>
+				<button class="primary error">Error</button>
+			</div>
+
+		</div>
+
+
+
+		<div class="card pad">
+			<h3>Side Labels</h3>
+
+			<div class="col gap-small stretch-h" style="max-width: 320px">
+				<label class="row center-v stretch-h gap">
+					<span class="side-label-tiny">Username</span>
+					<input/>
+				</label>
+				<div class="row center-v stretch-h gap">
+					<label for="password" class="side-label-tiny">Password</label>
+					<input type="password" id="password"/>
+				</div>
+
+				<div class="row gap stretch-h">
+					<div class="side-label-tiny"></div>
+					<div class="row center-v space-between gap">
+						<label style="user-select: none">
+							<input type="checkbox" checked>
+							Remember
+						</label>
+						<button type="submit" class="primary">Submit</button> <!--or <a href="">Forgot Password</a>-->
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+		<div class="card pad">
+			<h3>Alerts</h3>
+
+			<div class="col gap">
+				<div class="infoAlert">Info</div>
+				<div class="successAlert">Success</div>
+				<div class="warningAlert">Warning</div>
+				<div class="errorAlert">Error</div>
+			</div>
+
+		</div>
+
+		<div class="card pad-big">
+			<h3>Grid</h3>
+
+
+			<table class="demo">
+				<thead>
+				<tr>
+					<th></th>
+					<th>.center-h</th>
+					<th>.center-v</th>
+					<th>.center</th>
+					<th>.right</th>
+					<th>.bottom</th>
+					<th>.stretch-h</th>
+					<th>.stretch-v</th>
+					<th>.stretch</th>
+					<th>.space-between</th>
+					<th>.space-around</th>
+					<th>.space-evenly</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<th>.row</th>
+					<td>
+						<div class="row center-h">
+							<div class="box"></div>
+							<div class="box"></div>
+						</div>
+					</td>
+					<td>
+						<div class="row center-v">
+							<div class="box"></div>
+							<div class="box"></div>
+						</div>
+					</td>
+					<td>
+						<div class="row center">
+							<div class="box"></div>
+							<div class="box"></div>
+						</div>
+					</td>
+					<td>
+						<div class="row right">
+							<div class="box"></div>
+							<div class="box"></div>
+						</div>
+					</td>
+					<td>
+						<div class="row bottom">
+							<div class="box"></div>
+							<div class="box"></div>
+						</div>
+					</td>
+					<td>
+						<div class="row stretch-h">
+							<div class="box"></div>
+							<div class="box"></div>
+						</div>
+					</td>
+					<td>
+						<div class="row stretch-v">
+							<div class="box"></div>
+							<div class="box"></div>
+						</div>
+					</td>
+					<td>
+						<div class="row stretch">
+							<div class="box"></div>
+							<div class="box"></div>
+						</div>
+					</td>
+					<td>
+						<div class="row space-between">
+							<div class="box"></div>
+							<div class="box"></div>
+							<div class="box"></div>
+						</div>
+					</td>
+					<td>
+						<div class="row space-around">
+							<div class="box"></div>
+							<div class="box"></div>
+							<div class="box"></div>
+						</div>
+					</td>
+					<td>
+						<div class="row space-evenly">
+							<div class="box"></div>
+							<div class="box"></div>
+							<div class="box"></div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>.col</th>
+					<td>
+						<div class="col center-h">
+							<div class="box"></div>
+							<div class="box"></div>
+						</div>
+					</td>
+					<td>
+						<div class="col center-v">
+							<div class="box"></div>
+							<div class="box"></div>
+						</div>
+					</td>
+					<td>
+						<div class="col center">
+							<div class="box"></div>
+							<div class="box"></div>
+						</div>
+					</td>
+					<td>
+						<div class="col right">
+							<div class="box"></div>
+							<div class="box"></div>
+						</div>
+					</td>
+					<td>
+						<div class="col bottom">
+							<div class="box"></div>
+							<div class="box"></div>
+						</div>
+					</td>
+					<td>
+						<div class="col stretch-h">
+							<div class="box"></div>
+							<div class="box"></div>
+						</div>
+					</td>
+					<td>
+						<div class="col stretch-v">
+							<div class="box"></div>
+							<div class="box"></div>
+						</div>
+					</td>
+					<td>
+						<div class="col stretch">
+							<div class="box"></div>
+							<div class="box"></div>
+						</div>
+					</td>
+					<td>
+						<div class="col space-between">
+							<div class="box"></div>
+							<div class="box"></div>
+							<div class="box"></div>
+						</div>
+					</td>
+					<td>
+						<div class="col space-around">
+							<div class="box"></div>
+							<div class="box"></div>
+							<div class="box"></div>
+						</div>
+					</td>
+					<td>
+						<div class="col space-evenly">
+							<div class="box"></div>
+							<div class="box"></div>
+							<div class="box"></div>
+						</div>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+
+			<h4>Gap</h4>
+
+			<div class="col gap">
+				<div class="col">
+					<div>.gap-tiny</div>
+					<div class="row gap-tiny wrap" style=" max-width: 80px">
+						<div class="box"></div>
+						<div class="box"></div>
+						<div class="box"></div>
+						<div class="box"></div>
+						<div class="box"></div>
+						<div class="box"></div>
+						<div class="box"></div>
+					</div>
+				</div>
+				<div class="col">
+					<div>.gap-small</div>
+					<div class="row gap-small wrap" style=" max-width: 80px">
+						<div class="box"></div>
+						<div class="box"></div>
+						<div class="box"></div>
+						<div class="box"></div>
+						<div class="box"></div>
+					</div>
+				</div>
+				<div class="col">
+					<div>.gap</div>
+					<div class="row gap wrap" style=" max-width: 80px">
+						<div class="box"></div>
+						<div class="box"></div>
+						<div class="box"></div>
+						<div class="box"></div>
+						<div class="box"></div>
+					</div>
+				</div>
+				<div class="col">
+					<div>.gap-big </div>
+					<div class="row gap-big wrap" style=" max-width: 80px">
+						<div class="box"></div>
+						<div class="box"></div>
+						<div class="box"></div>
+					</div>
+				</div>
+				<div class="col">
+					<div>.gap-huge </div>
+					<div class="row gap-huge wrap" style=" max-width: 80px">
+						<div class="box"></div>
+						<div class="box"></div>
+						<div class="box"></div>
+					</div>
+				</div>
+			</div>
+
+
+			<h4>Gap-h</h4>
+
+			<div class="col gap">
+				<div class="col">
+					<div>.gap-tiny</div>
+					<div class="row gap-h-tiny wrap" style=" max-width: 80px">
+						<div class="box"></div>
+						<div class="box"></div>
+						<div class="box"></div>
+						<div class="box"></div>
+						<div class="box"></div>
+						<div class="box"></div>
+						<div class="box"></div>
+					</div>
+				</div>
+				<div class="col">
+					<div>.gap-small</div>
+					<div class="row gap-h-small wrap" style=" max-width: 80px">
+						<div class="box"></div>
+						<div class="box"></div>
+						<div class="box"></div>
+						<div class="box"></div>
+						<div class="box"></div>
+					</div>
+				</div>
+				<div class="col">
+					<div>.gap</div>
+					<div class="row gap-h wrap" style=" max-width: 80px">
+						<div class="box"></div>
+						<div class="box"></div>
+						<div class="box"></div>
+						<div class="box"></div>
+						<div class="box"></div>
+					</div>
+				</div>
+				<div class="col">
+					<div>.gap-big </div>
+					<div class="row gap-h-big wrap" style=" max-width: 80px">
+						<div class="box"></div>
+						<div class="box"></div>
+						<div class="box"></div>
+					</div>
+				</div>
+				<div class="col">
+					<div>.gap-huge </div>
+					<div class="row gap-h-huge wrap" style=" max-width: 80px">
+						<div class="box"></div>
+						<div class="box"></div>
+						<div class="box"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="card pad">
+			<h3>Data Table</h3>
+
+			<table class="data-table">
+				<thead>
+				<tr>
+					<th></th>
+					<th>Name</th>
+					<th>Mass (10<sup>24</sup>kg)</th>
+					<th>Diameter (km)</th>
+					<th>Density (kg/m<sup>3</sup>)</th>
+					<th>Gravity (m/s<sup>2</sup>)</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<th rowspan="4">Terrestrial planets</th>
+					<td>Mercury</td>
+					<td>0.330</td>
+					<td>4,879</td>
+					<td>5427</td>
+					<td>3.7</td>
+				</tr>
+				<tr>
+					<td>Venus</td>
+					<td>4.87</td>
+					<td>12,104</td>
+					<td>5243</td>
+					<td>8.9</td>
+				</tr>
+				<tr>
+					<td>Earth</td>
+					<td>5.97</td>
+					<td>12,756</td>
+					<td>5514</td>
+					<td>9.8</td>
+				</tr>
+				<tr>
+					<td>Mars</td>
+					<td>0.642</td>
+					<td>6,792</td>
+					<td>3933</td>
+					<td>3.7</td>
+				</tr>
+				<tr>
+					<th rowspan="4">Jovian planets</th>
+					<td>Jupiter</td>
+					<td>1898</td>
+					<td>142,984</td>
+					<td>1326</td>
+					<td>23.1</td>
+				</tr>
+				<tr>
+					<td>Saturn</td>
+					<td>568</td>
+					<td>120,536</td>
+					<td>687</td>
+					<td>9.0</td>
+				</tr>
+				<tr>
+					<td>Uranus</td>
+					<td>86.8</td>
+					<td>51,118</td>
+					<td>1271</td>
+					<td>8.7</td>
+				</tr>
+				<tr>
+					<td>Neptune</td>
+					<td>102</td>
+					<td>49,528</td>
+					<td>1638</td>
+					<td>11.0</td>
+				</tr>
+				<tr>
+					<th>Dwarf planets</th>
+					<td>Pluto</td>
+					<td>0.0146</td>
+					<td>2,370</td>
+					<td>2095</td>
+					<td>0.7</td>
+				</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+</div>
+
+
+</body>
