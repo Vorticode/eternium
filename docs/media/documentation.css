@@ -22,6 +22,7 @@
     src: url("FiraCode400.woff2") format("woff")
 }
 
+html { background: var(--background) !important }
 body::before { content: ''; position: fixed; inset: 0;
 	opacity: .03; filter: grayscale(75%);
 	background: url('eternium-machine2.webp') no-repeat -200px -200px / 140% auto ;  }
