@@ -7,7 +7,7 @@ append-head:  <script src="docs/playground/ui/DarkToggle.js"></script><script ty
 
 # Eternium
 
-Eternium is a CSS library for layout and styling elements, requiring significantly fewer classes and markup than similar libraries.  It's 44KB or < 6KB minified+gzipped.
+Eternium is a CSS library for layout and styling elements, requiring significantly fewer classes and markup than similar libraries.  It's 44KB or < **6KB** minified+gzipped and currently in beta.
 
 [Download eternium.css](eternium.css).
 
@@ -1000,7 +1000,7 @@ Setting the body height is only necessary for this demo, and doesn't need to be 
 
 <div class="col stretch-h" style="min-height: 100%">
     <div class="pad center" style="background: #ccf">Header</div>
-    <div class="pad flex1" contenteditable>Content</div>
+    <div class="pad flex1" contenteditable>Content:  Edit me</div>
     <div class="pad center" style="background: #cfc">Footer</div>
 </div>
 ```
