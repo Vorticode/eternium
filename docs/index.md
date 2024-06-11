@@ -1,13 +1,17 @@
 ---
 title:  Eternium Documentation
-append-head:  <script src="playground/ui/DarkToggle.js"></script><script type="module" src="documentation.js"></script><link rel="stylesheet" href="media/documentation.css"><link rel="stylesheet" href="../eternium.css">
+append-head:  <script src="docs/playground/ui/DarkToggle.js"></script><script type="module" src="docs/documentation.js"></script><link rel="stylesheet" href="docs/media/documentation.css"><link rel="stylesheet" href="eternium.css">
 ---
 
 <!-- To create documentation: (1) Open in Typora.  (2) Select the GitHub theme. (3) Export as html with styles to index.html. -->
 
 # Eternium
 
-Eternium is a CSS library for layout and styling elements, requiring significantly fewer classes and markup than similar libraries.  Here's an example of what using Eternium looks like.  Notice that you can edit the code.
+Eternium is a CSS library for layout and styling elements, requiring significantly fewer classes and markup than similar libraries.  It's 44KB or < 6KB minified+gzipped.
+
+[Download eternium.css](https://vorticode.github.io/eternium.css).
+
+Here's an example of what using Eternium looks like.  Notice that you can edit the code.
 
 ```html
 <div class="card pad col gap-small stretch-h">
