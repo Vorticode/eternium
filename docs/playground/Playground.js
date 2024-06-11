@@ -22,7 +22,7 @@ export default class Playground extends Red {
 		this.prefix2 = prefix;
 		this.maxHeight = maxHeight
 		this.render();
-
+		
 		this.editor.onChange.push(() => {
 			this.run();
 		});
@@ -36,7 +36,13 @@ export default class Playground extends Red {
 			html = `<script type="module">${this.editor.getValue()}</script>`;
 		else if (this.language === 'html')
 			html = this.editor.getValue();
-
+		else {
+			this.editor.style.width = '100%';
+			this.editor.style.borderRight = 'none';
+			this.resizer.style.display = 'none';
+			this.preview.style.display = 'none';
+			return;
+		}
 
 		// Create a new preview iframe and swap it for the old one once it's loaded.
 		let newIframe = r(`<iframe data-id="preview" frameborder="0" style="display: none; height: 0">`);
@@ -57,6 +63,7 @@ export default class Playground extends Red {
 					newIframe.contentWindow.document.body.append(r(errorDiv));
 				}, 0);
 			}
+			
 			newIframe.contentWindow.document.write(this.prefix2 + html);
 
 			newIframe.contentWindow.document.close();
@@ -84,44 +91,43 @@ export default class Playground extends Red {
 
 			// Prevent flashing
 			//newIframe.contentWindow.document.addEventListener('load', () => {
-			setTimeout(() =>
-				newIframe.contentWindow.requestAnimationFrame(() => {
-					this.preview.remove();
-					newIframe.style.display = '';
-					this.preview = newIframe;
+			setTimeout(() => {
+				//newIframe.contentWindow.requestAnimationFrame(() => {
+				this.preview.remove();
+				newIframe.style.display = '';
+				this.preview = newIframe;
+				
+				// Resize iframe to height of content.
+				let newPreviewHeight = expandIframe(newIframe);
+				setTimeout(() => {
+					expandIframe(newIframe);
+				}, 500);
+				
+				
+				if (this.maxHeight) {
 					
-					// Resize iframe to height of content.
-					let newPreviewHeight = expandIframe(newIframe);
-					 setTimeout(() => {
-					 	expandIframe(newIframe);
-					 }, 500);
+					// Get scroll position.
+					let scroller = this.editor.querySelector('.cm-editor > .cm-scroller');
+					let scroll = {x: scroller?.scrollLeft || 0, y: scroller?.scrollTop || 0};
 					
+					// Don't let CodeEditor be taller than preview.
+					this.editor.style.height = '';
+					let editorHeight = this.editor.getBoundingClientRect().height;
+					if (editorHeight > newPreviewHeight && editorHeight > this.maxHeight)
+						this.editor.style.height = Math.max(newPreviewHeight, this.maxHeight) + 'px';
 					
-					
-					if (this.maxHeight) {
-						
-						// Get scroll position.
-						let scroller = this.editor.querySelector('.cm-editor > .cm-scroller');
-						let scroll = {x: scroller?.scrollLeft||0, y: scroller?.scrollTop||0};
-						
-						// Don't let CodeEditor be taller than preview.
-						this.editor.style.height = '';
-						let editorHeight = this.editor.getBoundingClientRect().height;
-						if (editorHeight > newPreviewHeight && editorHeight > this.maxHeight)
-							this.editor.style.height = Math.max(newPreviewHeight, this.maxHeight) + 'px';
-						
-						// Restore scroll position.
-						if (scroller) {
+					// Restore scroll position.
+					if (scroller) {
+						scroller.scrollTop = scroll.y;
+						scroller.scrollLeft = scroll.x;
+						requestAnimationFrame(() => {
 							scroller.scrollTop = scroll.y;
 							scroller.scrollLeft = scroll.x;
-							requestAnimationFrame(() => {
-								scroller.scrollTop = scroll.y;
-								scroller.scrollLeft = scroll.x;
-							});
-						}
+						});
 					}
-				})
-				, 10);
+				}
+				//})
+			}, 10);
 		}
 		
 		this.insertBefore(newIframe, this.preview);
@@ -143,7 +149,7 @@ export default class Playground extends Red {
 					}
 				</style>			
 				<code-editor data-id="editor" value="${this.value}" language="${this.language}"></code-editor>
-				<flex-resizer></flex-resizer>
+				<flex-resizer data-id="resizer"></flex-resizer>
 				<iframe data-id="preview" frameborder="0"></iframe>
 				<slot data-id="code" style="display: none"></slot>
 			</play-ground>`
