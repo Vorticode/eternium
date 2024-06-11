@@ -30,7 +30,7 @@ function themeSolarIce(lang, isDark=false) {
 		".cm-content": {
 			caretColor: cursor,
 			//fontFamily: 'Hack',
-			fontSize: '14px',
+			fontSize: window.outerWidth > 512 ? '14px' : '12px',
 			//lineHeight: 1
 		},
 

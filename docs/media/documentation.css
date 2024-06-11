@@ -95,6 +95,8 @@ table tr:nth-child(2n), thead {
 }
 
 @media screen and (width < 512px) {
+	body { font-size: 14px }
+	#write play-ground { width: calc(100vw - 12px) }
 	table :is(th, td) { padding: 2px 4px !important }
 	#write { padding: 6px !important }
 	table { font-size: 85% }
