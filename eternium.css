@@ -9,25 +9,9 @@
  * It's recommended to use javascript to set this attribute from prefers-color-scheme on page load.
  *
  * TODO: Make input sizes and gap/pad sizes match?
- * TODO: Phase out pad-tiny-small in projects.
  * TODO: Support more elements from https://preview.tabler.io/form-elements.html
+ * TODO: Phase out pad-tiny-small in projects.
  * TODO: Remove old eternium-forms class.
- *
- * Possible names, haven't checked npm:
- * FlexFlow, RowCols, Energy.css, FlexFusion.cs, FlexBoss, FlexCraft, FlexMatrix.  FlexWarp.  Glide.css
- *
- * Possible names that aren't in npm:
- * divcrafter - div-crafter is also available
- * rex-css - taking a bite out of bad layouts.  But rex-css-framework exists.  Last publish 6 years ago.
- * rectangle-css - rectangle is taken
- * quadrite
- * tungstenite - tungsten is taken
- * carbon12
- * void-?
- * starsteel
- * eternium
- * solarite
- * lumenite
  */
 
 
@@ -176,6 +160,7 @@
 	hr { border: none; border-bottom: var(--border) }
 
 
+
 	/* ┌─────────────────╮
 	 * |Misc             |
 	 * └─────────────────╯*/
@@ -192,27 +177,11 @@
 	a:focus-visible:not(.no-outline) { outline: var(--border-focus) }
 	.no-select { user-select: none }
 
-	/* Icon */
-	.icon { font-size: var(--icon-size);
-		min-width: var(--icon-size); max-width: var(--icon-size); min-height: var(--icon-size); max-height: var(--icon-size);
-		&:not([disabled]) { cursor: pointer;
-			&.selected { color: var(--primary2)	}
-		}
-	}
-
 	/* Placeholder + Contenteditable placeholder */
 	::placeholder { color: inherit; opacity: .6 }
 	[placeholder]:empty {
 		&:before { content: attr(placeholder); opacity: .6; white-space: nowrap; cursor: text }
 		&:is(:focus,.focus):before { content: '' }
-	}
-
-	/* menu-item */
-	/* A combination of:  class="row pad-h-small pad-v-micro gap-small button center-v" */
-	.menu-item {
-		display: flex; align-items: center; padding: 4px 8px; gap: 8px; color: var(--text);
-		user-select: none; cursor: pointer;
-		&:hover { background: var(--primary-background); color: var(--primary-text) }
 	}
 
 	/* Card
@@ -222,6 +191,8 @@
 		&:not(.flat) { border: var(--card-border) }
 	}
 
+
+
 	/* ┌─────────────────╮
 	 * |Alerts           |
 	 * └─────────────────╯*/
@@ -229,6 +200,7 @@
 	.success-alert { background: #cfd; color: #374; padding: 8px 16px }
 	.warning-alert { background: #fec; color: #863; padding: 8px 16px }
 	.error-alert { background: #fcc; color: #833; padding: 8px 16px }
+
 
 
 	/* ┌─────────────────╮
@@ -243,6 +215,7 @@
 	[data-validate]:not(input, .input, select, textarea), [data-validate2], [data-validate3], [data-validate4] {
 		color: var(--invalid); display: none
 	}
+
 
 
 	/* ┌─────────────────╮
@@ -290,6 +263,7 @@
 	}
 
 
+
 	/* ┌─────────────────╮
 	 * |Buttons          |
 	 * └─────────────────╯*/
@@ -325,6 +299,8 @@
 			}
 		a:is(.button, .button:hover) { text-decoration: none }
 
+
+
 		/* ┌─────────────────╮
 		 * |Button Status    |
 		 * └─────────────────╯*/
@@ -343,6 +319,8 @@
 		&.error:after {
 			content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M13 2v2c4.39.54 7.5 4.53 6.96 8.92A8.014 8.014 0 0 1 13 19.88v2c5.5-.6 9.45-5.54 8.85-11.03C21.33 6.19 17.66 2.5 13 2m-2 0c-1.96.18-3.81.95-5.33 2.2L7.1 5.74c1.12-.9 2.47-1.48 3.9-1.68v-2M4.26 5.67A9.81 9.81 0 0 0 2.05 11h2c.19-1.42.75-2.77 1.64-3.9L4.26 5.67M2.06 13c.2 1.96.97 3.81 2.21 5.33l1.42-1.43A8.002 8.002 0 0 1 4.06 13h-2m5 5.37l-1.39 1.37A9.994 9.994 0 0 0 11 22v-2a8.002 8.002 0 0 1-3.9-1.63h-.04M13 13V7h-2v6h2m0 4v-2h-2v2h2Z"/></svg>');
 		}
+
+
 
 		/* ┌─────────────────╮
 		 * |Button Sizes     |
@@ -364,6 +342,8 @@
 			height: var(--input-huge); padding: calc((var(--input-huge) - 1lh) / 2 - var(--border-width)) calc(var(--input-huge))
 		}
 	}
+	
+	
 
 	/* ┌─────────────────╮
 	 * |Input Sizes      |
@@ -379,6 +359,7 @@
 		&.big { min-height: var(--input-big); padding: calc((var(--input-big) - 1lh) / 2 - var(--border-width)) calc(var(--input-big) / 3) }
 		&.huge { min-height: var(--input-huge); padding: calc((var(--input-huge) - 1lh) / 2 - var(--border-width)) calc(var(--input-huge) / 3) }
 	}
+	
 
 
 	/* ┌─────────────────╮
@@ -400,6 +381,8 @@
 	}
 	.input:focus-within :focus-within { outline: none !important }
 
+
+
 	/* ┌─────────────────╮
 	 * |Grouped          |
 	 * └─────────────────╯*/
@@ -417,6 +400,8 @@
 	.group > :is(:not(:last-child), .group-right) input[type=checkbox]:is(.normal,.big,.huge):before {
 		border-top-right-radius: 0 !important; border-bottom-right-radius: 0 !important;
 	}
+
+
 
 	/* ┌─────────────────╮
 	 * |Checkboxes       |
@@ -454,6 +439,8 @@
 			font-size: calc(var(--input-huge) * .75) }
 	}	
 
+
+
 	/* ┌─────────────────╮
 	 * |Data table       |
 	 * └─────────────────╯*/
@@ -473,6 +460,8 @@
 		:is(tr,.tr):not(:last-child) :is(td,.td) { border-bottom: var(--table-border) }
 	}
 
+
+
 	/* ┌─────────────────╮
 	 * |Experimental     |
 	 * └─────────────────╯*/
@@ -490,9 +479,23 @@
 		ul ul { top: 0; left: 100% }
 		li:hover > ul { visibility: visible; transition-delay: 0s }
 	}
+	
+	/* menu-item */
+	/* A combination of:  class="row pad-h-small pad-v-micro gap-small button center-v" */
+	.menu-item {
+		display: flex; align-items: center; padding: 4px 8px; gap: 8px; color: var(--text);
+		user-select: none; cursor: pointer;
+		&:hover { background: var(--primary-background); color: var(--primary-text) }
+	}
+	
+	/* Icon */
+	.icon { font-size: var(--icon-size);
+		min-width: var(--icon-size); max-width: var(--icon-size); min-height: var(--icon-size); max-height: var(--icon-size);
+		&:not([disabled]) { cursor: pointer;
+			&.selected { color: var(--primary2)	}
+		}
+	}
 }
-
-
 
 
 
@@ -822,11 +825,12 @@
 	}
 }
 
+
+
 /* ┌─────────────────╮
  * |Grid Tablet      |
  * └─────────────────╯*/
 @media (768px <= width < 992px) {
-
 	.eternium, .eternium-layout {
 
 		/* Row/Col */
@@ -902,6 +906,7 @@
 		:is(.no-wrap-tablet, .nowrap-tablet) { flex-wrap: nowrap; white-space: nowrap }
 
 
+
 		/* ┌─────────────────╮
 		 * |Dimensions       |
 		 * └─────────────────╯*/
@@ -956,11 +961,12 @@
 	}	
 }
 
+
+
 /* ┌─────────────────╮
  * |Grid Desktop+    |
  * └─────────────────╯*/
 @media (992px <= width) {
-
 	.eternium, .eternium-layout {
 
 		/* Row/Col */
@@ -1036,6 +1042,7 @@
 		:is(.no-wrap-desktop, .nowrap-desktop) { flex-wrap: nowrap; white-space: nowrap }
 
 
+
 		/* ┌─────────────────╮
 		 * |Dimensions       |
 		 * └─────────────────╯*/
@@ -1093,7 +1100,6 @@
 /* ┌─────────────────╮
  * |Grid Visibility  |
  * └─────────────────╯*/
-
 
 /* Show only for specific sizes. */
 /* TODO: Use this method for other -desktop and -mobile styles above?  Having that will override the default style only for that size. */

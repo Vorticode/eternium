@@ -67,20 +67,38 @@ html:not([dark]) #write h3 { color: #678; }
 #write code-editor[data-style="1"] .cm-scroller { font: 11px 'Fira Code' !important}
 
 body.typora-export { padding: 0 !important }
-@media screen and (max-width: 1085px) {
-	.typora-export-sidebar, .typora-export-sidebar .outline-content {
-		display: none
-	}
-	#write play-ground { width: calc(100vw - 60px) }
-}
-
-
 
 :is(td, th):not(:first-of-type) { padding: 6px 8px 6px 0 }
 :is(td, th):not(:first-of-type) { padding-left: 5px }
-code { white-space: nowrap }
+code { white-space: nowrap; border: none !important }
 
 .outline-h1 > .outline-item { color: white; font-size: 22px }
 .outline-h2 > .outline-item { color: white }
+
+
+table :is(th, td) {
+	border-color: var(--shade1) !important
+}
+table tr:nth-child(2n), thead {
+	background-color: transparent !important
+}
+
+
+@media screen and (width < 1085px) {
+	.typora-export-sidebar, .typora-export-sidebar .outline-content {
+		display: none
+	}
+	#write play-ground { width: calc(100vw - 30px) }
+}
+@media screen and (width < 768px) {
+	#write { padding: 10px !important }
+}
+
+@media screen and (width < 512px) {
+	table :is(th, td) { padding: 2px 4px !important }
+	#write { padding: 6px !important }
+	table { font-size: 85% }
+	code { white-space: wrap }
+}
 
 

@@ -7,7 +7,7 @@ append-head:  <script src="docs/playground/ui/DarkToggle.js"></script><script ty
 
 # Eternium
 
-Eternium is a CSS library for layout and styling elements, requiring significantly fewer classes and markup than similar libraries.  It's 44KB or < **6KB** minified+gzipped and currently in beta.
+Eternium is a simple, no-JavaScript, compilation-free, responsive CSS library for layout and styling elements, requiring less markup and classes than other libraries.  It's 44KB or < **6KB** minified+gzipped and currently in beta.
 
 [Download eternium.css](eternium.css)
 
@@ -133,23 +133,23 @@ These are laid out in a column on mobile and desktop, but in a row on tablets - 
 
 Specify the alignment of children within `.row` and `.col` elements.
 
-| <div style="width: 120px">Class</div> | Responsive Overrides                                         |                                                       |
-| ------------------------------------- | ------------------------------------------------------------ | ----------------------------------------------------- |
-| `.left`                               | `.left-mobile` `.left-tablet` `.left-desktop`                | Align children to the left, which is the default.     |
-| `.right`                              | `.right-mobile` `.right-tablet` `.right-desktop`             | Align children to the right.                          |
-| `.top`                                | `.top-mobile` `.top-tablet` `.top-desktop`                   | Align children to the top, which is the default.      |
-| `.bottom`                             | `.bottom-mobile` `.bottom-tablet` `.bottom-desktop`          | Align children to the bottom.                         |
-| `.stretch`                            | `.stretch-mobile` `.stretch-tablet` `.stretch-desktop`       | Stretch children to fill the container.               |
-| `.stretch-h`                          | `.stretch-h-mobile` `.stretch-h-tablet` `.stretch-h-desktop` | Stretch children horizontally.                        |
-| `.stretch-v`                          | `.stretch-v-mobile` `.stretch-v-tablet` `.stretch-v-desktop` | Stretch children vertically.                          |
-| `.space-between`                      | `.space-between-mobile` `.space-between-tablet` `.space-between-desktop` | Distribute children with space between them.          |
-| `.space-around`                       | `.space-around-mobile` `.space-around-tablet` `.space-around-desktop` | Distribute children with space around them.           |
-| `.space-evenly`                       | `.space-evenly-mobile` `.space-evenly-tablet` `.space-evenly-desktop` | Distribute children evenly.                           |
-| `.center`                             | `.center-mobile` `.center-tablet` `.center-desktop`          | Center children.                                      |
-| `.center-h`                           | `.center-h-mobile` `.center-h-tablet` `.center-h-desktop`    | Center children horizontally.                         |
-| `.center-v`                           | `.center-v-mobile` `.center-v-tablet` `.center-v-desktop`    | Center children vertically.                           |
-| `.wrap`                               | `.wrap-mobile` `.wrap-tablet` `.wrap-desktop`                | Wrap children to the next line, which is the default. |
-| `.no-wrap`                            | `.no-wrap-mobile` `.no-wrap-tablet` `.no-wrap-desktop`       | Prevent children from wrapping.                       |
+| <div class="px120-desktop">Class</div> | Responsive Overrides                                         |                                                       |
+| -------------------------------------- | ------------------------------------------------------------ | ----------------------------------------------------- |
+| `.left`                                | `.left-mobile` `.left-tablet` `.left-desktop`                | Align children to the left, which is the default.     |
+| `.right`                               | `.right-mobile` `.right-tablet` `.right-desktop`             | Align children to the right.                          |
+| `.top`                                 | `.top-mobile` `.top-tablet` `.top-desktop`                   | Align children to the top, which is the default.      |
+| `.bottom`                              | `.bottom-mobile` `.bottom-tablet` `.bottom-desktop`          | Align children to the bottom.                         |
+| `.stretch`                             | `.stretch-mobile` `.stretch-tablet` `.stretch-desktop`       | Stretch children to fill the container.               |
+| `.stretch-h`                           | `.stretch-h-mobile` `.stretch-h-tablet` `.stretch-h-desktop` | Stretch children horizontally.                        |
+| `.stretch-v`                           | `.stretch-v-mobile` `.stretch-v-tablet` `.stretch-v-desktop` | Stretch children vertically.                          |
+| `.space-between`                       | `.space-between-mobile` `.space-between-tablet` `.space-between-desktop` | Distribute children with space between them.          |
+| `.space-around`                        | `.space-around-mobile` `.space-around-tablet` `.space-around-desktop` | Distribute children with space around them.           |
+| `.space-evenly`                        | `.space-evenly-mobile` `.space-evenly-tablet` `.space-evenly-desktop` | Distribute children evenly.                           |
+| `.center`                              | `.center-mobile` `.center-tablet` `.center-desktop`          | Center children.                                      |
+| `.center-h`                            | `.center-h-mobile` `.center-h-tablet` `.center-h-desktop`    | Center children horizontally.                         |
+| `.center-v`                            | `.center-v-mobile` `.center-v-tablet` `.center-v-desktop`    | Center children vertically.                           |
+| `.wrap`                                | `.wrap-mobile` `.wrap-tablet` `.wrap-desktop`                | Wrap children to the next line, which is the default. |
+| `.no-wrap`                             | `.no-wrap-mobile` `.no-wrap-tablet` `.no-wrap-desktop`       | Prevent children from wrapping.                       |
 
 ```html
 <style>
@@ -347,14 +347,14 @@ Specify the alignment of children within `.row` and `.col` elements.
 
 Specify the gap between the children of `.row` and `.col` elements.
 
-| <div style="width: 100px">Class</div> | Responsive Overrides                                         |                                                              |
-| ------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `.gap`                                | `.gap-mobile` `.gap-tablet` `.gap-desktop`                   | Items will have a gap the size of the `--normal` variable, typically 16px. |
-| `.gap-micro`                          | `.gap-micro-mobile` `.gap-micro-tablet` `.gap-micro-desktop` | Items will have a gap the size of the `--micro` variable, typically 2px. |
-| `.gap-tiny`                           | `.gap-tiny-mobile` `.gap-tiny-tablet` `.gap-tiny-desktop`    | Items will have a gap the size of the `--tiny` variable, typically 4px. |
-| `.gap-small`                          | `.gap-small-mobile` `.gap-small-tablet` `.gap-small-desktop` | Items will have a gap the size of the `--small` variable, typically 8px. |
-| `.gap-big`                            | `.gap-big-mobile` `.gap-big-tablet` `.gap-big-desktop`       | Items will have a gap the size of the `--big` variable, typically 24px. |
-| `.gap-huge`                           | `.gap-huge-mobile` `.gap-huge-tablet` `.gap-huge-desktop`    | Items will have a gap the size of the `--huge` variable, typically 48px. |
+| <div class="px120-desktop">Class</div> | Responsive Overrides                                         |                                                              |
+| -------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `.gap`                                 | `.gap-mobile` `.gap-tablet` `.gap-desktop`                   | Items will have a gap the size of the `--normal` variable, typically 16px. |
+| `.gap-micro`                           | `.gap-micro-mobile` `.gap-micro-tablet` `.gap-micro-desktop` | Items will have a gap the size of the `--micro` variable, typically 2px. |
+| `.gap-tiny`                            | `.gap-tiny-mobile` `.gap-tiny-tablet` `.gap-tiny-desktop`    | Items will have a gap the size of the `--tiny` variable, typically 4px. |
+| `.gap-small`                           | `.gap-small-mobile` `.gap-small-tablet` `.gap-small-desktop` | Items will have a gap the size of the `--small` variable, typically 8px. |
+| `.gap-big`                             | `.gap-big-mobile` `.gap-big-tablet` `.gap-big-desktop`       | Items will have a gap the size of the `--big` variable, typically 24px. |
+| `.gap-huge`                            | `.gap-huge-mobile` `.gap-huge-tablet` `.gap-huge-desktop`    | Items will have a gap the size of the `--huge` variable, typically 48px. |
 
 ```html
 <style>
@@ -416,26 +416,28 @@ Specify the gap between the children of `.row` and `.col` elements.
 Specify the padding of an element.  The `-h` and -`v` variants set horizontal and vertical padding individually.  Unlike with gaps and alignment, this does not have to be applied to a `.row` or `.col` element.
 
 
-| <div class="min-width: 100px">Class</div> | Responsive Overrides                                         | Description                                                  |
-| ----------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `.pad`                                    | `.pad-mobile` `.pad-tablet` `.pad-desktop`                   | Give the element padding the size of the `--normal` variable, typically 16px. |
-| `.pad-micro`                              | `.pad-micro-mobile` `.pad-micro-tablet` `.pad-micro-desktop` | Give the element padding the size of the `--micro` variable, typically 2px. |
-| `.pad-tiny`                               | `.pad-tiny-mobile` `.pad-tiny-tablet` `.pad-tiny-desktop`    | Give the element padding the size of the `--tiny` variable, typically 4px. |
-| `.pad-small`                              | `.pad-small-mobile` `.pad-small-tablet` `.pad-small-desktop` | Give the element padding the size of the `--small` variable, typically 8px. |
-| `.pad-big`                                | `.pad-big-mobile` `.pad-big-tablet` `.pad-big-desktop`       | Give the element padding the size of the `--big` variable, typically 24px. |
-| `.pad-huge`                               | `.pad-huge-mobile` `.pad-huge-tablet` `.pad-huge-desktop`    | Give the element padding the size of the `--huge` variable, typically 48px. |
-|                                           |                                                              |                                                              |
-| `.pad-h-micro`                            | `.pad-h-micro-mobile` `.pad-h-micro-tablet` `.pad-h-micro-desktop` | Give the element horizontal padding the size of the `--micro` variable, typically 2px. |
-| `.pad-h-tiny`                             | `.pad-h-tiny-mobile` `.pad-h-tiny-tablet` `.pad-h-tiny-desktop` | Give the element horizontal padding the size of the `--tiny` variable, typically 4px. |
-| `.pad-h-small`                            | `.pad-h-small-mobile` `.pad-h-small-tablet` `.pad-h-small-desktop` | Give the element horizontal padding the size of the `--small` variable, typically 8px. |
-| `.pad-h-big`                              | `.pad-h-big-mobile` `.pad-h-big-tablet` `.pad-h-big-desktop` | Give the element horizontal padding the size of the `--big` variable, typically 24px. |
-| `.pad-h-huge`                             | `.pad-h-huge-mobile` `.pad-h-huge-tablet` `.pad-h-huge-desktop` | Give the element horizontal padding the size of the `--huge` variable, typically 48px. |
-|                                           |                                                              |                                                              |
-| `.pad-v-micro`                            | `.pad-v-micro-mobile` `.pad-v-micro-tablet` `.pad-v-micro-desktop` | Give the element vertical padding the size of the `--micro` variable, typically 2px. |
-| `.pad-v-tiny`                             | `.pad-v-tiny-mobile` `.pad-v-tiny-tablet` `.pad-v-tiny-desktop` | Give the element vertical padding the size of the `--tiny` variable, typically 4px. |
-| `.pad-v-small`                            | `.pad-v-small-mobile` `.pad-v-small-tablet` `.pad-v-small-desktop` | Give the element vertical padding the size of the `--small` variable, typically 8px. |
-| `.pad-v-big`                              | `.pad-v-big-mobile` `.pad-v-big-tablet` `.pad-v-big-desktop` | Give the element vertical padding the size of the `--big` variable, typically 24px. |
-| `.pad-v-huge`                             | `.pad-v-huge-mobile` `.pad-v-huge-tablet` `.pad-v-huge-desktop` | Give the element vertical padding the size of the `--huge` variable, typically 48px. |
+| <div class="px120-desktop">Class</div> | Responsive Overrides                                         | Description                                                  |
+| -------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `.pad`                                 | `.pad-mobile` `.pad-tablet` `.pad-desktop`                   | Give the element padding the size of the `--normal` variable, typically 16px. |
+| `.pad-micro`                           | `.pad-micro-mobile` `.pad-micro-tablet` `.pad-micro-desktop` | Give the element padding the size of the `--micro` variable, typically 2px. |
+| `.pad-tiny`                            | `.pad-tiny-mobile` `.pad-tiny-tablet` `.pad-tiny-desktop`    | Give the element padding the size of the `--tiny` variable, typically 4px. |
+| `.pad-small`                           | `.pad-small-mobile` `.pad-small-tablet` `.pad-small-desktop` | Give the element padding the size of the `--small` variable, typically 8px. |
+| `.pad-big`                             | `.pad-big-mobile` `.pad-big-tablet` `.pad-big-desktop`       | Give the element padding the size of the `--big` variable, typically 24px. |
+| `.pad-huge`                            | `.pad-huge-mobile` `.pad-huge-tablet` `.pad-huge-desktop`    | Give the element padding the size of the `--huge` variable, typically 48px. |
+|                                        |                                                              |                                                              |
+| `.pad-h-micro`                         | `.pad-h-micro-mobile` `.pad-h-micro-tablet` `.pad-h-micro-desktop` | Give the element horizontal padding the size of the `--micro` variable, typically 2px. |
+| `.pad-h-tiny`                          | `.pad-h-tiny-mobile` `.pad-h-tiny-tablet` `.pad-h-tiny-desktop` | Give the element horizontal padding the size of the `--tiny` variable, typically 4px. |
+| `.pad-h-small`                         | `.pad-h-small-mobile` `.pad-h-small-tablet` `.pad-h-small-desktop` | Give the element horizontal padding the size of the `--small` variable, typically 8px. |
+| `.pad-h`                               | `.pad-h-mobile` `.pad-h-tablet` `.pad-h-desktop`             | Give the element horizontal padding the size of the `--normal` variable, typically 16px. |
+| `.pad-h-big`                           | `.pad-h-big-mobile` `.pad-h-big-tablet` `.pad-h-big-desktop` | Give the element horizontal padding the size of the `--big` variable, typically 24px. |
+| `.pad-h-huge`                          | `.pad-h-huge-mobile` `.pad-h-huge-tablet` `.pad-h-huge-desktop` | Give the element horizontal padding the size of the `--huge` variable, typically 48px. |
+|                                        |                                                              |                                                              |
+| `.pad-v-micro`                         | `.pad-v-micro-mobile` `.pad-v-micro-tablet` `.pad-v-micro-desktop` | Give the element vertical padding the size of the `--micro` variable, typically 2px. |
+| `.pad-v-tiny`                          | `.pad-v-tiny-mobile` `.pad-v-tiny-tablet` `.pad-v-tiny-desktop` | Give the element vertical padding the size of the `--tiny` variable, typically 4px. |
+| `.pad-v-small`                         | `.pad-v-small-mobile` `.pad-v-small-tablet` `.pad-v-small-desktop` | Give the element vertical padding the size of the `--small` variable, typically 8px. |
+| `.pad-v`                               | `.pad-v-mobile` `.pad-v-tablet` `.pad-v-desktop`             | Give the element vertical padding the size of the `--normal` variable, typically 16px. |
+| `.pad-v-big`                           | `.pad-v-big-mobile` `.pad-v-big-tablet` `.pad-v-big-desktop` | Give the element vertical padding the size of the `--big` variable, typically 24px. |
+| `.pad-v-huge`                          | `.pad-v-huge-mobile` `.pad-v-huge-tablet` `.pad-v-huge-desktop` | Give the element vertical padding the size of the `--huge` variable, typically 48px. |
 
 ```html
 <style>
@@ -673,28 +675,28 @@ Form elements inside the `.eternium` or `.eternium-style` classes are given a de
 
 This style can be modified with various classes:
 
-| <div style="width: 100px">Class</div> |                                                              |
-| ------------------------------------- | ------------------------------------------------------------ |
-| `.input`                              | Give an element the appearance of an input box.  For example:  `<div contenteditable class="input"></div>` |
-| `.button`                             | Give an element the appearance of a button.  Can be used with `<a class="button"></a>` for example. |
-| `.flat`                               | Remove the border. background color, and padding from a form field or button. |
-| `.square`                             | Give a form field or button sharp corners.                   |
-| `.no-outline`                         | The form field or button will have no outline when focused.  |
-|                                       |                                                              |
-| `.hover`                              | Give a button or form element the appearance of being hovered. |
-| `.selected`                           | Give a button or form element the appearance of being selected. |
-| `.focus`                              | Give a button or form element the appearance of being focused |
-| `.invalid`                            | Mark a form input as invalid.                                |
-|                                       |                                                              |
-| `.primary`                            | Give a button a bright background (typically blue) to make it look important. |
-| `.loading`                            | Give a form field or button an animated loading spinner.     |
-| `.error`                              | Give a form field input or button an error icon.             |
-| `.complete`                           | Give a form field input or button a success icon.            |
-|                                       |                                                              |
-| `.small`                              | Make a form field or button the height defined in the `--input-small` variable, typically 18px including the border. |
-| `.normal`                             | Make the input field a normal size, also defined in the `--input-normal` variable, which is typically 24px.  Typically used only on checkboxes, which default to a small size. |
-| `.big`                                | Make a form field or button the height defined in the `--input-big` variable, typically 32px including the border. |
-| `.huge`                               | Make a form field or button the height defined in the `--input-huge` variable, typically 44px including the border. |
+| <div class="px120-desktop">Class</div> |                                                              |
+| -------------------------------------- | ------------------------------------------------------------ |
+| `.input`                               | Give an element the appearance of an input box.  For example:  `<div contenteditable class="input"></div>` |
+| `.button`                              | Give an element the appearance of a button.  Can be used with `<a class="button"></a>` for example. |
+| `.flat`                                | Remove the border. background color, and padding from a form field or button. |
+| `.square`                              | Give a form field or button sharp corners.                   |
+| `.no-outline`                          | The form field or button will have no outline when focused.  |
+|                                        |                                                              |
+| `.hover`                               | Give a button or form element the appearance of being hovered. |
+| `.selected`                            | Give a button or form element the appearance of being selected. |
+| `.focus`                               | Give a button or form element the appearance of being focused |
+| `.invalid`                             | Mark a form input as invalid.                                |
+|                                        |                                                              |
+| `.primary`                             | Give a button a bright background (typically blue) to make it look important. |
+| `.loading`                             | Give a form field or button an animated loading spinner.     |
+| `.error`                               | Give a form field input or button an error icon.             |
+| `.complete`                            | Give a form field input or button a success icon.            |
+|                                        |                                                              |
+| `.small`                               | Make a form field or button the height defined in the `--input-small` variable, typically 18px including the border. |
+| `.normal`                              | Make the input field a normal size, also defined in the `--input-normal` variable, which is typically 24px.  Typically used only on checkboxes, which default to a small size. |
+| `.big`                                 | Make a form field or button the height defined in the `--input-big` variable, typically 32px including the border. |
+| `.huge`                                | Make a form field or button the height defined in the `--input-huge` variable, typically 44px including the border. |
 
 This example demonstrates the use of these classes:
 
@@ -934,7 +936,7 @@ You can override the table variables inline to get a different style of table:
 
 ### Other Classes
 
-|              |                                                              |
+| Class        |                                                              |
 | ------------ | ------------------------------------------------------------ |
 | `.label`     | Make an element have 85% sized bold text and be unselectable.  Useful for form labels. |
 | `.little`    | Make text 80% the normal size, with a smaller 1.1 line-height. |
@@ -1004,9 +1006,9 @@ Setting the body height is only necessary for this demo, and doesn't need to be 
 <style>body { height: 300px; margin: 0 }</style>
 
 <div class="col stretch-h" style="min-height: 100%">
-    <div class="pad center" style="background: #ccf">Header</div>
+    <div class="pad center" style="background: var(--shade4)">Header</div>
     <div class="pad flex1" contenteditable>Content:  Edit me</div>
-    <div class="pad center" style="background: #cfc">Footer</div>
+    <div class="pad center" style="background: var(--shade3)">Footer</div>
 </div>
 ```
 

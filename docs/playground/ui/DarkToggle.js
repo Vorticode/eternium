@@ -27,7 +27,7 @@ class DarkToggle extends HTMLElement {
 			? saved==='true'
 			: (document.querySelector('html[light]') ?
 				false
-				: (document.querySelector('html[dark]')/* || window?.matchMedia('(prefers-color-scheme: dark)').matches*/));
+				: (document.querySelector('html[dark]') || window?.matchMedia('(prefers-color-scheme: dark)').matches));
 		
 		document.documentElement.toggleAttribute('dark', isDark);
 	}
