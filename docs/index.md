@@ -24,13 +24,14 @@ Here's an example of what using Eternium looks like.  Notice that you can edit t
 		<input required/>
 	</label>	
     
-	<label class="row center-v stretch-h">
-		<span class="px70">Password</span>
-		<div class="group stretch-h">
-			<input class="flex1" type="password" required/>
+	<div class="row center-v stretch-h">
+		<label class="px70" for="password">Password</label>
+		<span class="group stretch-h">
+			<input class="flex1" id="password" 
+                type="password" required>
 			<button>🔍</button>
-		</div>
-	</label>
+		</span>
+	</div>
     
 	<div class="row stretch-h">
 		<div class="px70"><!--spacer--></div>
@@ -63,9 +64,11 @@ To use Eternium, include it in the head of your document, adjusting the path to 
 
 `<link rel="stylesheet" href="eternium.css">`
 
+Eternium uses modern CSS features like [nested rules](https://caniuse.com/css-nesting).  It supports desktop and mobile versions Chrome, Brave, Edge, Firefox, and Safari released in **Jan 2024 or later**.
+
 ## Layout
 
-Add the `eternium` or the `eternium-layout` class to a parent element, then you can use any of the classes below.
+Add the `eternium` or the `eternium-layout` class to a parent element, then you can use any of the classes in this Layout seciond.
 
 ### Variables
 
@@ -647,7 +650,7 @@ This example shows how to use the various width classes.
 
 ## Styles
 
-To use Eternium styles, `.eternium` or `.eternium-style` must be present on an ancestral element.  Unlike the layout classes, Eternium style classes do not have responsive variants.
+To use the classes in this Styles secion, `.eternium` or `.eternium-style` must be present on an ancestral element.  Unlike the layout classes, Eternium style classes do not have responsive variants.
 
 ### Inputs and Buttons
 
