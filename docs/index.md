@@ -59,7 +59,7 @@ Eternium supports both light and dark modes.  Click the moon icon in the top rig
 
 To use Eternium, include it in the head of your document, adjusting the path to where you put eternium.css:
 
-`<link rel="stylesheet" href="/eternium.css">`
+`<link rel="stylesheet" href="eternium.css">`
 
 ## Layout
 

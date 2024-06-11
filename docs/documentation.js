@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	    
 	    let prefix = `
 			<script>document.documentElement.classList.add('eternium')</script>
-			<link rel="stylesheet" href="../eternium.css">
+			<link rel="stylesheet" href="eternium.css">
 			<style>
 				html[dark] { background: var(--shade2) }
 				body { font: 12px Arial; background: transparent !important }
