@@ -9,7 +9,9 @@ append-head:  <script src="docs/playground/ui/DarkToggle.js"></script><script ty
 
 Eternium is a CSS library for layout and styling elements, requiring significantly fewer classes and markup than similar libraries.  It's 44KB or < **6KB** minified+gzipped and currently in beta.
 
-[Download eternium.css](eternium.css).
+[Download eternium.css](eternium.css)
+
+[GitHub Repository](https://github.com/Vorticode/eternium)
 
 Here's an example of what using Eternium looks like.  Notice that you can edit the code.
 
