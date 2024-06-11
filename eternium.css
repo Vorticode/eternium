@@ -521,9 +521,7 @@
 	/* Rows and column layout.  These can occor on the same element with :is(.eternium, .eternium-style)
 	 * Unlike bootstrap, a col class will stack each of its children into a column,
 	 * and having a col class for each item in a row isn't necessary.*/
-	.row { display: flex; align-items: start;
-
-	}  /* align-items: start prevents stretching to available height */
+	.row { display: flex; align-items: start }  /* align-items: start prevents stretching to available height */
 	.col { display: flex; flex-direction: column; align-items: start;
 		> * { max-width: 100% } /* Don't let children be wider than the column */
 	}
@@ -690,7 +688,7 @@
 /* ┌─────────────────╮
  * |Grid Mobile      |
  * └─────────────────╯*/
-@media (width < 768px) {
+@media (width < 512px) {
 
 	.eternium, .eternium-layout {
 
@@ -830,7 +828,7 @@
 /* ┌─────────────────╮
  * |Grid Tablet      |
  * └─────────────────╯*/
-@media (768px <= width < 992px) {
+@media (512px <= width < 992px) {
 	.eternium, .eternium-layout {
 
 		/* Row/Col */
@@ -1103,10 +1101,10 @@
 
 /* Show only for specific sizes. */
 /* TODO: Use this method for other -desktop and -mobile styles above?  Having that will override the default style only for that size. */
-@media (width < 768px) {
+@media (width < 512px) {
 	:is(.eternium, .eternium-layout) :is(.tablet, .desktop):not(.mobile) { display: none !important }
 }
-@media (768px <= width < 992px) {
+@media (512px <= width < 992px) {
 	:is(.eternium, .eternium-layout) :is(.mobile, .desktop):not(.tablet) { display: none !important }
 }
 @media (992px <= width) {

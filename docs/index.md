@@ -26,7 +26,7 @@ Here's an example of what using Eternium looks like.  Notice that you can edit t
     
 	<div class="row center-v stretch-h">
 		<label class="px70" for="password">Password</label>
-		<span class="group stretch-h">
+		<span class="row group">
 			<input class="flex1" id="password" 
                 type="password" required>
 			<button>🔍</button>
@@ -85,11 +85,11 @@ Many classes come in `micro`, `tiny`, `small`, `normal`, `big`, and `huge` varia
 
 ### Responsive
 
-Eternium layout classes have variants with the `-mobile` `-tablet` and `-desktop` suffix that only apply if the screen width is less than 768px,  between 768px and 992px, or greater than 992px, respectively.  This can be used to use a different layout on mobile, tablets, an desktop.
+Eternium layout classes have variants with the `-mobile` `-tablet` and `-desktop` suffix that only apply if the screen width is less than 512px,  between 512px and 992px, or greater than 992px, respectively.  This can be used to use a different layout on mobile, tablets, an desktop.
 
 ```css
-@media (width < 768px) {          /* Mobile */ }
-@media (768px <= width < 992px) { /* Tablet */ }
+@media (width < 512px) {          /* Mobile */ }
+@media (512px <= width < 992px) { /* Tablet */ }
 @media (992px <= width) {         /* Desktop */ }
 ```
 
@@ -1013,4 +1013,46 @@ Setting the body height is only necessary for this demo, and doesn't need to be 
 ```
 
 
+
+### Aligned form becomes stacked on Mobile
+
+This form moves the labels from the side to above the inputs when the device width is < 512px.  Drag the resizer between the code and the preview to see it adjust as the width decreases.
+
+The `.col-mobile` and `.left-mobile` classes
+
+```html
+<div class="card pad col gap-small stretch-h">
+	<b>Form adjusts per device</b>
+	
+	<label class="row center-v stretch-h   col-mobile left-mobile">
+		<span class="px70">Username</span>
+		<input required class="pc100-mobile"/>
+	</label>	
+	
+	<div class="row center-v stretch-h   col-mobile left-mobile">
+		<label class="px70" for="password">Password</label>
+		<span class="row group pc100-mobile">
+			<input class="flex1" id="password" 
+				type="password" required>
+			<button>🔍</button>
+		</span>
+	</div>
+	
+	<div class="row stretch-h">
+		<div class="px70 desktop tablet"><!--spacer--></div>
+		<div class="row center-v space-between gap-small wrap">
+			<label class="no-select nowrap">
+				<input type="checkbox" checked>
+				Remember
+			</label>
+			<div class="row gap-small">
+				<button>Cancel</button>
+				<button type="submit" class="primary">
+					Submit
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+```
 

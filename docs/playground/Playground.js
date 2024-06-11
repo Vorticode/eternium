@@ -179,6 +179,6 @@ function expandIframe(iframe) {
 	
 	iframe.style.height = '';
 	iframe.style.minHeight = newPreviewHeight + 'px';
-	iframe.style.maxHeight = newPreviewHeight + 'px';
+	iframe.style.maxHeight = '100%';
 	return newPreviewHeight;
 }
