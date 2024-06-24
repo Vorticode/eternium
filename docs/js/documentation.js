@@ -1,4 +1,4 @@
-import Playground from "./playground/Playground.js";
+import Playground from "./Playground.js";
 
 
 

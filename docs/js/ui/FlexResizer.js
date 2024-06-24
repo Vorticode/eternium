@@ -1,11 +1,11 @@
-import {Red, r, getArg} from "../redcomponent/RedComponent.js";
+import {Solarite, r, getArg} from "../solarite/Solarite.js";
 import Draggable2 from "../util/Draggable2.js";
 import Util from "../util/Util.js";
 
 /**
  * Put this element between flex children to allow resizing them.
  * TODO: Allow vertical resizing. */
-export default class FlexResizer extends Red {
+export default class FlexResizer extends Solarite {
 
 	onStart = Util.callback();
 	onMove = Util.callback();

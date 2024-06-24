@@ -1,9 +1,9 @@
-import {r, Red} from "./redcomponent/RedComponent.js";
+import {r, Solarite} from "./solarite/Solarite.js";
 import "./ui/CodeEditor.js";
 import "./ui/FlexResizer.js";
 
 
-export default class Playground extends Red {
+export default class Playground extends Solarite {
 	
 	/**
 	 *

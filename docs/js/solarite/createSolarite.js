@@ -28,22 +28,23 @@ function defineClass(Class, tagName, extendsTag) {
 let elementClasses = {};
 
 /**
- * Store which instances of Red have already been added to the DOM. * @type {WeakSet<HTMLElement>}
+ * Store which instances of Solarite have already been added to the DOM. * @type {WeakSet<HTMLElement>}
  */
 let connected = new WeakSet();
 
 /**
- * Create a version of the Red class that extends from the given tag name.
+ * Create a version of the Solarite class that extends from the given tag name.
  * Reasons to inherit from this instead of HTMLElement.  None of these are all that useful.
  * 1.  customElements.define() is called automatically when you create the first instance.
  * 2.  Calls render() when added to the DOM, if it hasn't been called already.
  * 3.  Child elements are added before constructor is called.  But they're also passed to the constructor.
  * 4.  We can use this.html = r`...` to set html.
  * 5.  We have the onConnect, onFirstConnect, and onDisconnect methods.  These could be standalone though.
+ * 6.  Can we extend from other element types like TR?
  *
  * @param extendsTag {?string}
  * @return {Class} */
-export default function CustomRed(extendsTag=null) {
+export default function createSolarite(extendsTag=null) {
 
 	let BaseClass = HTMLElement;
 	if (extendsTag && !extendsTag.includes('-')) {
@@ -71,10 +72,11 @@ export default function CustomRed(extendsTag=null) {
 		}
 	});
 
-	return class Red extends HTMLElementAutoDefine {
+	return class Solarite extends HTMLElementAutoDefine {
 		
 		
 		/**
+		 * TODO: Make these standalone functions.
 		 * Callbacks.
 		 * Use onConnect.push(() => ...); to add new callbacks. */
 		onConnect = Util.callback();

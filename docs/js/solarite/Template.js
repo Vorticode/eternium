@@ -1,5 +1,6 @@
 import {assert} from "../util/Errors.js";
 import {getObjectId} from "./hash.js";
+import NodeGroupManager from "./NodeGroupManager.js";
 
 
 /**
@@ -68,6 +69,11 @@ export default class Template {
 			this.hashedFields = [getObjectId(this.html, 'Html'), this.exprs];
 		
 		return this.hashedFields
+	}
+
+	toNode() {
+		let ngm = new NodeGroupManager();
+		return ngm.render(this);
 	}
 
 	getCloseKey() {

@@ -150,31 +150,33 @@ export default class NodeGroup {
 				this.createNewComponent(el)
 		}
 
+		if (this.manager.rootEl) {
 
-		// ids
-		if (this.manager.options.ids !== false)
-			for (let path of shell.ids) {
-				let el = resolveNodePath(root, path);
-				let id = el.getAttribute('data-id') || el.getAttribute('id')
-				this.manager.rootEl[id] = el;
-			}
+			// ids
+			if (this.manager.options.ids !== false)
+				for (let path of shell.ids) {
+					let el = resolveNodePath(root, path);
+					let id = el.getAttribute('data-id') || el.getAttribute('id')
+					this.manager.rootEl[id] = el;
+				}
 
-		// styles
-		if (this.manager.options.styles !== false) {
-			if(shell.styles.length)
-				this.styles = new Map();
-			for (let path of shell.styles) {
-				let style = resolveNodePath(root, path);
-				Util.bindStyles(style, this.manager.rootEl);
-				this.styles.set(style, style.textContent);
+			// styles
+			if (this.manager.options.styles !== false) {
+				if (shell.styles.length)
+					this.styles = new Map();
+				for (let path of shell.styles) {
+					let style = resolveNodePath(root, path);
+					Util.bindStyles(style, this.manager.rootEl);
+					this.styles.set(style, style.textContent);
+				}
+
 			}
-			
-		}
-		// scripts
-		if (this.manager.options.scripts !== false) {
-			for (let path of shell.scripts) {
-				let script = resolveNodePath(root, path);
-				eval(script.textContent)
+			// scripts
+			if (this.manager.options.scripts !== false) {
+				for (let path of shell.scripts) {
+					let script = resolveNodePath(root, path);
+					eval(script.textContent)
+				}
 			}
 		}
 	}
@@ -469,7 +471,7 @@ export default class NodeGroup {
 
 	/**
 	 * Create a nested RedComponent or call render with the new props.
-	 * @param el {Red:HTMLElement}
+	 * @param el {Solarite:HTMLElement}
 	 * @param props {Object} */
 	applyComponentExprs(el, props) {
 		
@@ -536,10 +538,10 @@ export default class NodeGroup {
 		// We pass the childNodes to the constructor so it can know about them,
 		// instead of only afterward when they're appended to the slot below.
 		// This is useful for a custom selectbox, for example.
-		// NodeGroupManager.pendingChildren stores the childen so the super construtor call to Red's constructor
+		// NodeGroupManager.pendingChildren stores the childen so the super construtor call to Solarite's constructor
 		// can add them as children before the rest of the constructor code executes.
 		let ch = [... el.childNodes];
-		NodeGroupManager.pendingChildren.push(ch);  // pop() is called in Red constructor.
+		NodeGroupManager.pendingChildren.push(ch);  // pop() is called in Solarite constructor.
 		let newEl = new Constructor(props, ch);
 
 		if (!isPreHtmlElement)

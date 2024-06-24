@@ -6,6 +6,13 @@ import NodeGroupManager from "./NodeGroupManager.js";
  * Using r as a tag will always create a Template.
  * Using r() as a function() will always create a DOM element.
  *
+ * Features beyond what standard js tagged template strings do:
+ * 1. r`` sub-expressions
+ * 2. functions, nodes, and arrays of nodes as sub-expressions.
+ * 3. html-escape all expressions by default, unless wrapped in r()
+ * 4. event binding
+ * 5. TODO:  list more
+ *
  * Currently supported:
  * 1. r`<b>Hello${'World'}!`           // Create Template that can later be used to create nodes.
  *
@@ -14,8 +21,8 @@ import NodeGroupManager from "./NodeGroupManager.js";
  *
  * 4. r('Hello');                      // Create single text node.
  * 5. r('<b>Hello</b>');               // Create single HTMLElement
- * 6. r('<b>Hello</b><u>Goodbye</u>'); // Create document fragment because there's more than one node. *
- * 7. r()`Hello<b>${'World'}!</b>`     // Same as 4-6
+ * 6. r('<b>Hello</b><u>Goodbye</u>'); // Create document fragment because there's more than one node.
+ * 7. r()`Hello<b>${'World'}!</b>`     // Same as 4-6, but evaluates the string as a Solarite template, which includes properly handling nested components and r`` sub-expressions.
  * 8. r(template)                      // Render Template created by #1.
  * 9. r(() => r`<b>Hello</b>`);        // Create dynamic element that has a render() function.
  *
@@ -56,8 +63,7 @@ export default function r(htmlStrings=undefined, ...exprs) {
                 rendered.add(parent)
                 let template = r(htmlStrings, ...exprs);
                 let ngm = NodeGroupManager.get(parent);
-                let stats = ngm.render(template, options);
-                return stats;
+                return ngm.render(template, options);
             }
         }
 
@@ -69,9 +75,14 @@ export default function r(htmlStrings=undefined, ...exprs) {
     }
 
     else if (typeof htmlStrings === 'string' || htmlStrings instanceof String) {
+        // If it starts with a string, trim both ends.
+        // TODO: Also trim if it ends with whitespace?
         if (htmlStrings.match(/^\s^</))
             htmlStrings = htmlStrings.trim();
 
+        // We create a new one each time because otherwise
+        // the returned fragment will have its content replaced by a subsequent call.
+        let templateEl = document.createElement('template');
         templateEl.innerHTML = htmlStrings;
 
         // 4+5. Return Node if there's one child.
@@ -84,15 +95,11 @@ export default function r(htmlStrings=undefined, ...exprs) {
 
     // 7. Create a static element
     else if (htmlStrings === undefined) {
-        let self = htmlStrings;
-        const rbind = (htmlStrings, ...exprs) => {
+        return (htmlStrings, ...exprs) => {
             //rendered.add(parent)
             let template = r(htmlStrings, ...exprs);
-            let ngm = new NodeGroupManager();
-            //template.replaceMode = true;
-            return ngm.render(template);
+            return template.toNode();
         }
-        return rbind;
     }
 
     // 8.
@@ -127,7 +134,7 @@ export default function r(htmlStrings=undefined, ...exprs) {
 
 
 
-let templateEl = document.createElement('template');
+
 
 /**
  * Elements that have been rendered to by r() at least once.

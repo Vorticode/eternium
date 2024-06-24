@@ -54,7 +54,7 @@ export default class Shell {
 			let lastHtml = html[i];
 			let context = htmlContext(lastHtml);
 
-			// Swap out Embedded Red Components with ${} attributes.
+			// Swap out Embedded Solarite Components with ${} attributes.
 			// Later, NodeGroup.render() will search for these and replace them with the real components.
 			// Ctrl+F "redcomponent-placeholder" in project to find all code that manages subcomponents.
 			if (context === htmlContext.Attribute) {

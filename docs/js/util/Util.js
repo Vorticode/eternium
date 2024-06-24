@@ -1,4 +1,3 @@
-import Input from "./Input.js";
 
 
  
@@ -12,7 +11,7 @@ import Input from "./Input.js";
 
 
 /**
- * A place for functions that have no other home.*/
+ * A place for functions that have no other home. */
 var Util = {
 
 	/**
@@ -81,54 +80,7 @@ var Util = {
 		return result;
 	},
 	
-	
-	/**
-	 * Add a filtered event listener and return a function to remove that listener.
-	 * Supports {once: true} as an option.
-	 * The last three arguments can be provided in any order, and may be omitted.
-	 * @param el {HTMLElement}
-	 * @param type {string}
-	 * @param selector {null|string|function(Event)}
-	 *     If a string, only if the element matches this selector.
-	 * @param callback {function(Event)|Object|boolean}
-	 * @param options {Object|boolean=}  Can include {once: true, key: 'ctrl+enter'}
-	 *     As well as any options passed to addEventListener.
-	 *     Key can be any string matched by Input.isKey()
-	 * @return {function} Call this function to unbind. */
-	on(el, type, selector=null, callback, options) {
-		
-		selector = callback = options = null;
-		for (let arg of [...arguments].slice(2)) {
-			if (typeof arg === 'object')
-				options = arg;
-			else if (typeof arg === 'function')
-				callback = arg;
-			else if (typeof arg === 'string')
-				selector = arg;
-		}
 
-		// We handle "once" ourselves.
-		let once = options?.once;
-		if (once)
-			delete options.once;
-		let key = options?.key;
-		if (key)
-			delete options?.key;
-
-		let internalCallback = e => {
-			let matchesSelector = !selector || e.target.matches(selector);
-			let matchesKey = !key || (e instanceof KeyboardEvent && e.key === key || Input.isKey(e, key)) || (typeof key === 'function' && key(e));
-			
-			if (matchesSelector && matchesKey) {
-				callback(e);
-				if (once)
-					el.removeEventListener(type, internalCallback, options);
-			}
-		};
-		el.addEventListener(type, internalCallback, options);
-
-		return () => el.removeEventListener(type, internalCallback, options);
-	}
 
 };
 

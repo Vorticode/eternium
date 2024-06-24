@@ -2,12 +2,12 @@
 
 
 /**
- * There are three ways to create an instance of a Red Component:
+ * There are three ways to create an instance of a Solarite Component:
  * 1.  new ComponentName();                                         // direct class instantiation
  * 2.  this.html = r`<div><component-name></component-name></div>;  // as a child of another RedComponent.
  * 3.  <body><component-name></component-name></body>               // in the Document html.
  *
- * When created via #3, Red has no way to pass attributes as arguments to the constructor.  So to make
+ * When created via #3, Solarite has no way to pass attributes as arguments to the constructor.  So to make
  * sure we get the correct value via all three paths, we write our constructors according to the following
  * example.  Note that constructor args are embedded in an object, and must be all lower-case because
  * Browsers make all html attribute names lowercase.

@@ -1,6 +1,6 @@
 ---
 title:  Eternium Documentation
-append-head:  <script src="docs/playground/ui/DarkToggle.js"></script><script type="module" src="docs/documentation.js"></script><link rel="stylesheet" href="docs/media/documentation.css"><link rel="stylesheet" href="eternium.css">
+append-head:  <script src="docs/js/ui/DarkToggle.js"></script><script type="module" src="docs/js/documentation.js"></script><link rel="stylesheet" href="docs/media/documentation.css"><link rel="stylesheet" href="eternium.css">
 ---
 
 <!-- To create documentation: (1) Open in Typora.  (2) Select the GitHub theme. (3) Export as html with styles to index.html. -->
@@ -21,14 +21,13 @@ Here's an example of what using Eternium looks like.  Notice that you can edit t
     
 	<label class="row center-v stretch-h">
 		<span class="px70">Username</span>
-		<input required/>
+		<input/>
 	</label>	
     
 	<div class="row center-v stretch-h">
 		<label class="px70" for="password">Password</label>
 		<span class="row group">
-			<input class="flex1" id="password" 
-                type="password" required>
+			<input class="flex1" id="password" type="password">
 			<button>🔍</button>
 		</span>
 	</div>

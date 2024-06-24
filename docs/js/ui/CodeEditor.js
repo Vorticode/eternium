@@ -51,7 +51,7 @@ import {
 	undoDepth
 } from '../codemirror/codemirror6.js';
 import themeSolarIce from "../codemirror/themeSolarIce.js";
-import {r, Red, getArg, ArgType} from "../redcomponent/RedComponent.js";
+import {r, Solarite, getArg, ArgType} from "../solarite/Solarite.js";
 import Icons from "../util/Icons.js";
 import Util from "../util/Util.js";
 
@@ -63,7 +63,7 @@ import Util from "../util/Util.js";
  *
  * @example
  * new CodeEditor('sql', 'SELECT * FROM users', {}, 'undo redo | run'); */
-export default class CodeEditor extends Red {
+export default class CodeEditor extends Solarite {
 	
 	/** @type {EditorView} */
 	view;
@@ -711,7 +711,7 @@ var ParseUtil = {
  * @typedef ToolbarButton
  * @property {string} html
  * @property {function(el:Node|HTMLElement)} update */
-export class CodeEditorToolbar extends Red {
+export class CodeEditorToolbar extends Solarite {
 
 	/** @type {object} Should have functions for everything the buttons array uses. */
 	ed;

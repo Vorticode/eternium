@@ -198,7 +198,7 @@ export default class ExprPath {
 
 			let originalFunc = func;
 
-			// BoundFunc sets the "this" variable to be the current Red component.
+			// BoundFunc sets the "this" variable to be the current Solarite component.
 			let boundFunc = event => originalFunc.call(root, ...args, event, node);
 
 			// Save both the original and bound functions.

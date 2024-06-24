@@ -13,7 +13,7 @@ import {assert} from "../util/Errors.js";
  * @property {boolean=} ids
  *
  * @property {?boolean} render
- * 	   Used only when options are given to a class super constructor inheriting from Red.
+ * 	   Used only when options are given to a class super constructor inheriting from Solarite.
  *     True to call render() immediately in super constructor.
  *     False to automatically call render() at all.
  *     Undefined (default) to call render() when added to the DOM, unless already rendered.
@@ -501,7 +501,7 @@ export default class NodeGroupManager {
 
 	/**
 	 * Get the NodeGroupManager for a Web Component.
-	 * @param rootEl {Red|HTMLElement}
+	 * @param rootEl {Solarite|HTMLElement}
 	 * @return {NodeGroupManager} */
 	static get(rootEl) {
 		let ngm = nodeGroupManagers.get(rootEl);
