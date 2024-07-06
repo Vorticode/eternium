@@ -7,11 +7,6 @@
  * And colorizes elements with a light and dark style.
  * Add 'light' or 'dark' attributes to the <html> tag.
  * It's recommended to use javascript to set this attribute from prefers-color-scheme on page load.
- *
- * TODO: Make input sizes and gap/pad sizes match?
- * TODO: Support more elements from https://preview.tabler.io/form-elements.html
- * TODO: Phase out pad-tiny-small in projects.
- * TODO: Remove old eternium-forms class.
  */
 
 
@@ -20,8 +15,8 @@
  * └─────────────────╯*/
 
 /* Light Colors */
-:root:not([dark]):is(.eternium, .eternium-style, .eternium-forms),
-:root:not([dark]) :is(.eternium, .eternium-style, .eternium-forms) {
+:root:not([dark]):is(.eternium, .eternium-style),
+:root:not([dark]) :is(.eternium, .eternium-style) {
 	/* Palette */
 	--text: #333;
 	--background: white;
@@ -60,8 +55,8 @@
 }
 
 /* Dark Colors */
-:root[dark]:is(.eternium, .eternium-style, .eternium-forms),
-:root[dark] :is(.eternium, .eternium-style, .eternium-forms) {
+:root[dark]:is(.eternium, .eternium-style),
+:root[dark] :is(.eternium, .eternium-style) {
 
 	/* Palette */
 	--text: #bcc3c8;
@@ -102,7 +97,7 @@
 }
 
 
-.eternium, .eternium-style, .eternium-forms {
+.eternium, .eternium-style {
 	--input-small: 18px;
 	--input-normal: 24px;
 	--input-big: 32px;
@@ -129,8 +124,8 @@
 /* ┌─────────────────╮
  * |Scrollbars       |
  * └─────────────────╯*/
-:root[dark]:is(.eternium, .eternium-style, .eternium-forms),
-:root[dark] :is(.eternium, .eternium-style, .eternium-forms) {
+:root[dark]:is(.eternium, .eternium-style),
+:root[dark] :is(.eternium, .eternium-style) {
 	/*noinspection CssInvalidPropertyValue*/scrollbar-color: dark;
 
 	::-webkit-scrollbar { background: transparent }
@@ -140,7 +135,7 @@
 }
 
 /* Form validation. Hide fields used by validate.js */
-.eternium, .eternium-forms {
+.eternium {
 
 	/* ┌─────────────────╮
 	 * |Normalize        |
@@ -305,15 +300,15 @@
 		 * |Button Status    |
 		 * └─────────────────╯*/
 		/* TODO: Let inputs have status also. */
-		&:is(.loading,.error,.complete) { position: relative;
-			&:after { position: relative;	margin-right: -16px; top: 1px; left: 1px; }
+		&:is(.loading,.error,.success) { position: relative;
+			&:after { position: relative;	top: 0; left: 4px; }
 			&.primary:after { filter: invert(100%) }
 		}
 
 		&.loading:after {
 			content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path style="transform-origin: center" fill="currentColor" d="M13 2v2c4.39.54 7.5 4.53 6.96 8.92A8.014 8.014 0 0 1 13 19.88v2c5.5-.6 9.45-5.54 8.85-11.03C21.33 6.19 17.66 2.5 13 2m-2 0c-1.96.18-3.81.95-5.33 2.2L7.1 5.74c1.12-.9 2.47-1.48 3.9-1.68V2M4.26 5.67A9.81 9.81 0 0 0 2.05 11h2c.19-1.42.75-2.77 1.64-3.9L4.26 5.67M2.06 13c.2 1.96.97 3.81 2.21 5.33l1.42-1.43A8.002 8.002 0 0 1 4.06 13h-2m5 5.37l-1.39 1.37A9.994 9.994 0 0 0 11 22v-2a8.002 8.002 0 0 1-3.9-1.63h-.04Z"><animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="2s" repeatCount="indefinite" /></path></svg>');
 		}
-		&.complete:after {
+		&.success:after {
 			content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M13 2.03v2.02c4.39.54 7.5 4.53 6.96 8.92c-.46 3.64-3.32 6.53-6.96 6.96v2c5.5-.55 9.5-5.43 8.95-10.93c-.45-4.75-4.22-8.5-8.95-8.97m-2 .03c-1.95.19-3.81.94-5.33 2.2L7.1 5.74c1.12-.9 2.47-1.48 3.9-1.68v-2M4.26 5.67A9.885 9.885 0 0 0 2.05 11h2c.19-1.42.75-2.77 1.64-3.9L4.26 5.67M15.5 8.5l-4.88 4.88l-2.12-2.12l-1.06 1.06l3.18 3.18l5.94-5.94L15.5 8.5M2.06 13c.2 1.96.97 3.81 2.21 5.33l1.42-1.43A8.002 8.002 0 0 1 4.06 13h-2m5.04 5.37l-1.43 1.37A9.994 9.994 0 0 0 11 22v-2a8.002 8.002 0 0 1-3.9-1.63Z"/></svg>');
 		}
 		&.error:after {
@@ -536,7 +531,7 @@
 
 
 	/* Pad */
-	/* We need :not(#wt) to override the css weight of input pad-left and pad-right above.*/
+	/* We need :not(#wt) to override the css selector specificity of input pad-left and pad-right above.*/
 	:not(#wt).pad-micro { padding: var(--micro) }
 	:not(#wt).pad-tiny { padding: var(--tiny) }
 	:not(#wt).pad-small { padding: var(--small) }
@@ -601,28 +596,7 @@
 	 * |Dimensions       |
 	 * └─────────────────╯*/
 
-	/* Fixed
-	 * using width: clamp(1rem, 1rem 1rem); doesn't do the same thing as setting-min-width and max-width.
-	 * A flex: 1 will still override the former.
-	*/
-	.rem1 { min-width: 1rem; max-width: 1rem }
-	.rem2 { min-width: 2rem; max-width: 2rem }
-	.rem3 { min-width: 3rem; max-width: 3rem }
-	.rem4 { min-width: 4rem; max-width: 4rem }
-	.rem5 { min-width: 5rem; max-width: 5rem }
-	.rem6 { min-width: 6rem; max-width: 6rem }
-	.rem7 { min-width: 7rem; max-width: 7rem }
-	.rem8 { min-width: 8rem; max-width: 8rem }
-	.rem9 { min-width: 9rem; max-width: 9rem }
-	.rem10 { min-width: 10rem; max-width: 10rem }
-	.rem11 { min-width: 11rem; max-width: 11rem }
-	.rem12 { min-width: 12rem; max-width: 12rem }
-	.rem13 { min-width: 13rem; max-width: 13rem }
-	.rem14 { min-width: 14rem; max-width: 14rem }
-	.rem15 { min-width: 15rem; max-width: 15rem }
-	.rem16 { min-width: 16rem; max-width: 16rem }
-
-	/* Experimental - replace .rem's? */
+	/* Fixed pixel widths */
 	.px10 { min-width: 10px; max-width: 10px }
 	.px20 { min-width: 20px; max-width: 20px }
 	.px30 { min-width: 30px; max-width: 30px }
@@ -772,23 +746,36 @@
 		 * |Dimensions       |
 		 * └─────────────────╯*/
 
-		/* Fixed */
-		.rem1-mobile { min-width: 1rem; max-width: 1rem }
-		.rem2-mobile { min-width: 2rem; max-width: 2rem }
-		.rem3-mobile { min-width: 3rem; max-width: 3rem }
-		.rem4-mobile { min-width: 4rem; max-width: 4rem }
-		.rem5-mobile { min-width: 5rem; max-width: 5rem }
-		.rem6-mobile { min-width: 6rem; max-width: 6rem }
-		.rem7-mobile { min-width: 7rem; max-width: 7rem }
-		.rem8-mobile { min-width: 8rem; max-width: 8rem }
-		.rem9-mobile { min-width: 9rem; max-width: 9rem }
-		.rem10-mobile { min-width: 10rem; max-width: 10rem }
-		.rem11-mobile { min-width: 11rem; max-width: 11rem }
-		.rem12-mobile { min-width: 12rem; max-width: 12rem }
-		.rem13-mobile { min-width: 13rem; max-width: 13rem }
-		.rem14-mobile { min-width: 14rem; max-width: 14rem }
-		.rem15-mobile { min-width: 15rem; max-width: 15rem }
-		.rem16-mobile { min-width: 16rem; max-width: 16rem }
+		/* Fixed pixel widths */
+		.px10-mobile { min-width: 10px; max-width: 10px }
+		.px20-mobile { min-width: 20px; max-width: 20px }
+		.px30-mobile { min-width: 30px; max-width: 30px }
+		.px40-mobile { min-width: 40px; max-width: 40px }
+		.px50-mobile { min-width: 50px; max-width: 50px }
+		.px60-mobile { min-width: 60px; max-width: 60px }
+		.px70-mobile { min-width: 70px; max-width: 70px }
+		.px80-mobile { min-width: 80px; max-width: 80px }
+		.px90-mobile { min-width: 90px; max-width: 90px }
+		.px100-mobile { min-width: 100px; max-width: 100px }
+		.px120-mobile { min-width: 120px; max-width: 120px }
+		.px150-mobile { min-width: 150px; max-width: 150px }
+		.px200-mobile { min-width: 200px; max-width: 200px }
+		.px250-mobile { min-width: 250px; max-width: 250px }
+		.px300-mobile { min-width: 300px; max-width: 300px }
+		.px350-mobile { min-width: 350px; max-width: 350px }
+		.px400-mobile { min-width: 400px; max-width: 400px }
+		.px450-mobile { min-width: 450px; max-width: 450px }
+		.px500-mobile { min-width: 500px; max-width: 500px }
+		.px550-mobile { min-width: 550px; max-width: 550px }
+		.px600-mobile { min-width: 800px; max-width: 800px }
+		.px650-mobile { min-width: 850px; max-width: 850px }
+		.px700-mobile { min-width: 700px; max-width: 700px }
+		.px750-mobile { min-width: 750px; max-width: 750px }
+		.px800-mobile { min-width: 800px; max-width: 800px }
+		.px850-mobile { min-width: 850px; max-width: 850px }
+		.px900-mobile { min-width: 900px; max-width: 900px }
+		.px950-mobile { min-width: 950px; max-width: 950px }
+		.px1000-mobile { min-width: 1000px; max-width: 1000px }
 
 
 		/* Percents in thirds, fourths, and tenths. */
@@ -909,23 +896,36 @@
 		 * |Dimensions       |
 		 * └─────────────────╯*/
 
-		/* Fixed */
-		.rem1-tablet { min-width: 1rem; max-width: 1rem }
-		.rem2-tablet { min-width: 2rem; max-width: 2rem }
-		.rem3-tablet { min-width: 3rem; max-width: 3rem }
-		.rem4-tablet { min-width: 4rem; max-width: 4rem }
-		.rem5-tablet { min-width: 5rem; max-width: 5rem }
-		.rem6-tablet { min-width: 6rem; max-width: 6rem }
-		.rem7-tablet { min-width: 7rem; max-width: 7rem }
-		.rem8-tablet { min-width: 8rem; max-width: 8rem }
-		.rem9-tablet { min-width: 9rem; max-width: 9rem }
-		.rem10-tablet { min-width: 10rem; max-width: 10rem }
-		.rem11-tablet { min-width: 11rem; max-width: 11rem }
-		.rem12-tablet { min-width: 12rem; max-width: 12rem }
-		.rem13-tablet { min-width: 13rem; max-width: 13rem }
-		.rem14-tablet { min-width: 14rem; max-width: 14rem }
-		.rem15-tablet { min-width: 15rem; max-width: 15rem }
-		.rem16-tablet { min-width: 16rem; max-width: 16rem }
+		/* Fixed pixel widths */
+		.px10-tablet { min-width: 10px; max-width: 10px }
+		.px20-tablet { min-width: 20px; max-width: 20px }
+		.px30-tablet { min-width: 30px; max-width: 30px }
+		.px40-tablet { min-width: 40px; max-width: 40px }
+		.px50-tablet { min-width: 50px; max-width: 50px }
+		.px60-tablet { min-width: 60px; max-width: 60px }
+		.px70-tablet { min-width: 70px; max-width: 70px }
+		.px80-tablet { min-width: 80px; max-width: 80px }
+		.px90-tablet { min-width: 90px; max-width: 90px }
+		.px100-tablet { min-width: 100px; max-width: 100px }
+		.px120-tablet { min-width: 120px; max-width: 120px }
+		.px150-tablet { min-width: 150px; max-width: 150px }
+		.px200-tablet { min-width: 200px; max-width: 200px }
+		.px250-tablet { min-width: 250px; max-width: 250px }
+		.px300-tablet { min-width: 300px; max-width: 300px }
+		.px350-tablet { min-width: 350px; max-width: 350px }
+		.px400-tablet { min-width: 400px; max-width: 400px }
+		.px450-tablet { min-width: 450px; max-width: 450px }
+		.px500-tablet { min-width: 500px; max-width: 500px }
+		.px550-tablet { min-width: 550px; max-width: 550px }
+		.px600-tablet { min-width: 800px; max-width: 800px }
+		.px650-tablet { min-width: 850px; max-width: 850px }
+		.px700-tablet { min-width: 700px; max-width: 700px }
+		.px750-tablet { min-width: 750px; max-width: 750px }
+		.px800-tablet { min-width: 800px; max-width: 800px }
+		.px850-tablet { min-width: 850px; max-width: 850px }
+		.px900-tablet { min-width: 900px; max-width: 900px }
+		.px950-tablet { min-width: 950px; max-width: 950px }
+		.px1000-tablet { min-width: 1000px; max-width: 1000px }
 
 		/* Percents in thirds, fourths, and tenths. */
 		.pc10-tablet { width: 10% }
@@ -1045,23 +1045,36 @@
 		 * |Dimensions       |
 		 * └─────────────────╯*/
 
-		/* Fixed */
-		.rem1-desktop { min-width: 1rem; max-width: 1rem }
-		.rem2-desktop { min-width: 2rem; max-width: 2rem }
-		.rem3-desktop { min-width: 3rem; max-width: 3rem }
-		.rem4-desktop { min-width: 4rem; max-width: 4rem }
-		.rem5-desktop { min-width: 5rem; max-width: 5rem }
-		.rem6-desktop { min-width: 6rem; max-width: 6rem }
-		.rem7-desktop { min-width: 7rem; max-width: 7rem }
-		.rem8-desktop { min-width: 8rem; max-width: 8rem }
-		.rem9-desktop { min-width: 9rem; max-width: 9rem }
-		.rem10-desktop { min-width: 10rem; max-width: 10rem }
-		.rem11-desktop { min-width: 11rem; max-width: 11rem }
-		.rem12-desktop { min-width: 12rem; max-width: 12rem }
-		.rem13-desktop { min-width: 13rem; max-width: 13rem }
-		.rem14-desktop { min-width: 14rem; max-width: 14rem }
-		.rem15-desktop { min-width: 15rem; max-width: 15rem }
-		.rem16-desktop { min-width: 16rem; max-width: 16rem }
+		/* Fixed pixel widths */
+		.px10-desktop { min-width: 10px; max-width: 10px }
+		.px20-desktop { min-width: 20px; max-width: 20px }
+		.px30-desktop { min-width: 30px; max-width: 30px }
+		.px40-desktop { min-width: 40px; max-width: 40px }
+		.px50-desktop { min-width: 50px; max-width: 50px }
+		.px60-desktop { min-width: 60px; max-width: 60px }
+		.px70-desktop { min-width: 70px; max-width: 70px }
+		.px80-desktop { min-width: 80px; max-width: 80px }
+		.px90-desktop { min-width: 90px; max-width: 90px }
+		.px100-desktop { min-width: 100px; max-width: 100px }
+		.px120-desktop { min-width: 120px; max-width: 120px }
+		.px150-desktop { min-width: 150px; max-width: 150px }
+		.px200-desktop { min-width: 200px; max-width: 200px }
+		.px250-desktop { min-width: 250px; max-width: 250px }
+		.px300-desktop { min-width: 300px; max-width: 300px }
+		.px350-desktop { min-width: 350px; max-width: 350px }
+		.px400-desktop { min-width: 400px; max-width: 400px }
+		.px450-desktop { min-width: 450px; max-width: 450px }
+		.px500-desktop { min-width: 500px; max-width: 500px }
+		.px550-desktop { min-width: 550px; max-width: 550px }
+		.px600-desktop { min-width: 800px; max-width: 800px }
+		.px650-desktop { min-width: 850px; max-width: 850px }
+		.px700-desktop { min-width: 700px; max-width: 700px }
+		.px750-desktop { min-width: 750px; max-width: 750px }
+		.px800-desktop { min-width: 800px; max-width: 800px }
+		.px850-desktop { min-width: 850px; max-width: 850px }
+		.px900-desktop { min-width: 900px; max-width: 900px }
+		.px950-desktop { min-width: 950px; max-width: 950px }
+		.px1000-desktop { min-width: 1000px; max-width: 1000px }
 
 		/* Percents in thirds, fourths, and tenths. */
 		.pc10-desktop { width: 10% }
@@ -1110,14 +1123,3 @@
 @media (992px <= width) {
 	:is(.eternium, .eternium-layout) :is(.mobile, .tablet):not(.desktop) { display: none !important }
 }
-
-
-/* ┌─────────────────╮
- * |Deprecated       |
- * └─────────────────╯*/
-/* These are deprecated, use pad-h and pad-v */
-:is(.eternium, .eternium-forms) .pad-tiny-small, :is(.eternium, .eternium-forms).pad-tiny-small { padding: var(--tiny) var(--small) }
-:is(.eternium, .eternium-forms) .pad-small-normal, :is(.eternium, .eternium-forms).pad-small-normal { padding: var(--small) var(--normal) }
-
-:is(.eternium, .eternium-forms) :is(small, :is(a,b,i,s,p,u,span,div,ul,ol,li,.label):not([contenteditable]).small) {
-	font-size: 80%; opacity: .65; line-height: 1.1 } /* .small is deprecated for .little and .muted */

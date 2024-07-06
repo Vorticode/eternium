@@ -1,16 +1,3 @@
-
-/*
-@font-face {
-    font-family: "Architects Daughter";
-    font-weight: 400;
-    src: url("ArchitectsDaughter400.woff2") format("woff")
-}
-@font-face {
-    font-family: "Molengo";
-    font-weight: 400;
-    src: url("Molengo.woff") format("woff")
-}
-*/
 @font-face {
     font-family: "Cabin";
     font-weight: 700;
@@ -22,7 +9,7 @@
     src: url("FiraCode400.woff2") format("woff")
 }
 
-html { background: var(--background) !important }
+html { background: var(--background) !important; font-size: 16px !important }
 body::before { content: ''; position: fixed; inset: 0;
 	opacity: .03; filter: grayscale(75%);
 	background: url('eternium-machine2.webp') no-repeat -200px -200px / 140% auto ;  }
@@ -54,7 +41,7 @@ html:not([dark]) #write h3 { color: #678; }
 #write h6 { font-size: 100%; font-weight: normal; margin-top: .75em; margin-bottom: 0; text-decoration: underline }
 
 
-#write :is(p, h2, h3, h4, h5, h6, ol, ul) { max-width: 600px }
+#write :is(p, h2, h3, h4, h5, h6, ol, ul) { max-width: 700px }
 #write p { text-align: justify }
 #write a, #write a:visited { color: #08c; text-decoration: none}
 #write a:hover { color: #08c; text-decoration: underline }
@@ -88,15 +75,15 @@ table tr:nth-child(2n), thead {
 	.typora-export-sidebar, .typora-export-sidebar .outline-content {
 		display: none
 	}
-	#write play-ground { width: calc(100vw - 30px) }
+	#write play-ground { width: calc(100vw - 60px) }
 }
 @media screen and (width < 768px) {
 	#write { padding: 10px !important }
+	#write play-ground { width: calc(100vw - 36px) }
 }
 
 @media screen and (width < 512px) {
 	body { font-size: 14px }
-	#write play-ground { width: calc(100vw - 12px) }
 	table :is(th, td) { padding: 2px 4px !important }
 	#write { padding: 6px !important }
 	table { font-size: 85% }

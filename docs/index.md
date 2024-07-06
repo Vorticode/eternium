@@ -7,13 +7,13 @@ append-head:  <script src="docs/js/ui/DarkToggle.js"></script><script type="modu
 
 # Eternium
 
-Eternium is a simple, no-JavaScript, compilation-free, responsive CSS library for layout and styling elements, requiring less markup and classes than other libraries.  It's 44KB or < **6KB** minified+gzipped and currently in beta.
+Eternium is a simple, no-JavaScript, compilation-free, single-file, opt-in, responsive CSS library for layout and styling elements, especially forms and complex user interfaces.  It requires less markup than other libraries.  It's currently in beta.
 
-[Download eternium.css](eternium.css)
+[Download eternium.css](eternium.css) (45KB, 8KB min+gzip)
 
 [GitHub Repository](https://github.com/Vorticode/eternium)
 
-Here's an example of what using Eternium looks like.  Notice that you can edit the code.
+Here's what using Eternium looks like.  Notice that you can edit the code.
 
 ```html
 <div class="card pad col gap-small stretch-h">
@@ -25,14 +25,16 @@ Here's an example of what using Eternium looks like.  Notice that you can edit t
 	</label>	
     
 	<div class="row center-v stretch-h">
-		<label class="px70" for="password">Password</label>
+		<label class="px70" for="password">
+            Password</label>
 		<span class="row group">
-			<input class="flex1" id="password" type="password">
+			<input class="flex1" id="password" 
+                   type="password" style="width: 0">
 			<button>🔍</button>
 		</span>
 	</div>
     
-	<div class="row stretch-h">
+	<div class="row stretch-h wrap">
 		<div class="px70"><!--spacer--></div>
 		<div class="row center-v space-between">
 			<label class="no-select">
@@ -170,8 +172,7 @@ Specify the alignment of children within `.row` and `.col` elements.
             <th>bottom</th>
         </tr>
     </thead>
-    <tbody>
-        
+    <tbody>        
         <tr>
             <th>.row</th>
             <td>
@@ -690,7 +691,7 @@ This style can be modified with various classes:
 | `.primary`                             | Give a button a bright background (typically blue) to make it look important. |
 | `.loading`                             | Give a form field or button an animated loading spinner.     |
 | `.error`                               | Give a form field input or button an error icon.             |
-| `.complete`                            | Give a form field input or button a success icon.            |
+| `.success`                             | Give a form field input or button a success icon.            |
 |                                        |                                                              |
 | `.small`                               | Make a form field or button the height defined in the `--input-small` variable, typically 18px including the border. |
 | `.normal`                              | Make the input field a normal size, also defined in the `--input-normal` variable, which is typically 24px.  Typically used only on checkboxes, which default to a small size. |
@@ -788,8 +789,8 @@ This example demonstrates the use of these classes:
     <button class="primary big loading">Loading</button>
     <button class="primary huge loading">Loading</button>
 
-    <button class="complete">Complete</button>
-    <button class="primary complete">Complete</button>
+    <button class="success">Success</button>
+    <button class="primary success">Success</button>
 
     <button class="error">Error</button>
     <button class="primary error">Error</button>
@@ -1006,7 +1007,7 @@ Setting the body height is only necessary for this demo, and doesn't need to be 
 
 <div class="col stretch-h" style="min-height: 100%">
     <div class="pad center" style="background: var(--shade4)">Header</div>
-    <div class="pad flex1" contenteditable>Content:  Edit me</div>
+    <div class="pad flex1" contenteditable>Content:  Edit me to add line returns</div>
     <div class="pad center" style="background: var(--shade3)">Footer</div>
 </div>
 ```

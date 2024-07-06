@@ -13,7 +13,7 @@ export default class Playground extends Solarite {
 	 *
 	 * @param maxHeight {int} If the editor is taller than the preview, and taller than this height, limit it the max of this height and the preview height.
 	 * */
-	constructor({value, language='JavaScript', width=50, prefix='', maxHeight=575}={}) {
+	constructor({value, language='JavaScript', width=50, prefix='', maxHeight=590}={}) {
 		super({scripts: false});
 		value = value || (this.code ? this.code.querySelector('script')?.textContent : '');
 		this.value = value;
