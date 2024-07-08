@@ -4,7 +4,7 @@ Eternium is a simple, no-JavaScript, compilation-free, single-file, opt-in, resp
 
 See examples on the **[documentation page](https://vorticode.github.io/eternium/)**.
 
-Download [eternium.css](https://vorticode.github.io/eternium/eternium.css) (45KB, 8KB min+gzip)
+Download [eternium.css](https://vorticode.github.io/eternium/eternium.css) (45KB, 5.5KB min+gzip)
 
 Or:
 

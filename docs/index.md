@@ -9,7 +9,7 @@ append-head:  <script src="docs/js/ui/DarkToggle.js"></script><script type="modu
 
 Eternium is a simple, no-JavaScript, compilation-free, single-file, opt-in, responsive CSS library for layout and styling elements, especially forms and complex user interfaces.  It requires less markup than other libraries.  It's currently in beta.
 
-[Download eternium.css](eternium.css) (45KB, 8KB min+gzip)
+[Download eternium.css](eternium.css) (45KB, 5.5KB min+gzip)
 
 [GitHub Repository](https://github.com/Vorticode/eternium)
 
