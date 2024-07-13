@@ -135,7 +135,7 @@
 }
 
 /* Form validation. Hide fields used by validate.js */
-.eternium {
+.eternium, .eternium-style {
 
 	/* ┌─────────────────╮
 	 * |Normalize        |
