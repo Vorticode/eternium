@@ -1,6 +1,6 @@
 ---
 title:  Eternium Documentation
-append-head:  <script src="docs/js/ui/DarkToggle.js"></script><script type="module" src="docs/js/documentation.js"></script><link rel="stylesheet" href="docs/media/documentation.css"><link rel="stylesheet" href="eternium.css">
+append-head:  <script src="docs/js/ui/DarkToggle.js"></script><script type="module" src="docs/js/documentation.js"></script><link rel="stylesheet" href="docs/media/documentation.css"><link rel="stylesheet" href="eternium.css"><link rel="icon" href="docs/media/eternium-machine.webp" type="image/webp">
 ---
 
 <!-- To create documentation: (1) Open in Typora.  (2) Select the GitHub theme. (3) Export as html with styles to index.html. -->
