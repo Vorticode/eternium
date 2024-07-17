@@ -103,10 +103,13 @@
 	--input-big: 32px;
 	--input-huge: 44px;
 
+
 	--border-width: 1px;
 	--border-radius: 3px;
 	--icon-size: 20px;
 
+	--input-pad-h: 4px;
+	--button-pad-h: 16px;
 	--table-padding: 4px 8px;
 
 	/* Buttons */
@@ -163,13 +166,13 @@
 	/* Labels */
 	.label { font-size :85%; font-weight: bold; user-select: none }
 
-	/* Misc */
+	/* Little and faint */
 	.little { font-size: 80%;  line-height: 1.1 }
 	:is(.muted,.faint) { opacity: .66; } /* faint is deprecated */
 
-
-
+	/* Link outline on tab-focus */
 	a:focus-visible:not(.no-outline) { outline: var(--border-focus) }
+	
 	.no-select { user-select: none }
 
 	/* Placeholder + Contenteditable placeholder */
@@ -219,8 +222,7 @@
 	/* Height */
 	input:not([type=checkbox],[type=file],[type=hidden],[type=image],[type=radio],[type=range]),
 	.input:not([contenteditable]), select, button, .button {
-		box-sizing: border-box; padding-top: 0; padding-bottom: 0;
-		min-height: var(--input-normal)
+		box-sizing: border-box; padding-top: 0; padding-bottom: 0; min-height: var(--input-normal)
 	}
 
 	textarea, [contenteditable].input {
@@ -238,7 +240,7 @@
 		&:not(.square, .flat) { border-radius: var(--border-radius); }
 		&:not(.flat) {
 			background: var(--input-background);
-			border: var(--border-width) solid var(--input-border); vertical-align: top; padding-left: var(--tiny); padding-right: var(--tiny);
+			border: var(--border-width) solid var(--input-border); vertical-align: top; padding-left: var(--input-pad-h); padding-right: var(--input-pad-h);
 		}
 	}
 
@@ -263,17 +265,13 @@
 	 * |Buttons          |
 	 * └─────────────────╯*/
 	:is(.button, button, input:is([type=button],[type=submit],[type=reset])) {
-		& {
-			box-sizing: border-box; display: inline-flex; user-select: none; text-align: center; color: var(--text); align-items: center }
-		&:not([disabled]) {
-			cursor: pointer }
-		&:not(.square, .flat) {
-			border-radius: var(--border-radius) }
+		box-sizing: border-box; display: inline-flex; user-select: none; text-align: center; color: var(--text); align-items: center;
+
+		&:not([disabled]) { cursor: pointer }
+		&:not(.square, .flat) { border-radius: var(--border-radius) }
 		&:not(.flat) {
-			line-height: normal;
 			border: var(--secondary-border); background: var(--secondary-background);
-			padding-left: var(--normal);
-			padding-right: var(--normal);
+			line-height: normal; padding-left: var(--button-pad-h); padding-right: var(--button-pad-h);
 		}
 
 		/* Button Hover/Focus */

@@ -1,9 +1,9 @@
 ---
 title:  Eternium Documentation
-append-head:  <script src="docs/js/ui/DarkToggle.js"></script><script type="module" src="docs/js/documentation.js"></script><link rel="stylesheet" href="docs/media/documentation.css"><link rel="stylesheet" href="eternium.css"><link rel="icon" href="docs/media/eternium-machine.webp" type="image/webp">
+append-head:  <script src="docs/js/ui/DarkToggle.js"></script><script type="module" src="docs/js/documentation.js"></script><link rel="stylesheet" href="docs/media/documentation.css"><link rel="stylesheet" href="eternium.css"><link rel="icon" href="docs/media/eterniummachine.webp" type="image/webp">
 ---
 
-<!-- To create documentation: (1) Open in Typora.  (2) Select the GitHub theme. (3) Export as html with styles to index.html. -->
+<!-- To convert documentation to html: (1) Open in Typora.  (2) Select the GitHub theme. (3) Export as html with styles to index.html. -->
 
 # Eternium
 
@@ -28,8 +28,7 @@ Here's what using Eternium looks like.  Notice that you can edit the code.
 		<label class="px70" for="password">
             Password</label>
 		<span class="row group">
-			<input class="flex1" id="password" 
-                   type="password" style="width: 0">
+			<input class="flex1" id="password" type="password">
 			<button>🔍</button>
 		</span>
 	</div>
@@ -69,7 +68,7 @@ Eternium uses modern CSS features like [nested rules](https://caniuse.com/css-ne
 
 ## Layout
 
-Add the `eternium` or the `eternium-layout` class to a parent element, then you can use any of the classes in this Layout seciond.
+Add the `eternium` or the `eternium-layout` class to a parent element, then you can use any of the classes in this Layout section.
 
 ### Variables
 
