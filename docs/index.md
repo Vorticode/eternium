@@ -1,6 +1,6 @@
 ---
-title:  Eternium Documentation
-append-head:  <script src="docs/js/ui/DarkToggle.js"></script><script type="module" src="docs/js/documentation.js"></script><link rel="stylesheet" href="docs/media/documentation.css"><link rel="stylesheet" href="eternium.css"><link rel="icon" href="docs/media/eterniummachine.webp" type="image/webp">
+title:  Eternium CSS Library
+append-head:  <script src="docs/js/ui/DarkToggle.js"></script><script type="module" src="docs/js/documentation.js"></script><link rel="stylesheet" href="docs/media/documentation.css"><link rel="stylesheet" href="eternium.css"><link rel="icon" href="docs/media/eternium-machine.webp" type="image/webp">
 ---
 
 <!-- To convert documentation to html: (1) Open in Typora.  (2) Select the GitHub theme. (3) Export as html with styles to index.html. -->
@@ -9,9 +9,12 @@ append-head:  <script src="docs/js/ui/DarkToggle.js"></script><script type="modu
 
 Eternium is a simple, no-JavaScript, compilation-free, single-file, opt-in, responsive CSS library for layout and styling elements, especially forms and complex user interfaces.  It requires less markup than other libraries.  It's currently in beta.
 
-[Download eternium.css](eternium.css) (45KB, 5.5KB min+gzip)
+Use one of the following to get Eternium:
 
-[GitHub Repository](https://github.com/Vorticode/eternium)
+- [eternium.css](eternium.css) (45KB, 5.5KB min+gzip)
+- [Eternium GitHub Repository](https://github.com/Vorticode/eternium)
+- `git clone https://github.com/Vorticode/eternium.git`
+- `npm install eternium`
 
 Here's what using Eternium looks like.  Notice that you can edit the code.
 
@@ -95,7 +98,7 @@ Eternium layout classes have variants with the `-mobile` `-tablet` and `-desktop
 
 You'll see examples with these below.
 
-### Rows and Columns
+### Rows & Columns
 
 | Class  | Responsive Overrides                       |                                    |
 | ------ | ------------------------------------------ | ---------------------------------- |
@@ -653,7 +656,7 @@ This example shows how to use the various width classes.
 
 To use the classes in this Styles secion, `.eternium` or `.eternium-style` must be present on an ancestral element.  Unlike the layout classes, Eternium style classes do not have responsive variants.
 
-### Inputs and Buttons
+### Inputs & Buttons
 
 Form elements inside the `.eternium` or `.eternium-style` classes are given a default style.
 
@@ -1013,7 +1016,7 @@ Setting the body height is only necessary for this demo, and doesn't need to be 
 
 
 
-### Aligned form becomes stacked on Mobile
+### Responsive form
 
 This form moves the labels from the side to above the inputs when the device width is < 512px.  Drag the resizer between the code and the preview to see it adjust as the width decreases.
 
