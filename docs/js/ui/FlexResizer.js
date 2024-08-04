@@ -3,8 +3,7 @@ import Draggable2 from "../util/Draggable2.js";
 import Util from "../util/Util.js";
 
 /**
- * Put this element between flex children to allow resizing them.
- * TODO: Allow vertical resizing. */
+ * Put this element between flex children to allow resizing them. */
 export default class FlexResizer extends Solarite {
 
 	onStart = Util.callback();

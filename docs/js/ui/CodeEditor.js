@@ -135,7 +135,9 @@ export default class CodeEditor extends Solarite {
 	 * @param languageconfig {?Object} Options for CodeMirror.
 	 * @param toolbar {string|Object<html:Template, update:function>[]} Names of buttons from CodeEditiorToolbar.buttonTemplates or an array of HTMLElements to use as buttons.
 	 * @param options {object}
-	 * @param options.wordWrap {boolean} */
+	 * @param options.wordWrap {boolean}
+	 * @param options.tabSize {int}
+	 * @param options.fontSize {int} */
 	constructor({value='', language=null, languageconfig=null, toolbar='', options={}}={}) {
 		super();
 		
@@ -143,6 +145,7 @@ export default class CodeEditor extends Solarite {
 		this.language = (language||'php').toLowerCase();
 		this.languageConfig = languageconfig || {};
 		this.wordWrap = options.wordWrap || false;
+		this.tabSize = options.tabSize || 4;
 		
 		
 
@@ -255,7 +258,7 @@ export default class CodeEditor extends Solarite {
 			//foldGutter(),
 			drawSelection(),
 			indentUnit.of("\t"),
-			this.compartments.tabSize.of(EditorState.tabSize.of(4)),
+			this.compartments.tabSize.of(EditorState.tabSize.of(this.tabSize)),
 			this.compartments.lineWrapping.of(wordWrap ? EditorView.lineWrapping : []),
 			EditorState.allowMultipleSelections.of(true),
 			indentOnInput(),
@@ -452,6 +455,13 @@ export default class CodeEditor extends Solarite {
 		languageConfig = languageConfig || {};
 		this.view.dispatch({ // Update codemirror.
 			effects: this.compartments.language.reconfigure(this.getLanguageExtension(language, languageConfig))
+		});
+	}
+	
+	setTabSize(tabSize) {
+		this.tabSize = tabSize;
+		this.view.dispatch({ // Update codemirror.
+			effects: this.compartments.tabSize.reconfigure(EditorState.tabSize.of(tabSize))
 		});
 	}
 

@@ -1,6 +1,6 @@
 ---
 title:  Eternium CSS Library
-append-head:  <script src="docs/js/ui/DarkToggle.js"></script><script type="module" src="docs/js/documentation.js"></script><link rel="stylesheet" href="docs/media/documentation.css"><link rel="stylesheet" href="eternium.css"><link rel="icon" href="docs/media/eternium-machine.webp" type="image/webp">
+append-head:  <script src="docs/js/ui/DarkToggle.js"></script><script type="module" src="docs/js/documentation.js"></script><link rel="stylesheet" href="docs/media/documentation.css"><link rel="stylesheet" href="eternium.css"><link rel="icon" href="docs/media/eternium-machine.webp" type="image/webp"><script async defer src="https://buttons.github.io/buttons.js"></script>
 ---
 
 <!-- To convert documentation to html: (1) Open in Typora.  (2) Select the GitHub theme. (3) Export as html with styles to index.html. -->
@@ -12,7 +12,7 @@ Eternium is a simple, no-JavaScript, compilation-free, single-file, opt-in, resp
 Use one of the following to get Eternium:
 
 - [eternium.css](eternium.css) (45KB, 5.5KB min+gzip)
-- [Eternium GitHub Repository](https://github.com/Vorticode/eternium)
+- [Eternium GitHub Repository](https://github.com/Vorticode/eternium) <a class="github-button" href="https://github.com/vorticode/eternium" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-show-count="true" aria-label="Star vorticode/eternium on GitHub">Star</a>
 - `git clone https://github.com/Vorticode/eternium.git`
 - `npm install eternium`
 

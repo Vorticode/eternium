@@ -13,7 +13,7 @@ export default class Playground extends Solarite {
 	 *
 	 * @param maxHeight {int} If the editor is taller than the preview, and taller than this height, limit it the max of this height and the preview height.
 	 * */
-	constructor({value, language='JavaScript', width=50, prefix='', maxHeight=590}={}) {
+	constructor({value, language='javascript', width=50, prefix='', maxHeight=590}={}) {
 		super({scripts: false});
 		value = value || (this.code ? this.code.querySelector('script')?.textContent : '');
 		this.value = value;
@@ -135,7 +135,7 @@ export default class Playground extends Solarite {
 
 
 	render() {
-		this.html = r`
+		r(this)`
 			<play-ground class="card row pad stretch-v  pad-small-tablet col-mobile pad-tiny-mobile">
 				<style>
 					@media (width < 768px) { /* On mobile, put preview below code */
@@ -148,14 +148,14 @@ export default class Playground extends Solarite {
 						:host [data-id=preview] { width: ${100 - this.width}%; min-width: 0; margin: 0; background: white }
 					}
 				</style>			
-				<code-editor data-id="editor" value="${this.value}" language="${this.language}"></code-editor>
+				<code-editor data-id="editor" value=${this.value} language=${this.language}></code-editor>
 				<flex-resizer data-id="resizer"></flex-resizer>
 				<iframe data-id="preview" frameborder="0"></iframe>
 				<slot data-id="code" style="display: none"></slot>
 			</play-ground>`
 	}
 }
-Playground.define('play-ground')
+Playground.define('play-ground');
 
 function shortenError(error, br='<br>&nbsp;&nbsp;') {
 	if (typeof error === 'string')
