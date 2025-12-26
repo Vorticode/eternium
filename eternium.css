@@ -1,18 +1,23 @@
 /**
- * Eternium CSS framework.
+ * Eternium CSS framework
  * License:  MIT
- * https://github.com/Vorticode/eternium
+ * https://vorticode.github.io/eternium
+ * @copyright Vorticode LLC
  *
- * Provide custom layout and form element styles ONLY for elements inside the .eternium class.
- * And colorizes elements with a light and dark style.
- * Add 'light' or 'dark' attributes to the <html> tag.
+ * Eternium provides custom layout and form element styles for elements inside an element with the .eternium class.
+ * Styles include a light and dark theme.
+ * Add 'light' or 'dark' attributes to the <html> tag to override the user's different color theme.
  * It's recommended to use javascript to set this attribute from prefers-color-scheme on page load.
+
+   TODO: Simplify height calculation on inputs?
+   TODO: Allow .small, big, and huge classes for text that matches the input sizes.
+   TODO: Make everything with display:... have a selector that's :not([hidden])
  */
 
 
-/* ┌─────────────────╮
- * |Variables        |
- * └─────────────────╯*/
+/*┌─────────────────╮
+  |Variables        |
+  └─────────────────╯*/
 
 /* Light Colors */
 :root:not([dark]):is(.eternium, .eternium-style),
@@ -27,7 +32,7 @@
 	--shade3: #b6bac1; /* Unused? */
 	--shade4: #aeb3be;
 	--invalid: #900;
-	--shadow: 0 0 5px #0006;
+	--shadow: 0 0 .5rem #0003;
 
 	/* Primary Colors */
 	--primary: #07c;
@@ -40,10 +45,12 @@
 	--secondary-background-hover: var(--shade4);
 	--secondary-border-hover: var(--shade4);
 	--input-background: white;
-	--input-border: var(--shade2);
+	--input-border: var(--border-width) solid var(--shade2);
+
+	--disabled-background: var(--shade1);
 
 	--card-background: white;
-	--card-border: var(--border-width) solid transparent; /* same width as visible border on dark mode. */
+	--card-border: 0 solid transparent; /* same width as visible border on dark mode. */
 
 	--border: var(--border-width) solid var(--shade2);
 	--border-focus: var(--border-width) solid var(--primary2);
@@ -69,7 +76,7 @@
 	--shade4: #3d474f;
 
 	--invalid: #900;
-	--shadow: 0 0 12px #000f;
+	--shadow: 0 0 .75rem #000f;
 
 	/* Primary Buttons */
 	--primary: #048;
@@ -82,10 +89,12 @@
 	--secondary-background-hover: var(--shade4);
 	--secondary-border-hover: var(--shade4);
 	--input-background: var(--shade1);
-	--input-border: var(--shade3);
+	--input-border: var(--border-width) solid var(--shade3);
+
+	--disabled-background: var(--shade1);
 
 	--card-background: var(--shade2);
-	--card-border: var(--border);
+	--card-border: 0 solid transparent;
 
 	--border: var(--border-width) solid var(--shade3);
 	--border-focus: var(--border-width) solid var(--primary2);
@@ -98,19 +107,32 @@
 
 
 .eternium, .eternium-style {
-	--input-small: 18px;
-	--input-normal: 24px;
-	--input-big: 32px;
-	--input-huge: 44px;
+	/* These are used for button heights also.  TODO: Rename to --field-* */
+	--input-small: 1.25rem;
 
+	--input-normal: 1.5rem;
+	--input-text: 1rem;
+	--input-pad-h: .25rem;
+
+	--input-big: 2rem;
+	--input-big-text: 1.125rem; /* 18px */
+	--input-big-pad-h: .5rem;
+
+	--input-huge: 3rem;
+	--input-huge-text: 1.25rem;
+	--input-huge-pad-h: 1rem;
 
 	--border-width: 1px;
-	--border-radius: 3px;
-	--icon-size: 20px;
+	--border-radius: .25rem;
 
-	--input-pad-h: 4px;
-	--button-pad-h: 16px;
-	--table-padding: 4px 8px;
+	--button-pad-h: 1rem;
+	--button-big-pad-h: 1.5rem;
+	--button-huge-pad-h: 2rem;
+
+	--table-padding: .25rem .5rem;
+
+	--icon-size: 1.25rem;
+	--menu-item-padding:  .25rem .5rem;
 
 	/* Buttons */
 	--primary-background: var(--primary);
@@ -124,9 +146,9 @@
 }
 
 
-/* ┌─────────────────╮
- * |Scrollbars       |
- * └─────────────────╯*/
+/*┌─────────────────╮
+  |Scrollbars       |
+  └─────────────────╯*/
 :root[dark]:is(.eternium, .eternium-style),
 :root[dark] :is(.eternium, .eternium-style) {
 	/*noinspection CssInvalidPropertyValue*/scrollbar-color: dark;
@@ -140,9 +162,9 @@
 /* Form validation. Hide fields used by validate.js */
 .eternium, .eternium-style {
 
-	/* ┌─────────────────╮
-	 * |Normalize        |
-	 * └─────────────────╯*/
+	/*┌─────────────────╮
+	  |Normalize        |
+	  └─────────────────╯*/
 	body { background: var(--background); color: var(--text) }
 	button, input, optgroup, select, textarea { font-family: inherit; font-size: 100% }
 
@@ -159,21 +181,19 @@
 
 
 
-	/* ┌─────────────────╮
-	 * |Misc             |
-	 * └─────────────────╯*/
-
-	/* Labels */
-	.label { font-size :85%; font-weight: bold; user-select: none }
-
-	/* Little and faint */
-	.little { font-size: 80%;  line-height: 1.1 }
-	:is(.muted,.faint) { opacity: .66; } /* faint is deprecated */
+	/*┌─────────────────╮
+	  |Misc             |
+	  └─────────────────╯*/
+	.text-left { text-align: left }
+	.text-right { text-align: right }
+	.text-center { text-align: center }
+	.text-justify { text-align: justify }
 
 	/* Link outline on tab-focus */
 	a:focus-visible:not(.no-outline) { outline: var(--border-focus) }
-	
-	.no-select { user-select: none }
+
+	fieldset { border: var(--border) }
+	legend { font-size: .75rem; font-weight: bold }
 
 	/* Placeholder + Contenteditable placeholder */
 	::placeholder { color: inherit; opacity: .6 }
@@ -184,26 +204,42 @@
 
 	/* Card
 	 * Must appear before row/col so those can override the display to be flex. */
-	.card { box-sizing: border-box; background: var(--card-background); box-shadow: var(--shadow);
+	.card { background: var(--card-background); box-shadow: var(--shadow);
 		&:not(.square) { border-radius: var(--border-radius) }
 		&:not(.flat) { border: var(--card-border) }
 	}
 
+	/* Labels */
+	.label { font-size :85%; font-weight: bold; user-select: none }
+
+	/* Little and muted */
+	.little { font-size: 80%;  line-height: 1.1 }
+	.muted, .faint { opacity: .66; } /* faint is deprecated */
+
+	.min0 { min-width: 0; min-height: 0 } /* Allow size to collapse */
+	.no-select { user-select: none }
+
+	@media print { .no-print { display: none } }
 
 
-	/* ┌─────────────────╮
-	 * |Alerts           |
-	 * └─────────────────╯*/
-	.info-alert { background: #cdf; color: #347; padding: 8px 16px } /* TODO Have user add padding manually? Or match input box size? */
-	.success-alert { background: #cfd; color: #374; padding: 8px 16px }
-	.warning-alert { background: #fec; color: #863; padding: 8px 16px }
-	.error-alert { background: #fcc; color: #833; padding: 8px 16px }
+	/*┌─────────────────╮
+	  |Alerts           |
+	  └─────────────────╯*/
+	/* The ones that don't start with alert- are deprecated. */
+	.alert-info, .alert-info-big, .alert-info-huge { background: #cdf; color: #347; display: inline-block }
+	.alert-success, .alert-success-big, .alert-success-huge { background: #cfd; color: #374; display: inline-block }
+	.alert-warning, .alert-warning-big, .alert-warning-huge { background: #fec; color: #863; display: inline-block }
+	.alert-danger, .alert-danger-big, .alert-danger-huge { background: #fcc; color: #833; display: inline-block }
+
+	.alert-info, .alert-success, .alert-warning, .alert-danger { min-height: var(--input-normal); padding-left: var(--button-pad-h); padding-right: var(--button-pad-h) }
+	.alert-info-big, .alert-success-big, .alert-warning-big, .alert-danger-big { height: var(--input-big); padding-left: var(--button-pad-h); padding-right: var(--button-pad-h) }
+	.alert-info-huge, .alert-success-huge, .alert-warning-huge, .alert-danger-huge { height: var(--input-huge); padding-left: var(--button-pad-h); padding-right: var(--button-pad-h) }
 
 
 
-	/* ┌─────────────────╮
-	 * |Form Validation  |
-	 * └─────────────────╯*/
+	/*┌─────────────────╮
+	  |Form Validation  |
+	  └─────────────────╯*/
 
 	/* Form Validation */
 	.invalid { border-color: var(--invalid) !important; outline-color: var(--invalid) !important }
@@ -216,56 +252,64 @@
 
 
 
-	/* ┌─────────────────╮
-	 * |Input+Btn Height |
-	 * └─────────────────╯*/
+	/*┌─────────────────╮
+	  |Input+Btn Height |
+	  └─────────────────╯*/
 	/* Height */
 	input:not([type=checkbox],[type=file],[type=hidden],[type=image],[type=radio],[type=range]),
-	.input:not([contenteditable]), select, button, .button {
-		box-sizing: border-box; padding-top: 0; padding-bottom: 0; min-height: var(--input-normal)
+	.input, select, button, .button, textarea {
+		box-sizing: border-box; min-height: var(--input-normal)
 	}
 
 	textarea, [contenteditable].input {
-		box-sizing: border-box;
-		min-height: var(--input-normal);
-		padding-top: calc((var(--input-normal) - 1lh) / 2 - var(--border-width)) /* Make text line up vertically with inputs.  Top half of the diff between input height and text height*/
+		/* Make text centered vertically with inputs and single-line textareas.  Top half of the diff between input height and text height */
+		padding-top: calc((var(--input-normal) - 1lh) / 2 - var(--border-width));
 	}
 
-	/* ┌─────────────────╮
-	 * |Input            |
-	 * └─────────────────╯*/
+	/*┌─────────────────╮
+	  |Input            |
+	  └─────────────────╯*/
 	.input, select, textarea,
 	input:not([type=checkbox],[type=file],[type=hidden],[type=image],[type=radio],[type=range],[type=button],[type=reset],[type=submit]) {
-		min-width: 0; color: var(--text);
+		font-size: var(--input-text); color: var(--text);
 		&:not(.square, .flat) { border-radius: var(--border-radius); }
 		&:not(.flat) {
+			border: var(--input-border); vertical-align: top; padding-left: var(--input-pad-h); padding-right: var(--input-pad-h);
+		}
+		&:not([disabled]) { /* TODO Support checkbox, radio, etc */
 			background: var(--input-background);
-			border: var(--border-width) solid var(--input-border); vertical-align: top; padding-left: var(--input-pad-h); padding-right: var(--input-pad-h);
 		}
 	}
 
 	/* Input focus */
-	:is(
-		input:not([type=checkbox],[type=file],[type=hidden],[type=image],[type=radio],[type=range],[type=button],[type=reset],[type=submit]),
-		.input, select, textarea):not(.flat,.no-outline):is(:focus-within,.focus) {
-		outline: var(--border-focus); outline-offset: -1px; z-index: 2 /* z-index lets it the border be on top when inside .group */
+	:is(input:not([type=checkbox],[type=file],[type=hidden],[type=image],[type=radio],[type=range],[type=button],[type=reset],[type=submit]),
+		.input, select, textarea) {
+
+		&[disabled] { background: var(--disabled-background) }
+
+		:not(.flat,.no-outline):is(&:focus,.focus) { /* TODO: Why is & required here?) */
+			outline: var(--border-focus); outline-offset: -1px; z-index: 2; /* z-index lets it the border be on top when inside .group */
+		}
 	}
 	input[type=file]:not(.no-outline):is(:focus-within, .focus) { outline: var(--border-focus) } /* Can't style file, but at least make the focus look similar. */
 
-	/* Input focus:invalid */
-	:is(
-		input:not([type=checkbox],[type=hidden],[type=image],[type=radio],[type=range],[type=button],[type=reset],[type=submit]),
+	/* Input focus:invalid TODO: Use :user-invalid?*/
+	:is(input:not([type=checkbox],[type=hidden],[type=image],[type=radio],[type=range],[type=button],[type=reset],[type=submit]),
 		.input, select, textarea):not(.flat):is(:focus-within,.focus):invalid {
 		outline-color: red
 	}
 
+	:is(input:not([type=file],[type=hidden],[type=image],[type=button],[type=reset],[type=submit]), select, textarea, [contenteditable]):disabled {
+
+	}
 
 
-	/* ┌─────────────────╮
-	 * |Buttons          |
-	 * └─────────────────╯*/
+	/*┌─────────────────╮
+	  |Buttons          |
+	  └─────────────────╯*/
 	:is(.button, button, input:is([type=button],[type=submit],[type=reset])) {
-		box-sizing: border-box; display: inline-flex; user-select: none; text-align: center; color: var(--text); align-items: center;
+		box-sizing: border-box; font-size: var(--input-text); user-select: none; text-align: center; color: var(--text);
+		align-items: center; justify-content: center;
 
 		&:not([disabled]) { cursor: pointer }
 		&:not(.square, .flat) { border-radius: var(--border-radius) }
@@ -290,16 +334,18 @@
 			&:not(.no-outline):is(:focus-visible,.focus){
 				outline: var(--border-width) solid var(--primary-border-focus); outline-offset: -1px; z-index: 2 }
 			}
-		a:is(.button, .button:hover) { text-decoration: none }
 
 
-
-		/* ┌─────────────────╮
-		 * |Button Status    |
-		 * └─────────────────╯*/
+		/*┌─────────────────╮
+		  |Button Status    |
+		  └─────────────────╯*/
 		/* TODO: Let inputs have status also. */
 		&:is(.loading,.error,.success) { position: relative;
-			&:after { position: relative;	top: 0; left: 4px; }
+			display: inline-flex;
+			/* TODO: Use the same logic on other sizes of buttons. */
+			padding-left: calc(var(--button-pad-h) - .5rem);
+			padding-right: calc(var(--button-pad-h) - .5rem);
+			&:after { position: relative; top: .125rem; left: .25rem; }
 			&.primary:after { filter: invert(100%) }
 		}
 
@@ -315,9 +361,9 @@
 
 
 
-		/* ┌─────────────────╮
-		 * |Button Sizes     |
-		 * └─────────────────╯*/
+		/*┌─────────────────╮
+		  |Button Sizes     |
+		  └─────────────────╯*/
 
 		/* Small buttons. */
 		/* We calculate how much vertical padding space is left after using line height and border: */
@@ -327,20 +373,22 @@
 
 		/* Big buttons . */
 		&.big:not(.wt) {
-			height: var(--input-big); padding: calc((var(--input-big) - 1lh) / 2 - var(--border-width)) calc(var(--input-big))
+			height: var(--input-big); padding: calc((var(--input-big) - 1lh) / 2 - var(--border-width)) var(--button-big-pad-h)
 		}
 
 		/* Huge buttons */
 		&.huge:not(.wt) {
-			height: var(--input-huge); padding: calc((var(--input-huge) - 1lh) / 2 - var(--border-width)) calc(var(--input-huge))
+			height: var(--input-huge); padding: calc((var(--input-huge) - 1lh) / 2 - var(--border-width)) var(--button-huge-pad-h)
 		}
 	}
-	
+
+	a:is(.button, .button:hover) { text-decoration: none }
+	a.button[disabled] { pointer-events: none }
 	
 
-	/* ┌─────────────────╮
-	 * |Input Sizes      |
-	 * └─────────────────╯*/
+	/*┌─────────────────╮
+	  |Input Sizes      |
+	  └─────────────────╯*/
 	:is(button, .button, input, select).small {
 		height: var(--input-small); /* Needed for <select> to get it to shrink its height. */
 	}
@@ -348,16 +396,28 @@
 	input:not([type=checkbox],[type=file],[type=hidden],[type=image],[type=radio],[type=range],[type=button],[type=reset],[type=submit]),
 	.input, select, textarea {
 
-		&.small {  min-height: var(--input-small); padding: calc((var(--input-small) - 1lh) / 2 - var(--border-width)) calc(var(--input-small) / 4) }
-		&.big { min-height: var(--input-big); padding: calc((var(--input-big) - 1lh) / 2 - var(--border-width)) calc(var(--input-big) / 3) }
-		&.huge { min-height: var(--input-huge); padding: calc((var(--input-huge) - 1lh) / 2 - var(--border-width)) calc(var(--input-huge) / 3) }
+		/* Put input[type=number] outside the padding */
+		&::-webkit-inner-spin-button { position: relative; left: var(--input-pad-h); transform-origin: 100% 50%; height: var(--input-normal); }
+
+		/* TODO: spinner scaling depends on inherited font size, which is unknown  */
+		&.small { min-height: var(--input-small); padding: calc((var(--input-small) - 1lh) / 2 - 2 * var(--border-width)) calc(var(--input-small) / 4) }
+		&.big { min-height: var(--input-big); font-size: var(--input-big-text); padding: calc((var(--input-big) - 1lh) / 2 - 2 * var(--border-width)) var(--input-big-pad-h);
+
+			/* Make input type number spinners bigger.  TODO: What about Firefox/Safari? */
+			&::-webkit-inner-spin-button { position: relative; left: var(--input-big-pad-h); height: var(--input-big)  }
+		}
+		&.huge { min-height: var(--input-huge); font-size: var(--input-huge-text); padding: calc((var(--input-huge) - 1lh) / 2 - 2 * var(--border-width)) var(--input-huge-pad-h);
+			&::-webkit-inner-spin-button { position: relative; left: var(--input-huge-pad-h); height: var(--input-huge) /* Make spinners bigger */ }
+		}
 	}
+	input:not([type=checkbox],[type=file],[type=hidden],[type=image],[type=radio],[type=range],[type=button],[type=reset],[type=submit]),
+
 	
 
 
-	/* ┌─────────────────╮
-	 * |Flat             |
-	 * └─────────────────╯*/
+	/*┌─────────────────╮
+	  |Flat             |
+	  └─────────────────╯*/
 	/* Flat Buttons + Inputs have no bg, border, or padding.  Good for toolbars. */
 	:is(input:not([type=checkbox],[type=file],[type=hidden],[type=image],[type=radio],[type=range]),
 		.input, select, textarea, button, .button).flat {
@@ -368,24 +428,31 @@
 		outline: var(--border-focus)
 	}
 
-	:is(button, .button, [type=button],[type=reset],[type=submit]):not([disabled]).flat:is(.selected, :hover) {
-		border: var(--border-width) solid var(--secondary-background-hover); background: var(--secondary-background-hover);
-		color: var(--invert)
+	:is(button, .button, [type=button],[type=reset],[type=submit]):not([disabled]).flat {
+		&.selected {
+			border: var(--border-width) solid var(--secondary); background: var(--secondary);
+			color: var(--invert)
+		}
+
+		&:hover {
+			border: var(--border-width) solid var(--secondary-background-hover); background: var(--secondary-background-hover);
+			color: var(--invert)
+		}
 	}
 	.input:focus-within :focus-within { outline: none !important }
 
 
 
-	/* ┌─────────────────╮
-	 * |Grouped          |
-	 * └─────────────────╯*/
+	/*┌─────────────────╮
+	  |Grouped          |
+	  └─────────────────╯*/
 	/* Grouped inputs + buttons share borders */
-	.group { display: flex }
+	.group:not([hidden]) { display: flex }
 	.group > :is(:not(:first-child), .group-left),
 	.group > :is(:not(:first-child), .group-left) :is(input, .input, select, textarea, button),
 	.group > input[type=checkbox]:is(.normal,.big,.huge):is(:not(:first-child), .group-left):before,
 	.group > :is(:not(:first-child), .group-left) input[type=checkbox]:is(.normal,.big,.huge):before {
-		margin-left: -1px; border-top-left-radius: 0 !important; border-bottom-left-radius: 0 !important;
+		border-left-width: 0 !important; border-top-left-radius: 0 !important; border-bottom-left-radius: 0 !important;
 	}
 	.group > :is(:not(:last-child), .group-right),
 	.group > :is(:not(:last-child), .group-right) :is(input, .input, select, textarea, button),
@@ -396,9 +463,9 @@
 
 
 
-	/* ┌─────────────────╮
-	 * |Checkboxes       |
-	 * └─────────────────╯*/
+	/*┌─────────────────╮
+	  |Checkboxes       |
+	  └─────────────────╯*/
 	/* Allow us to customize the border on checkboxes when they're invalid. */
 	[type=checkbox] { 
 		appearance:none; outline: none; content: none; margin: 0; vertical-align: text-top;
@@ -406,14 +473,15 @@
 			align-items: center; justify-content: center; color: transparent; background: var(--input-background);
 			display: inline-flex; width: .9rem; height: .9rem; font: bold .75rem Arial; line-height: 0;}
 		&:not(.flat,.square):before { border-radius: var(--border-radius) }
-		&:not(.flat):before { border: var(--border-width) solid var(--input-border) }
+		&:not(.flat):before { border: var(--input-border) }
 		&:not(.no-outline):is(:focus-visible,.focus):before { outline: var(--border-focus); outline-offset: -1px; z-index: 2; position: relative } /* relative needed for z-index to work */
 	
 		/* Checkbox gets primary style when checked. */
-		&:checked:before { color: white; background: var(--primary-background) }
+		&:checked:not(:disabled):before { color: white; background: var(--primary-background) }
+		&:checked:disabled:before { color: gray; background: var(--disabled-background) }
 		&:checked:is(:focus-visible,.focus):before { outline: var(--border-width) solid var(--primary-border-focus) }
 	
-		/* Various sizes of checkboxes */
+		/* Make checkboxes the size of .small, .big, and .huge input heights */
 		&.small:before {
 			width: var(--input-small);
 			height: var(--input-small);
@@ -434,27 +502,35 @@
 
 
 
-	/* ┌─────────────────╮
-	 * |Data table       |
-	 * └─────────────────╯*/
+	/*┌─────────────────╮
+	  |Data table       |
+	  └─────────────────╯*/
 	/* One border around the whole table, and then right and bottom borders on each cell that's not the last in the row/column.
-	 * To quickly give a table a different padding size, you can set style="--table-padding: 2px 10px" */
+	 * Table rows (tr) must be direct children of thead/tbody/tfoot.
+	 * To quickly give a table a different padding size, you can set style="--table-padding: 1rem 2rem" */
 	.data-table { border-collapse: collapse; background: var(--table-background); border: var(--table-border); font-size: inherit;
-		:is(th,.th) { padding: var(--table-padding); background: var(--table-header-background); border-bottom: var(--table-border);
-			text-align: left; user-select: none; font-weight: 500; white-space: nowrap }
-		:is(thead,.thead) :is(th,.th) { vertical-align: bottom } /* column headers */
-		:is(tbody,.tbody,tfoot,.tfoot) :is(th,.th) { vertical-align: top } /* row headers, footer */
+		> :is(thead,.thead) > :is(tr,.tr) > :is(th,.th) { vertical-align: bottom }
+		> :is(thead,.thead) > :is(tr,.tr) > :is(th,.th) { vertical-align: bottom }
+		> :is(tbody,.tbody,tfoot,.tfoot) > :is(tr,.tr) > :is(th,.th) { vertical-align: top }
+		> :is(thead,.thead,tbody,.tbody,tfoot,.tfoot) {
+			> :is(tr,.tr) {
+				> :is(th,.th) { padding: var(--table-padding); background: var(--table-header-background);
+					text-align: left; font-weight: 500; white-space: nowrap }
+				> :is(td,.td) { padding: var(--table-padding) }
+				> :is(th,.th,td,.td):not(:last-child) { border-right: var(--table-border) }
+			}
+			> :is(tr,.tr):not(:last-child) > :is(th,.th,td,.td) { border-bottom: var(--table-border) }
+		}
 
-		:is(td,.td) { padding: var(--table-padding) }
-		:is(th,.th,td,.td):not(:last-child) { border-right: var(--table-border) }
-		:is(tr,.tr):not(:last-child) :is(td,.td) { border-bottom: var(--table-border) }
+		:is(tr,.tr).selected > :is(td,.td),
+		:is(td,.td).selected { background: var(--primary); border-color: var(--primary2) !important; color: var(--primary-text) }
 	}
 
 
 
-	/* ┌─────────────────╮
-	 * |Experimental     |
-	 * └─────────────────╯*/
+	/*┌─────────────────╮
+	  |Experimental     |
+	  └─────────────────╯*/
 	/* These may change in the future. */
 
 	/* drop-menu */
@@ -472,14 +548,14 @@
 	
 	/* menu-item */
 	/* A combination of:  class="row pad-h-small pad-v-micro gap-small button center-v" */
-	.menu-item {
-		display: flex; align-items: center; padding: 4px 8px; gap: 8px; color: var(--text);
+	.menu-item { /* TODO: Remove hard-coded gap? */
+		display: flex; align-items: center; padding: var(--menu-item-padding); gap:.5rem; color: var(--text);
 		user-select: none; cursor: pointer;
 		&:hover { background: var(--primary-background); color: var(--primary-text) }
 	}
 	
 	/* Icon */
-	.icon { font-size: var(--icon-size);
+	.icon { font-size: var(--icon-size); display: flex; align-items: center; justify-content: center;
 		min-width: var(--icon-size); max-width: var(--icon-size); min-height: var(--icon-size); max-height: var(--icon-size);
 		&:not([disabled]) { cursor: pointer;
 			&.selected { color: var(--primary2)	}
@@ -495,26 +571,28 @@
 
 
 
-/* ┌─────────────────╮
- * |Grid             |
- * └─────────────────╯*/
+/*┌─────────────────╮
+  |Grid             |
+  └─────────────────╯*/
 .eternium, .eternium-layout {
 
 	/* Dimensions */
-	--micro: 2px;
-	--tiny: 4px;
-	--small: 8px;
-	--normal: 16px;
-	--big: 24px;
-	--huge: 48px;
+	--micro: 0.125rem;
+	--tiny: 0.25rem;
+	--small: 0.5rem;
+	--normal: 1rem;
+	--big: 1.5rem;
+	--huge: 3rem;
 	
 	/* Rows and column layout.  These can occor on the same element with :is(.eternium, .eternium-style)
 	 * Unlike bootstrap, a col class will stack each of its children into a column,
 	 * and having a col class for each item in a row isn't necessary.*/
-	.row { display: flex; align-items: start }  /* align-items: start prevents stretching to available height */
-	.col { display: flex; flex-direction: column; align-items: start;
-		> * { max-width: 100% } /* Don't let children be wider than the column */
-	}
+	.row:not([hidden]) { display: flex; align-items: start }  /* align-items: start prevents stretching to available height */
+	.col:not([hidden]) { display: flex; flex-direction: column; align-items: start }
+
+	/* Don't let children be wider than the column.
+	We don't combine this with the above rule b/c the :not([hidden]) selector makes it so specific that it overrides rem, px, etc classes. */
+	.col > * { max-width: 100% }
 
 	/* Gaps */
 	.gap-micro { gap: var(--micro) }
@@ -587,11 +665,11 @@
 	:is(.no-wrap, .nowrap) { flex-wrap: nowrap; white-space: nowrap }
 
 
-	/* ┌─────────────────╮
-	 * |Dimensions       |
-	 * └─────────────────╯*/
+	/*┌─────────────────╮
+	  |Dimensions       |
+	  └─────────────────╯*/
 
-	/* Fixed pixel widths */
+	/* Pixel widths */
 	.px10 { min-width: 10px; max-width: 10px }
 	.px20 { min-width: 20px; max-width: 20px }
 	.px30 { min-width: 30px; max-width: 30px }
@@ -622,6 +700,38 @@
 	.px950 { min-width: 950px; max-width: 950px }
 	.px1000 { min-width: 1000px; max-width: 1000px }
 
+	/* Rem widths */
+	.rem0-125 { min-width: 0.125rem; max-width: 0.125rem }
+	.rem0-25 { min-width: 0.25rem; max-width: 0.25rem }
+	.rem0-5 { min-width: 0.5rem; max-width: 0.5rem }
+	.rem0-75 { min-width: 0.75rem; max-width: 0.75rem }
+	.rem1 { min-width: 1rem; max-width: 1rem }
+	.rem1-25 { min-width: 1.25rem; max-width: 1.25rem }
+	.rem1-5 { min-width: 1.5rem; max-width: 1.5rem }
+	.rem2 { min-width: 2rem; max-width: 2rem }
+	.rem2-5 { min-width: 2.5rem; max-width: 2.5rem }
+	.rem3 { min-width: 3rem; max-width: 3rem }
+	.rem4 { min-width: 4rem; max-width: 4rem }
+	.rem5 { min-width: 5rem; max-width: 5rem }
+	.rem6 { min-width: 6rem; max-width: 6rem }
+	.rem7 { min-width: 7rem; max-width: 7rem }
+	.rem8 { min-width: 8rem; max-width: 8rem }
+	.rem9 { min-width: 9rem; max-width: 9rem }
+	.rem10 { min-width: 10rem; max-width: 10rem }
+	.rem11 { min-width: 11rem; max-width: 11rem }
+	.rem12 { min-width: 12rem; max-width: 12rem }
+	.rem13 { min-width: 13rem; max-width: 13rem }
+	.rem14 { min-width: 14rem; max-width: 14rem }
+	.rem15 { min-width: 15rem; max-width: 15rem }
+	.rem16 { min-width: 16rem; max-width: 16rem }
+	.rem17 { min-width: 17rem; max-width: 17rem }
+	.rem18 { min-width: 18rem; max-width: 18rem }
+	.rem19 { min-width: 19rem; max-width: 19rem }
+	.rem20 { min-width: 20rem; max-width: 20rem }
+	.rem22 { min-width: 22rem; max-width: 22rem }
+	.rem25 { min-width: 25rem; max-width: 25rem }
+	.rem30 { min-width: 28rem; max-width: 28rem }
+
 	/* Percents in thirds, fourths, and tenths. */
 	.pc10 { width: 10% }
 	.pc20 { width: 20% }
@@ -639,7 +749,7 @@
 	.pc100 { width: 100% }
 
 	/* Flex */
-	.flex1, .expand { flex: 1 }
+	.flex1, .expand { flex: 1 } /* .expand is deprecated */
 	.flex2 { flex: 2 }
 	.flex3 { flex: 3 }
 	.flex4 { flex: 4 }
@@ -654,9 +764,9 @@
 }
 
 
-/* ┌─────────────────╮
- * |Grid Mobile      |
- * └─────────────────╯*/
+/*┌─────────────────╮
+  |Grid Mobile      |
+  └─────────────────╯*/
 @media (width < 512px) {
 
 	.eternium, .eternium-layout {
@@ -712,7 +822,8 @@
 		:is(.row-mobile,.col-mobile).stretch-mobile { align-items: stretch }
 		:is(.row-mobile,.col-mobile).stretch-mobile > * { flex: 1 }
 
-		.row-mobile.stretch-h-mobile > * { flex: 1 }
+		/* TODO: Make all of thse work on .row or .row-mobile. */
+		:is(.row,.row-mobile).stretch-h-mobile > * { flex: 1 }
 		.row-mobile.stretch-v-mobile { align-items: stretch }
 
 		.col-mobile.stretch-h-mobile { align-items: stretch }
@@ -737,11 +848,11 @@
 
 
 
-		/* ┌─────────────────╮
-		 * |Dimensions       |
-		 * └─────────────────╯*/
+		/*┌─────────────────╮
+		  |Dimensions       |
+		  └─────────────────╯*/
 
-		/* Fixed pixel widths */
+		/* Pixel widths */
 		.px10-mobile { min-width: 10px; max-width: 10px }
 		.px20-mobile { min-width: 20px; max-width: 20px }
 		.px30-mobile { min-width: 30px; max-width: 30px }
@@ -771,6 +882,38 @@
 		.px900-mobile { min-width: 900px; max-width: 900px }
 		.px950-mobile { min-width: 950px; max-width: 950px }
 		.px1000-mobile { min-width: 1000px; max-width: 1000px }
+
+		/* Rem widths */
+		.rem0-125-mobile { min-width: 0.125rem; max-width: 0.125rem }
+		.rem0-25-mobile { min-width: 0.25rem; max-width: 0.25rem }
+		.rem0-5-mobile { min-width: 0.5rem; max-width: 0.5rem }
+		.rem0-75-mobile { min-width: 0.75rem; max-width: 0.75rem }
+		.rem1-mobile { min-width: 1rem; max-width: 1rem }
+		.rem1-25-mobile { min-width: 1.25rem; max-width: 1.25rem }
+		.rem1-5-mobile { min-width: 1.5rem; max-width: 1.5rem }
+		.rem2-mobile { min-width: 2rem; max-width: 2rem }
+		.rem2-5-mobile { min-width: 2.5rem; max-width: 2.5rem }
+		.rem3-mobile { min-width: 3rem; max-width: 3rem }
+		.rem4-mobile { min-width: 4rem; max-width: 4rem }
+		.rem5-mobile { min-width: 5rem; max-width: 5rem }
+		.rem6-mobile { min-width: 6rem; max-width: 6rem }
+		.rem7-mobile { min-width: 7rem; max-width: 7rem }
+		.rem8-mobile { min-width: 8rem; max-width: 8rem }
+		.rem9-mobile { min-width: 9rem; max-width: 9rem }
+		.rem10-mobile { min-width: 10rem; max-width: 10rem }
+		.rem11-mobile { min-width: 11rem; max-width: 11rem }
+		.rem12-mobile { min-width: 12rem; max-width: 12rem }
+		.rem13-mobile { min-width: 13rem; max-width: 13rem }
+		.rem14-mobile { min-width: 14rem; max-width: 14rem }
+		.rem15-mobile { min-width: 15rem; max-width: 15rem }
+		.rem16-mobile { min-width: 16rem; max-width: 16rem }
+		.rem17-mobile { min-width: 17rem; max-width: 17rem }
+		.rem18-mobile { min-width: 18rem; max-width: 18rem }
+		.rem19-mobile { min-width: 19rem; max-width: 19rem }
+		.rem20-mobile { min-width: 20rem; max-width: 20rem }
+		.rem22-mobile { min-width: 22rem; max-width: 22rem }
+		.rem25-mobile { min-width: 25rem; max-width: 25rem }
+		.rem30-mobile { min-width: 28rem; max-width: 28rem }
 
 
 		/* Percents in thirds, fourths, and tenths. */
@@ -807,9 +950,9 @@
 
 
 
-/* ┌─────────────────╮
- * |Grid Tablet      |
- * └─────────────────╯*/
+/*┌─────────────────╮
+  |Grid Tablet      |
+  └─────────────────╯*/
 @media (512px <= width < 992px) {
 	.eternium, .eternium-layout {
 
@@ -887,11 +1030,11 @@
 
 
 
-		/* ┌─────────────────╮
-		 * |Dimensions       |
-		 * └─────────────────╯*/
+		/*┌─────────────────╮
+		  |Dimensions       |
+		  └─────────────────╯*/
 
-		/* Fixed pixel widths */
+		/* Pixel widths */
 		.px10-tablet { min-width: 10px; max-width: 10px }
 		.px20-tablet { min-width: 20px; max-width: 20px }
 		.px30-tablet { min-width: 30px; max-width: 30px }
@@ -921,6 +1064,38 @@
 		.px900-tablet { min-width: 900px; max-width: 900px }
 		.px950-tablet { min-width: 950px; max-width: 950px }
 		.px1000-tablet { min-width: 1000px; max-width: 1000px }
+
+		/* Rem widths */
+		.rem0-125-tablet { min-width: 0.125rem; max-width: 0.125rem }
+		.rem0-25-tablet { min-width: 0.25rem; max-width: 0.25rem }
+		.rem0-5-tablet { min-width: 0.5rem; max-width: 0.5rem }
+		.rem0-75-tablet { min-width: 0.75rem; max-width: 0.75rem }
+		.rem1-tablet { min-width: 1rem; max-width: 1rem }
+		.rem1-25-tablet { min-width: 1.25rem; max-width: 1.25rem }
+		.rem1-5-tablet { min-width: 1.5rem; max-width: 1.5rem }
+		.rem2-tablet { min-width: 2rem; max-width: 2rem }
+		.rem2-5-tablet { min-width: 2.5rem; max-width: 2.5rem }
+		.rem3-tablet { min-width: 3rem; max-width: 3rem }
+		.rem4-tablet { min-width: 4rem; max-width: 4rem }
+		.rem5-tablet { min-width: 5rem; max-width: 5rem }
+		.rem6-tablet { min-width: 6rem; max-width: 6rem }
+		.rem7-tablet { min-width: 7rem; max-width: 7rem }
+		.rem8-tablet { min-width: 8rem; max-width: 8rem }
+		.rem9-tablet { min-width: 9rem; max-width: 9rem }
+		.rem10-tablet { min-width: 10rem; max-width: 10rem }
+		.rem11-tablet { min-width: 11rem; max-width: 11rem }
+		.rem12-tablet { min-width: 12rem; max-width: 12rem }
+		.rem13-tablet { min-width: 13rem; max-width: 13rem }
+		.rem14-tablet { min-width: 14rem; max-width: 14rem }
+		.rem15-tablet { min-width: 15rem; max-width: 15rem }
+		.rem16-tablet { min-width: 16rem; max-width: 16rem }
+		.rem17-tablet { min-width: 17rem; max-width: 17rem }
+		.rem18-tablet { min-width: 18rem; max-width: 18rem }
+		.rem19-tablet { min-width: 19rem; max-width: 19rem }
+		.rem20-tablet { min-width: 20rem; max-width: 20rem }
+		.rem22-tablet { min-width: 22rem; max-width: 22rem }
+		.rem25-tablet { min-width: 25rem; max-width: 25rem }
+		.rem30-tablet { min-width: 28rem; max-width: 28rem }
 
 		/* Percents in thirds, fourths, and tenths. */
 		.pc10-tablet { width: 10% }
@@ -956,9 +1131,9 @@
 
 
 
-/* ┌─────────────────╮
- * |Grid Desktop+    |
- * └─────────────────╯*/
+/*┌─────────────────╮
+  |Grid Desktop+    |
+  └─────────────────╯*/
 @media (992px <= width) {
 	.eternium, .eternium-layout {
 
@@ -1036,11 +1211,11 @@
 
 
 
-		/* ┌─────────────────╮
-		 * |Dimensions       |
-		 * └─────────────────╯*/
+		/*┌─────────────────╮
+		  |Dimensions       |
+		  └─────────────────╯*/
 
-		/* Fixed pixel widths */
+		/* Pixel widths */
 		.px10-desktop { min-width: 10px; max-width: 10px }
 		.px20-desktop { min-width: 20px; max-width: 20px }
 		.px30-desktop { min-width: 30px; max-width: 30px }
@@ -1070,6 +1245,38 @@
 		.px900-desktop { min-width: 900px; max-width: 900px }
 		.px950-desktop { min-width: 950px; max-width: 950px }
 		.px1000-desktop { min-width: 1000px; max-width: 1000px }
+
+		/* Rem widths */
+		.rem0-125-desktop { min-width: 0.125rem; max-width: 0.125rem }
+		.rem0-25-desktop { min-width: 0.25rem; max-width: 0.25rem }
+		.rem0-5-desktop { min-width: 0.5rem; max-width: 0.5rem }
+		.rem0-75-desktop { min-width: 0.75rem; max-width: 0.75rem }
+		.rem1-desktop { min-width: 1rem; max-width: 1rem }
+		.rem1-25-desktop { min-width: 1.25rem; max-width: 1.25rem }
+		.rem1-5-desktop { min-width: 1.5rem; max-width: 1.5rem }
+		.rem2-desktop { min-width: 2rem; max-width: 2rem }
+		.rem2-5-desktop { min-width: 2.5rem; max-width: 2.5rem }
+		.rem3-desktop { min-width: 3rem; max-width: 3rem }
+		.rem4-desktop { min-width: 4rem; max-width: 4rem }
+		.rem5-desktop { min-width: 5rem; max-width: 5rem }
+		.rem6-desktop { min-width: 6rem; max-width: 6rem }
+		.rem7-desktop { min-width: 7rem; max-width: 7rem }
+		.rem8-desktop { min-width: 8rem; max-width: 8rem }
+		.rem9-desktop { min-width: 9rem; max-width: 9rem }
+		.rem10-desktop { min-width: 10rem; max-width: 10rem }
+		.rem11-desktop { min-width: 11rem; max-width: 11rem }
+		.rem12-desktop { min-width: 12rem; max-width: 12rem }
+		.rem13-desktop { min-width: 13rem; max-width: 13rem }
+		.rem14-desktop { min-width: 14rem; max-width: 14rem }
+		.rem15-desktop { min-width: 15rem; max-width: 15rem }
+		.rem16-desktop { min-width: 16rem; max-width: 16rem }
+		.rem17-desktop { min-width: 17rem; max-width: 17rem }
+		.rem18-desktop { min-width: 18rem; max-width: 18rem }
+		.rem19-desktop { min-width: 19rem; max-width: 19rem }
+		.rem20-desktop { min-width: 20rem; max-width: 20rem }
+		.rem22-desktop { min-width: 22rem; max-width: 22rem }
+		.rem25-desktop { min-width: 25rem; max-width: 25rem }
+		.rem30-desktop { min-width: 28rem; max-width: 28rem }
 
 		/* Percents in thirds, fourths, and tenths. */
 		.pc10-desktop { width: 10% }
@@ -1103,9 +1310,9 @@
 	}
 }
 
-/* ┌─────────────────╮
- * |Grid Visibility  |
- * └─────────────────╯*/
+/*┌─────────────────╮
+  |Grid Visibility  |
+  └─────────────────╯*/
 
 /* Show only for specific sizes. */
 /* TODO: Use this method for other -desktop and -mobile styles above?  Having that will override the default style only for that size. */
